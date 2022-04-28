@@ -1,0 +1,216 @@
+syntax = "proto3";
+
+package channeld;
+
+import "google/protobuf/any.proto";
+
+option go_package = "/proto";
+
+// The data packet that is sent between the endpoints. A packet can have multiple messages in the payload in one trip to improve the efficiency.
+message Packet {
+    repeated MessagePack messages = 1;
+}
+
+// The serialized message and the context of it.
+message MessagePack {
+    // The channel that the message is sent to.
+    // 0 means the message should be handled in the global channel (e.g. a @CreateChannel message)
+    uint32 channelId = 1;
+
+    // Will the message be broadcasted to all connections in the channel? 
+    // ONLY works for the user-space messages. 
+    BroadcastType broadcast = 2;
+
+    // The stub for RPC callbacks.
+    // 0 means the packet is not a RPC message.
+    uint32 stubId = 3;
+
+    // The MessageType either defined in @MessageType enum, or defined in user space.
+    uint32 msgType = 4;
+
+    // The serialized message. It's Protobuf-marshalled byte array if the message is defined in @MessageType.
+    bytes msgBody = 5;
+}
+
+enum BroadcastType {
+    // No broadcast. All internal messages should use this type, and other types are ignored.
+    NO_BROADCAST = 0;
+    // Broadcast the message to all the connections in the channel, the sender included.
+    ALL = 1;
+    // Broadcast the message to all the connections in the channel, the sender excluded.
+    ALL_BUT_SENDER = 2;
+    // Forward the packet to the connection. Can only be used by the backend server.
+    // This has the same behavior as sending the packet to the PRIVATE channel owned by the target connection with BroadcastType = NO.
+    SINGLE_CONNECTION = 3; 
+}
+
+enum ChannelType {
+    UNKNOWN = 0;
+    GLOBAL = 1;   // Default channel. Any message without ChannelId specified will be sent to this channel.
+    PRIVATE = 2;  // Per-connection channel. Useful to store the user data and subscribe the client to the data update.
+    SUBWORLD = 3; // A game "room" in a session-based game, or a level in an MMORPG. Subworlds are spatially divided thus the interests are isolated.
+    SPATIAL = 4;  // Spatial channels are spatailly connected. Using this channel to implement a seamless open world.
+    TEST = 100;   // The following are for tests.
+    TEST1 = 101;
+    TEST2 = 102;
+    TEST3 = 103;
+    TEST4 = 104;
+}
+
+enum MessageType {
+    INVALID = 0;
+    AUTH = 1;
+    //AUTH_RESULT = 2;
+    CREATE_CHANNEL = 3;
+    REMOVE_CHANNEL = 4;
+    LIST_CHANNEL = 5;
+    SUB_TO_CHANNEL = 6;
+    UNSUB_FROM_CHANNEL = 7;
+    CHANNEL_DATA_UPDATE = 8;
+    DISCONNECT = 9;
+    USER_SPACE_START = 100;
+}
+
+// The message that is used to carries user-space message and communicate between channeld and backend servers.
+// Users don't have to have this message if they are using a client library.
+message ServerForwardMessage {
+    // The client that sends the user-space message to server or server sends the user-space message to.
+    uint32 clientConnId = 1;
+    // The user-space message. channeld leaves it as the original binary format.
+    bytes payload = 2;
+}
+
+// The packet should have channelId = 0 in order to be handled.
+// Response: @AuthResultMessage
+message AuthMessage {
+    string playerIdentifierToken = 1;
+    string loginToken = 2;
+}
+
+enum CompressionType {
+    NO_COMPRESSION = 0;
+    // https://github.com/google/snappy
+    SNAPPY = 1;
+}
+
+message AuthResultMessage {
+    enum AuthResult {
+        SUCCESSFUL = 0;
+        INVALID_PIT = 1;
+        INVALID_LT = 2;
+    }
+    AuthResult result = 1;
+    uint32 connId = 2;
+    
+    // The compression type should be used for future communication.
+    // However, because the compression type is specified per packet, the client has its freedom to control which compression type to use.
+    // It's useful when the client has too much CPU load for the compression, or the network debug is needed.
+    CompressionType compressionType = 3;
+}
+
+message ChannelSubscriptionOptions {
+	bool CanUpdateData = 1;
+	repeated string DataFieldMasks = 2;
+	uint32 FanOutIntervalMs = 3;
+}
+
+// Defines how two @ChannelDataUpdateMessage.data are merged.
+// The custom merge function should always be implemented for the sake of performance. Otherwise, 
+// the default merge that based on Protobuf's reflection will be used, and it's >10 times slower.
+message ChannelDataMergeOptions {
+    // By default, Protobuf appends the src list to the dst list. Setting this option to true will replace the dst list with the src list.
+	bool shouldReplaceList = 1;
+	// If the value is greater than 0, truncate the the list when oversized.
+	uint32 listSizeLimit = 2;
+    // If true, the top elements of the list will be truncated instead of the end. It's useful for scenarios like chat message list.
+    bool truncateTop = 3;
+	// If true, the merge method will remove any map entry that has removed=true in its value.
+	bool shouldCheckRemovableMapField = 4;
+}
+
+// The packet should have channelId = 0 in order to be handled.
+// Response: @CreateChannelResultMessage. The channelId in the response MessagePack corresponds to the created channel. The GLOBAL channel owner will also receive this message.
+message CreateChannelMessage {
+    ChannelType channelType = 1;
+    string metadata = 2;
+    ChannelSubscriptionOptions subOptions = 3;
+    google.protobuf.Any data = 4;
+    ChannelDataMergeOptions mergeOptions = 5;
+}
+
+message CreateChannelResultMessage {
+    ChannelType channelType = 1;
+    string metadata = 2;
+    uint32 ownerConnId = 3;
+}
+
+// The packet should have channelId = 0 in order to be handled.
+// Response: all connections in the channel will receive @RemoveChannelMessage. The GLOBAL channel owner will also receive this message.
+message RemoveChannelMessage {
+    uint32 channelId = 1;
+}
+
+// The packet should have channelId = 0 in order to be handled.
+// Response: @ListChannelResultMessage
+message ListChannelMessage {
+    ChannelType typeFilter = 1;
+    repeated string metadataFilters = 2;
+}
+
+message ListChannelResultMessage {
+    message ChannelInfo {
+        uint32 channelId = 1;
+        ChannelType channelType = 2;
+        string metadata = 3;
+    }
+    repeated ChannelInfo channels = 1;
+}
+
+// Response: @SubscribedToChannelResultMessage. The message sender, the subscribed connection, and the channel owner will receive the message respectively.
+// If the connection has already been subscripbed to the channel, the subOptions will be merged, but no response message will be sent.
+message SubscribedToChannelMessage {
+    // The connection to be added to the channel is not necessarily the one sends the message 
+    uint32 connId = 1;
+    ChannelSubscriptionOptions subOptions = 2;
+}
+
+message SubscribedToChannelResultMessage {
+    // The connection that subsribed.
+    uint32 connId = 1;
+    ChannelType channelType = 2;
+}
+
+// Response: @UnsubscribedFromChannelMessage. The message sender, the subscribed connection, and the channel owner will receive the message respectively.
+message UnsubscribedFromChannelMessage {
+    uint32 connId = 1;
+}
+
+
+// Response: no. Each connection in the channel receives the @ChannelDataUpdateMessage in every @ChannelSubscriptionOptions.FanOutIntervalMs
+message ChannelDataUpdateMessage {
+    google.protobuf.Any data = 1;
+}
+
+
+// Disconnect another connection from channeld. 
+// This message should only be sent by the server connection in a server-authoratative environment.
+// The packet should have channelId = 0 in order to be handled.
+// Response: no.
+message DisconnectMessage {
+    uint32 connId = 1;
+}
+
+
+message Location {
+    double x = 1;
+    double y = 2;
+    double z = 3;
+}
+
+message SpatialEntityInfo {
+    Location loc = 1;
+}
+
+message SpatialChannelDataMessage {
+    map<uint32, SpatialEntityInfo> entities = 1;
+}

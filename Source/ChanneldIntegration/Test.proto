@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package channeld;
+
+import "google/protobuf/any.proto";
+
+option go_package = "/proto";
+
+message TestChannelDataMessage {
+	string text = 1;
+	uint32 num = 2;
+}
+
+message TestAnyMessage {
+	message Type1 {
+		string value = 1;
+	}
+	message Type2 {
+		int64 value = 1;
+	}
+	google.protobuf.Any msg = 1;
+	repeated google.protobuf.Any list = 2;
+}
+
+message TestMergeMessage {
+	repeated string list = 1;
+
+	message StringWrapper {
+		bool removed = 1;
+		string content = 2;
+	}
+	map<int64, StringWrapper> kv = 2;
+}
+
+message TestMapMessage {
+	map<uint32, string> kv = 1;
+
+	message StringWrapper {
+		string content = 1;
+		int64 num = 2;
+	}
+	map<uint32, StringWrapper> kv2 = 2;
+}
+
+message TestFieldMaskMessage {
+	message NestedMessage {
+		int64 p1 = 1;
+		uint32 p2 = 2;
+	}
+
+	string name = 1;
+	NestedMessage msg = 2;
+	repeated NestedMessage list = 3;
+	map<int64, NestedMessage> kv1 = 4;
+	map<int64, string> kv2 = 5;
+}
