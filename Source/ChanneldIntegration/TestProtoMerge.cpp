@@ -41,22 +41,23 @@ void UTestProtoMerge::PostLoad()
 		NetDriver->RegisterChannelDataProvider(this);
 }
 
-bool UTestProtoMerge::UpdateChannelData(google::protobuf::Message& ChannelData)
+bool UTestProtoMerge::UpdateChannelData(google::protobuf::Message* ChannelData)
 {
 	bool Result = TestChannelDataChanged;
 	if (TestChannelDataChanged)
 	{
-		const auto TypedChannelData = static_cast<channeld::TestChannelDataMessage*>(&ChannelData);
+		const auto TypedChannelData = static_cast<channeld::TestChannelDataMessage*>(ChannelData);
 		TypedChannelData->MergeFrom(TestChannelData);
 		TestChannelDataChanged = false;
 	}
 	return Result;
 }
 
-void UTestProtoMerge::OnChannelDataUpdated(const ChannelId ChId, const google::protobuf::Message& ChannelData)
+void UTestProtoMerge::OnChannelDataUpdated(const channeld::ChannelDataUpdateMessage* UpdateMsg)
 {
-	const auto TypedChannelData = static_cast<const channeld::TestChannelDataMessage*>(&ChannelData);
-	TestChannelData.MergeFrom(*TypedChannelData);
+	channeld::TestChannelDataMessage UpdateData;
+	UpdateMsg->data().UnpackTo(&UpdateData);
+	TestChannelData.MergeFrom(UpdateData);
 }
 
 //void UTestProtoMerge::Serialize(FArchive& Ar)

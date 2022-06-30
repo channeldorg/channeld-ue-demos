@@ -29,6 +29,7 @@ UChanneldNetDriver::UChanneldNetDriver(const FObjectInitializer& ObjectInitializ
 	RegisterMessageHandler((uint32)channeld::AUTH, new channeld::AuthResultMessage(), this, &UChanneldNetDriver::HandleAuthResult);
 	RegisterMessageHandler((uint32)channeld::CREATE_CHANNEL, new channeld::CreateChannelMessage(), this, &UChanneldNetDriver::HandleCreateChannel);
 	RegisterMessageHandler((uint32)channeld::SUB_TO_CHANNEL, new channeld::SubscribedToChannelResultMessage(), this, &UChanneldNetDriver::HandleSubToChannel);
+	RegisterMessageHandler((uint32)channeld::CHANNEL_DATA_UPDATE, new channeld::ChannelDataUpdateMessage(), this, &UChanneldNetDriver::HandleChannelDataUpdate);
 }
 
 void UChanneldNetDriver::PostInitProperties()
@@ -94,7 +95,7 @@ bool UChanneldNetDriver::InitBase(bool bInitAsClient, FNetworkNotify* InNotify, 
 		channeld::AuthMessage AuthMsg;
 		AuthMsg.set_playeridentifiertoken("test_pit");
 		AuthMsg.set_logintoken("test_lt");
-		SendToChanneld((uint32)channeld::MessageType::AUTH, AuthMsg, 0);
+		SendToChanneld(channeld::AUTH, AuthMsg, 0);
 	}
 	else
 	{
@@ -241,7 +242,7 @@ int32 UChanneldNetDriver::ServerReplicateActors(float DeltaSeconds)
 	int32 Updated = 0;
 	for (auto const Provider : ChannelDataProviders)
 	{
-		Updated += Provider->UpdateChannelData(*TestChannelData);
+		Updated += Provider->UpdateChannelData(TestChannelData);
 	}
 
 	if (Updated > 0)
@@ -249,24 +250,24 @@ int32 UChanneldNetDriver::ServerReplicateActors(float DeltaSeconds)
 		const auto ByteString = TestChannelData->SerializeAsString();
 		UE_LOG(LogTemp, Log, TEXT("TestChannelData has %d update(s). Serialized: %s"), Updated, ByteString.c_str());
 
-		// TODO: send to channeld
-		
-
-		TestChannelData->Clear();
+		// Send to channeld
+		channeld::ChannelDataUpdateMessage UpdateMsg;
+		UpdateMsg.mutable_data()->PackFrom(*TestChannelData);
+		SendToChanneld(channeld::CHANNEL_DATA_UPDATE, UpdateMsg, 0);
 	}
 
 	return Result;
 }
 
 /* Transport Level Code */
-bool UChanneldNetDriver::SendToChanneld(uint32 MessageType, const google::protobuf::Message& InMessage, uint32 ChannelId = 0)
+bool UChanneldNetDriver::SendToChanneld(channeld::MessageType MsgType, google::protobuf::Message& InMessage, ChannelId ChannelId = 0)
 {
 	uint8* MessageData = new uint8[InMessage.ByteSizeLong()];
 	bool Serialized = InMessage.SerializeToArray(MessageData, InMessage.GetCachedSize());
 	if (!Serialized)
 	{
 		delete[] MessageData;
-		UE_LOG(LogChanneld, Log, TEXT("Failed to serialize InMessage, message type: %d"), MessageType);
+		UE_LOG(LogChanneld, Log, TEXT("Failed to serialize InMessage, message type: %d"), MsgType);
 		return false;
 	}
 
@@ -275,7 +276,7 @@ bool UChanneldNetDriver::SendToChanneld(uint32 MessageType, const google::protob
 	InMessagePack->set_channelid(ChannelId);
 	InMessagePack->set_broadcast(channeld::NO_BROADCAST);
 	InMessagePack->set_stubid(0);
-	InMessagePack->set_msgtype(MessageType);
+	InMessagePack->set_msgtype((uint32)MsgType);
 	InMessagePack->set_msgbody(MessageData, InMessage.GetCachedSize());
 
 	int PacketSize = InPacket.ByteSizeLong();
@@ -286,7 +287,7 @@ bool UChanneldNetDriver::SendToChanneld(uint32 MessageType, const google::protob
 	{
 		delete[] MessageData;
 		delete[] PacketData;
-		UE_LOG(LogChanneld, Log, TEXT("Failed to serialize Packet, message type: %d"), MessageType);
+		UE_LOG(LogChanneld, Log, TEXT("Failed to serialize Packet, message type: %d"), MsgType);
 		return false;
 	}
 
@@ -299,16 +300,21 @@ bool UChanneldNetDriver::SendToChanneld(uint32 MessageType, const google::protob
 
 	int32 BytesSent;
 	bool IsSent = SocketToChanneld->Send(PacketData, TotalSize, BytesSent);
+	// Free send buffer
 	delete[] MessageData;
 	delete[] PacketData;
+
 	if (IsSent)
 	{
-		UE_LOG(LogChanneld, Log, TEXT("Sent packet to channeld, message type: %d, size: %d/%d"), MessageType, BytesSent, TotalSize);
+		// Also free up the memory used by the protobuf object
+		InMessage.Clear();
+
+		UE_LOG(LogChanneld, Log, TEXT("Sent packet to channeld, message type: %d, size: %d/%d"), MsgType, BytesSent, TotalSize);
 		return BytesSent == sizeof(PacketData);
 	}
 	else
 	{
-		UE_LOG(LogChanneld, Log, TEXT("Failed to send packet to channeld, message type: %d"), MessageType);
+		UE_LOG(LogChanneld, Log, TEXT("Failed to send packet to channeld, message type: %d"), MsgType);
 		return false;
 	}
 }
@@ -432,7 +438,7 @@ void UChanneldNetDriver::ReceiveFromChanneld()
 }
 /* End of Transport Level Code */
 
-void UChanneldNetDriver::HandleAuthResult(UChanneldClient* Client, const uint32 ChannelId, const google::protobuf::Message* Msg)
+void UChanneldNetDriver::HandleAuthResult(UChanneldClient* Client, ChannelId ChannelId, const google::protobuf::Message* Msg)
 {
 	auto AuthResultMsg = static_cast<const channeld::AuthResultMessage*>(Msg);
 	if (AuthResultMsg->result() == channeld::AuthResultMessage_AuthResult_SUCCESSFUL)
@@ -451,28 +457,49 @@ void UChanneldNetDriver::HandleAuthResult(UChanneldClient* Client, const uint32 
 		channeld::CreateChannelMessage CreateMsg;
 		CreateMsg.set_channeltype(channeld::GLOBAL);
 		CreateMsg.set_metadata("test123");
-		SendToChanneld((uint32)channeld::CREATE_CHANNEL, CreateMsg, 0);
+		CreateMsg.mutable_data()->PackFrom(*TestChannelData);
+		SendToChanneld(channeld::CREATE_CHANNEL, CreateMsg, 0);
 	}
 	else
 	{
 		channeld::SubscribedToChannelMessage SubMsg;
 		SubMsg.set_connid(ConnId);
-		SendToChanneld((uint32)channeld::SUB_TO_CHANNEL, SubMsg, 0);
+		SendToChanneld(channeld::SUB_TO_CHANNEL, SubMsg, 0);
 	}
 }
 
 
-void UChanneldNetDriver::HandleCreateChannel(UChanneldClient* Client, uint32 ChannelId, const google::protobuf::Message* Msg)
+void UChanneldNetDriver::HandleCreateChannel(UChanneldClient* Client, ChannelId ChId, const google::protobuf::Message* Msg)
 {
 	auto CreateResultMsg = static_cast<const channeld::CreateChannelResultMessage*>(Msg);
 	UE_LOG(LogChanneld, Log, TEXT("[%s] Created channel: %d, type: %s, owner connId: %d"), *GetWorld()->GetDebugDisplayName(),
-		ChannelId, channeld::ChannelType_Name(CreateResultMsg->channeltype()).c_str(), CreateResultMsg->ownerconnid());
+		ChId, channeld::ChannelType_Name(CreateResultMsg->channeltype()).c_str(), CreateResultMsg->ownerconnid());
+
+	for (auto const Provider : ChannelDataProviders)
+	{
+		if (Provider->GetChannelType() == CreateResultMsg->channeltype())
+		{
+			Provider->SetChannelId(ChId);
+		}
+	}
 }
 
-void UChanneldNetDriver::HandleSubToChannel(UChanneldClient* Client, const uint32 ChannelId, const google::protobuf::Message* Msg)
+void UChanneldNetDriver::HandleSubToChannel(UChanneldClient* Client, ChannelId ChId, const google::protobuf::Message* Msg)
 {
 	auto SubResultMsg = static_cast<const channeld::SubscribedToChannelResultMessage*>(Msg);
-	UE_LOG(LogChanneld, Log, TEXT("[%s] Sub to channel: %d, connId: %d"), *GetWorld()->GetDebugDisplayName(), ChannelId, SubResultMsg->connid());
+	UE_LOG(LogChanneld, Log, TEXT("[%s] Sub to channel: %d, connId: %d"), *GetWorld()->GetDebugDisplayName(), ChId, SubResultMsg->connid());
+}
+
+void UChanneldNetDriver::HandleChannelDataUpdate(UChanneldClient* Client, ChannelId ChId, const google::protobuf::Message* Msg)
+{
+	auto UpdateMsg = static_cast<const channeld::ChannelDataUpdateMessage*>(Msg);
+	for (auto const Provider : ChannelDataProviders)
+	{
+		if (Provider->GetChannelId() == ChId)
+		{
+			Provider->OnChannelDataUpdated(UpdateMsg);
+		}
+	}
 }
 
 

@@ -8,19 +8,23 @@
 #include "IpNetDriver.h"
 #include "Sockets.h"
 #include "SocketSubsystem.h"
-#include "Test.pb.h"
 #include "google/protobuf/message.h"
+#include "Channeld.pb.h"
+#include "Test.pb.h"
 #include "ChanneldNetDriver.generated.h"
 
 DECLARE_LOG_CATEGORY_EXTERN(LogChanneld, Log, All);
 
-DECLARE_MULTICAST_DELEGATE_ThreeParams(FChanneldMessageDelegate, UChanneldClient*, uint32, const google::protobuf::Message*)
+DECLARE_MULTICAST_DELEGATE_ThreeParams(FChanneldMessageDelegate, UChanneldClient*, ChannelId, const google::protobuf::Message*)
 
 class IChannelDataProvider
 {
 public:
-	virtual bool UpdateChannelData(google::protobuf::Message& ChannelData) = 0;
-	virtual void OnChannelDataUpdated(const ChannelId ChId, const google::protobuf::Message& ChannelData) = 0;
+	virtual channeld::ChannelType GetChannelType() = 0;
+	virtual ChannelId GetChannelId() = 0;
+	virtual void SetChannelId(ChannelId ChId) = 0;
+	virtual bool UpdateChannelData(google::protobuf::Message* ChannelData) = 0;
+	virtual void OnChannelDataUpdated(const channeld::ChannelDataUpdateMessage* UpdateMsg) = 0;
 	virtual ~IChannelDataProvider() {}
 };
 
@@ -79,7 +83,8 @@ public:
 	UPROPERTY(Config)
 	int32 ReceiveBufferSize;
 
-	bool SendToChanneld(uint32 MessageType, const google::protobuf::Message& InMessage, uint32 ChannelId/* = 0*/);
+	// Caution: InMessage.Clear() will be called after it's sent successfully
+	bool SendToChanneld(channeld::MessageType MsgType, google::protobuf::Message& InMessage, ChannelId ChannelId/* = 0*/);
 	void ReceiveFromChanneld();
 
 	template <typename UserClass, typename... VarTypes>
@@ -115,7 +120,8 @@ private:
 
 	TMap<uint32, MessageHandlerEntry> MessageHandlers;
 
-	void HandleAuthResult(UChanneldClient* Client, uint32 ChannelId, const google::protobuf::Message* Msg);
-	void HandleCreateChannel(UChanneldClient* Client, uint32 ChannelId, const google::protobuf::Message* Msg);
-	void HandleSubToChannel(UChanneldClient* Client, uint32 ChannelId, const google::protobuf::Message* Msg);
+	void HandleAuthResult(UChanneldClient* Client, ChannelId ChId, const google::protobuf::Message* Msg);
+	void HandleCreateChannel(UChanneldClient* Client, ChannelId ChId, const google::protobuf::Message* Msg);
+	void HandleSubToChannel(UChanneldClient* Client, ChannelId ChId, const google::protobuf::Message* Msg);
+	void HandleChannelDataUpdate(UChanneldClient* Client, ChannelId ChId, const google::protobuf::Message* Msg);
 };

@@ -36,13 +36,17 @@ public:
 	//virtual void Serialize(FArchive& Ar) override;
 
 	//~ Begin IChannelDataProvider Interface.
-	virtual bool UpdateChannelData(google::protobuf::Message& ChannelData) override;
-	virtual void OnChannelDataUpdated(const ChannelId ChId, const google::protobuf::Message& ChannelData) override;
-
+	virtual channeld::ChannelType GetChannelType() override {return channeld::GLOBAL;}
+	virtual uint32 GetChannelId() override {return ChannelId;}
+	virtual void SetChannelId(uint32 ChId) override {ChannelId = ChId;}
+	virtual bool UpdateChannelData(google::protobuf::Message* ChannelData) override;
+	virtual void OnChannelDataUpdated(const channeld::ChannelDataUpdateMessage* UpdateMsg) override;
 	//~ End IChannelDataProvider Interface
 
 
 private:
+
+	uint32 ChannelId;
 
 	UPROPERTY(Replicated, BlueprintSetter="SetTestText")
 	FString TestText;
