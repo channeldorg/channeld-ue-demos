@@ -270,7 +270,7 @@ void LogMessage::Finish() {
 
   if (level_ == LOGLEVEL_FATAL) {
 #if PROTOBUF_USE_EXCEPTIONS
-    throw FatalException(filename_, line_, message_);
+    //throw FatalException(filename_, line_, message_);
 #else
     abort();
 #endif
