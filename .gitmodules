@@ -1,0 +1,3 @@
+[submodule "Plugins/ue4-protobuf"]
+	path = Plugins/ue4-protobuf
+	url = git@github.com:indiest/ue4-protobuf.git
