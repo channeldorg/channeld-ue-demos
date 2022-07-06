@@ -46,16 +46,16 @@ bool UTestProtoMerge::UpdateChannelData(google::protobuf::Message* ChannelData)
 	bool Result = TestChannelDataChanged;
 	if (TestChannelDataChanged)
 	{
-		const auto TypedChannelData = static_cast<channeld::TestChannelDataMessage*>(ChannelData);
+		const auto TypedChannelData = static_cast<testpb::TestChannelDataMessage*>(ChannelData);
 		TypedChannelData->MergeFrom(TestChannelData);
 		TestChannelDataChanged = false;
 	}
 	return Result;
 }
 
-void UTestProtoMerge::OnChannelDataUpdated(const channeld::ChannelDataUpdateMessage* UpdateMsg)
+void UTestProtoMerge::OnChannelDataUpdated(const channeldpb::ChannelDataUpdateMessage* UpdateMsg)
 {
-	channeld::TestChannelDataMessage UpdateData;
+	testpb::TestChannelDataMessage UpdateData;
 	UpdateMsg->data().UnpackTo(&UpdateData);
 	TestChannelData.MergeFrom(UpdateData);
 }

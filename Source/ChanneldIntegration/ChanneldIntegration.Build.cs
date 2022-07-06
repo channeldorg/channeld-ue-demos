@@ -20,6 +20,7 @@ public class ChanneldIntegration : ModuleRules
 			"OnlineSubsystemUtils",
 			"Sockets",
 			"Protobuf",
+			"ChanneldUE",
 			"SteamShared",
             "SteamSockets",
         });
