@@ -85,8 +85,9 @@ public class Protobuf : ModuleRules
         }
 
         PublicDefinitions.Add("_CRT_SECURE_NO_WARNINGS");
+        PublicDefinitions.Add("LANG_CXX11");
 
-        bEnableShadowVariableWarnings = false;
+        ShadowVariableWarningLevel = WarningLevel.Off;
         bEnableUndefinedIdentifierWarnings = false;
         bEnableExceptions = true;
     }
