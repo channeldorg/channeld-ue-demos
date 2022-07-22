@@ -85,7 +85,6 @@ void InitDefaultsChatChannelData() {
 }
 
 ::google::protobuf::Metadata file_level_metadata[2];
-const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[1];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
@@ -97,7 +96,6 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::chatpb::ChatMessage, sendtime_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::chatpb::ChatMessage, content_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::chatpb::ChatMessage, senderconnid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::chatpb::ChatMessage, chatchanneltype_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::chatpb::ChatChannelData, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -107,7 +105,7 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::chatpb::ChatMessage)},
-  { 10, -1, sizeof(::chatpb::ChatChannelData)},
+  { 9, -1, sizeof(::chatpb::ChatChannelData)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -120,7 +118,7 @@ void protobuf_AssignDescriptors() {
   ::google::protobuf::MessageFactory* factory = NULL;
   AssignDescriptors(
       "chat.proto", schemas, file_default_instances, TableStruct::offsets, factory,
-      file_level_metadata, file_level_enum_descriptors, NULL);
+      file_level_metadata, NULL, NULL);
 }
 
 void protobuf_AssignDescriptorsOnce() {
@@ -137,17 +135,14 @@ void protobuf_RegisterTypes(const ::std::string&) {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\nchat.proto\022\006chatpb\"\210\001\n\013ChatMessage\022\016\n\006"
-      "sender\030\001 \001(\t\022\020\n\010sendTime\030\002 \001(\003\022\017\n\007conten"
-      "t\030\003 \001(\t\022\024\n\014senderConnId\030\004 \001(\r\0220\n\017chatCha"
-      "nnelType\030\005 \001(\0162\027.chatpb.ChatChannelType\""
-      "<\n\017ChatChannelData\022)\n\014chatMessages\030\001 \003(\013"
-      "2\023.chatpb.ChatMessage*E\n\017ChatChannelType"
-      "\022\013\n\007UNKNOWN\020\000\022\n\n\006GLOBAL\020\001\022\013\n\007PRIVATE\020\002\022\014"
-      "\n\010SUBWORLD\020\003b\006proto3"
+      "\n\nchat.proto\022\006chatpb\"V\n\013ChatMessage\022\016\n\006s"
+      "ender\030\001 \001(\t\022\020\n\010sendTime\030\002 \001(\003\022\017\n\007content"
+      "\030\003 \001(\t\022\024\n\014senderConnId\030\004 \001(\r\"<\n\017ChatChan"
+      "nelData\022)\n\014chatMessages\030\001 \003(\0132\023.chatpb.C"
+      "hatMessageb\006proto3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 300);
+      descriptor, 178);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "chat.proto", &protobuf_RegisterTypes);
 }
@@ -164,22 +159,6 @@ struct StaticDescriptorInitializer {
 } static_descriptor_initializer;
 }  // namespace protobuf_chat_2eproto
 namespace chatpb {
-const ::google::protobuf::EnumDescriptor* ChatChannelType_descriptor() {
-  protobuf_chat_2eproto::protobuf_AssignDescriptorsOnce();
-  return protobuf_chat_2eproto::file_level_enum_descriptors[0];
-}
-bool ChatChannelType_IsValid(int value) {
-  switch (value) {
-    case 0:
-    case 1:
-    case 2:
-    case 3:
-      return true;
-    default:
-      return false;
-  }
-}
-
 
 // ===================================================================
 
@@ -190,7 +169,6 @@ const int ChatMessage::kSenderFieldNumber;
 const int ChatMessage::kSendTimeFieldNumber;
 const int ChatMessage::kContentFieldNumber;
 const int ChatMessage::kSenderConnIdFieldNumber;
-const int ChatMessage::kChatChannelTypeFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
 
 ChatMessage::ChatMessage()
@@ -215,8 +193,8 @@ ChatMessage::ChatMessage(const ChatMessage& from)
     content_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.content_);
   }
   ::memcpy(&sendtime_, &from.sendtime_,
-    static_cast<size_t>(reinterpret_cast<char*>(&chatchanneltype_) -
-    reinterpret_cast<char*>(&sendtime_)) + sizeof(chatchanneltype_));
+    static_cast<size_t>(reinterpret_cast<char*>(&senderconnid_) -
+    reinterpret_cast<char*>(&sendtime_)) + sizeof(senderconnid_));
   // @@protoc_insertion_point(copy_constructor:chatpb.ChatMessage)
 }
 
@@ -224,8 +202,8 @@ void ChatMessage::SharedCtor() {
   sender_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   content_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&sendtime_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&chatchanneltype_) -
-      reinterpret_cast<char*>(&sendtime_)) + sizeof(chatchanneltype_));
+      reinterpret_cast<char*>(&senderconnid_) -
+      reinterpret_cast<char*>(&sendtime_)) + sizeof(senderconnid_));
   _cached_size_ = 0;
 }
 
@@ -271,8 +249,8 @@ void ChatMessage::Clear() {
   sender_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   content_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   ::memset(&sendtime_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&chatchanneltype_) -
-      reinterpret_cast<char*>(&sendtime_)) + sizeof(chatchanneltype_));
+      reinterpret_cast<char*>(&senderconnid_) -
+      reinterpret_cast<char*>(&sendtime_)) + sizeof(senderconnid_));
   _internal_metadata_.Clear();
 }
 
@@ -346,21 +324,6 @@ bool ChatMessage::MergePartialFromCodedStream(
         break;
       }
 
-      // .chatpb.ChatChannelType chatChannelType = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(40u /* 40 & 0xFF */)) {
-          int value;
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
-                 input, &value)));
-          set_chatchanneltype(static_cast< ::chatpb::ChatChannelType >(value));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
       default: {
       handle_unusual:
         if (tag == 0) {
@@ -417,12 +380,6 @@ void ChatMessage::SerializeWithCachedSizes(
     ::google::protobuf::internal::WireFormatLite::WriteUInt32(4, this->senderconnid(), output);
   }
 
-  // .chatpb.ChatChannelType chatChannelType = 5;
-  if (this->chatchanneltype() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteEnum(
-      5, this->chatchanneltype(), output);
-  }
-
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
     ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
         (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
@@ -467,12 +424,6 @@ void ChatMessage::SerializeWithCachedSizes(
   // uint32 senderConnId = 4;
   if (this->senderconnid() != 0) {
     target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(4, this->senderconnid(), target);
-  }
-
-  // .chatpb.ChatChannelType chatChannelType = 5;
-  if (this->chatchanneltype() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
-      5, this->chatchanneltype(), target);
   }
 
   if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
@@ -520,12 +471,6 @@ size_t ChatMessage::ByteSizeLong() const {
         this->senderconnid());
   }
 
-  // .chatpb.ChatChannelType chatChannelType = 5;
-  if (this->chatchanneltype() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::EnumSize(this->chatchanneltype());
-  }
-
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
   GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
   _cached_size_ = cached_size;
@@ -569,9 +514,6 @@ void ChatMessage::MergeFrom(const ChatMessage& from) {
   if (from.senderconnid() != 0) {
     set_senderconnid(from.senderconnid());
   }
-  if (from.chatchanneltype() != 0) {
-    set_chatchanneltype(from.chatchanneltype());
-  }
 }
 
 void ChatMessage::CopyFrom(const ::google::protobuf::Message& from) {
@@ -602,7 +544,6 @@ void ChatMessage::InternalSwap(ChatMessage* other) {
   content_.Swap(&other->content_);
   swap(sendtime_, other->sendtime_);
   swap(senderconnid_, other->senderconnid_);
-  swap(chatchanneltype_, other->chatchanneltype_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(_cached_size_, other->_cached_size_);
 }

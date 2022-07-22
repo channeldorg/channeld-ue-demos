@@ -2,19 +2,11 @@ syntax = "proto3";
 
 package chatpb;
 
-enum ChatChannelType {
-	UNKNOWN = 0;
-	GLOBAL = 1;
-	PRIVATE = 2;
-	SUBWORLD = 3;
-}
-
 message ChatMessage {
     string sender = 1;
     int64 sendTime = 2;
     string content = 3;
     uint32 senderConnId = 4;
-    ChatChannelType chatChannelType = 5;
 }
 
 message ChatChannelData {

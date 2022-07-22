@@ -28,7 +28,6 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
-#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 
@@ -62,29 +61,6 @@ extern ChatMessageDefaultTypeInternal _ChatMessage_default_instance_;
 }  // namespace chatpb
 namespace chatpb {
 
-enum ChatChannelType {
-  UNKNOWN = 0,
-  GLOBAL = 1,
-  PRIVATE = 2,
-  SUBWORLD = 3,
-  ChatChannelType_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
-  ChatChannelType_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
-};
-bool ChatChannelType_IsValid(int value);
-const ChatChannelType ChatChannelType_MIN = UNKNOWN;
-const ChatChannelType ChatChannelType_MAX = SUBWORLD;
-const int ChatChannelType_ARRAYSIZE = ChatChannelType_MAX + 1;
-
-const ::google::protobuf::EnumDescriptor* ChatChannelType_descriptor();
-inline const ::std::string& ChatChannelType_Name(ChatChannelType value) {
-  return ::google::protobuf::internal::NameOfEnum(
-    ChatChannelType_descriptor(), value);
-}
-inline bool ChatChannelType_Parse(
-    const ::std::string& name, ChatChannelType* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<ChatChannelType>(
-    ChatChannelType_descriptor(), name, value);
-}
 // ===================================================================
 
 class ChatMessage : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:chatpb.ChatMessage) */ {
@@ -209,12 +185,6 @@ class ChatMessage : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::google::protobuf::uint32 senderconnid() const;
   void set_senderconnid(::google::protobuf::uint32 value);
 
-  // .chatpb.ChatChannelType chatChannelType = 5;
-  void clear_chatchanneltype();
-  static const int kChatChannelTypeFieldNumber = 5;
-  ::chatpb::ChatChannelType chatchanneltype() const;
-  void set_chatchanneltype(::chatpb::ChatChannelType value);
-
   // @@protoc_insertion_point(class_scope:chatpb.ChatMessage)
  private:
 
@@ -223,7 +193,6 @@ class ChatMessage : public ::google::protobuf::Message /* @@protoc_insertion_poi
   ::google::protobuf::internal::ArenaStringPtr content_;
   ::google::protobuf::int64 sendtime_;
   ::google::protobuf::uint32 senderconnid_;
-  int chatchanneltype_;
   mutable int _cached_size_;
   friend struct ::protobuf_chat_2eproto::TableStruct;
   friend void ::protobuf_chat_2eproto::InitDefaultsChatMessageImpl();
@@ -478,20 +447,6 @@ inline void ChatMessage::set_senderconnid(::google::protobuf::uint32 value) {
   // @@protoc_insertion_point(field_set:chatpb.ChatMessage.senderConnId)
 }
 
-// .chatpb.ChatChannelType chatChannelType = 5;
-inline void ChatMessage::clear_chatchanneltype() {
-  chatchanneltype_ = 0;
-}
-inline ::chatpb::ChatChannelType ChatMessage::chatchanneltype() const {
-  // @@protoc_insertion_point(field_get:chatpb.ChatMessage.chatChannelType)
-  return static_cast< ::chatpb::ChatChannelType >(chatchanneltype_);
-}
-inline void ChatMessage::set_chatchanneltype(::chatpb::ChatChannelType value) {
-  
-  chatchanneltype_ = value;
-  // @@protoc_insertion_point(field_set:chatpb.ChatMessage.chatChannelType)
-}
-
 // -------------------------------------------------------------------
 
 // ChatChannelData
@@ -535,18 +490,6 @@ ChatChannelData::chatmessages() const {
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace chatpb
-
-namespace google {
-namespace protobuf {
-
-template <> struct is_proto_enum< ::chatpb::ChatChannelType> : ::google::protobuf::internal::true_type {};
-template <>
-inline const EnumDescriptor* GetEnumDescriptor< ::chatpb::ChatChannelType>() {
-  return ::chatpb::ChatChannelType_descriptor();
-}
-
-}  // namespace protobuf
-}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 
