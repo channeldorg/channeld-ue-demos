@@ -14,13 +14,11 @@ class CHANNELDINTEGRATION_API AServerAuthPlayerController : public APlayerContro
 {
 	GENERATED_BODY()
 
-
-
 public:
 	virtual void  GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const;
 	// Channeld Connection Id, Only valid on server
 	UPROPERTY(BlueprintReadOnly)
-		int32 ChanneldConnid;
+		int32 ChanneldConnId;
 
 	UPROPERTY(BlueprintReadOnly, Replicated)
 		FString PlayerAlias;
