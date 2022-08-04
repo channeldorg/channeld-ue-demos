@@ -14,15 +14,10 @@ public class ChanneldIntegration : ModuleRules
 			"Engine", 
 			"InputCore", 
 			"NetCore", 
-			"OnlineSubsystem", 
-			"OnlineSubsystemNull", 
-			"OnlineSubsystemSteam", 
-			"OnlineSubsystemUtils",
 			"Sockets",
-			"Protobuf",
+            "PacketHandler",
+            "Protobuf",
 			"ChanneldUE",
-			"SteamShared",
-            "SteamSockets",
         });
 		bEnableUndefinedIdentifierWarnings = false;
 		bEnableExceptions = true;
