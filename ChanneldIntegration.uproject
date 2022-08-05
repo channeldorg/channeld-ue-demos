@@ -7,10 +7,18 @@
 		{
 			"Name": "ChanneldIntegration",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Protobuf",
+				"ChanneldUE"
+			]
 		}
 	],
 	"Plugins": [
+		{
+			"Name": "Protobuf",
+			"Enabled": true
+		},
 		{
 			"Name": "SteamVR",
 			"Enabled": false,
@@ -34,10 +42,6 @@
 			"SupportedTargetPlatforms": [
 				"Android"
 			]
-		},
-		{
-			"Name": "WebSocketNetworking",
-			"Enabled": true
 		}
 	]
 }
