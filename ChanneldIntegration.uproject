@@ -42,6 +42,10 @@
 			"SupportedTargetPlatforms": [
 				"Android"
 			]
+		},
+		{
+			"Name": "ReplicationGraph",
+			"Enabled": true
 		}
 	]
 }
