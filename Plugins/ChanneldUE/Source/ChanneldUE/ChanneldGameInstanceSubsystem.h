@@ -125,6 +125,9 @@ public:
 	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "Callback"), Category = "Channeld|Net")
 		void SubConnectionToChannel(int32 TargetConnId, int32 ChId, const FOnceOnSubToChannel& Callback);
 
+	UFUNCTION(BlueprintCallable, Meta = (AutoCreateRefTerm = "Callback"), Category = "Channeld|Net")
+		void UnsubConnectionFromChannel(int32 TargetConnId, int32 ChId, const FOnceOnUnsubFromChannel& Callback);
+
 	UFUNCTION(BlueprintCallable, Category = "Channeld|Net")
 		void SendDataUpdate(int32 ChId, UProtoMessageObject* MessageObject);
 

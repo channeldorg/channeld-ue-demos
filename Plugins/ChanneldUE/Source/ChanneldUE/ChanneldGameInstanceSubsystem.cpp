@@ -260,6 +260,19 @@ void UChanneldGameInstanceSubsystem::SubConnectionToChannel(int32 TargetConnId, 
 	);
 }
 
+void UChanneldGameInstanceSubsystem::UnsubConnectionFromChannel(int32 TargetConnId, int32 ChId,
+	const FOnceOnUnsubFromChannel& Callback)
+{
+	InitConnection();
+
+	ConnectionInstance->UnsubConnectionFromChannel(TargetConnId, ChId,
+		[=](const channeldpb::UnsubscribedFromChannelResultMessage* Message)
+		{
+			Callback.ExecuteIfBound(ChId, static_cast<EChanneldChannelType>(Message->channeltype()), Message->connid(), static_cast<EChanneldConnectionType>(Message->conntype()));
+		}
+	);
+}
+
 void UChanneldGameInstanceSubsystem::SendDataUpdate(int32 ChId, UProtoMessageObject* MessageObject)
 {
 	InitConnection();
