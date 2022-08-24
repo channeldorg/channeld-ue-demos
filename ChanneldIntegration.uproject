@@ -16,10 +16,6 @@
 	],
 	"Plugins": [
 		{
-			"Name": "Protobuf",
-			"Enabled": true
-		},
-		{
 			"Name": "SteamVR",
 			"Enabled": false,
 			"SupportedTargetPlatforms": [

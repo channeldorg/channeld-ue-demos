@@ -88,21 +88,21 @@ static const ::_pb::Message* const file_default_instances[] = {
 };
 
 const char descriptor_table_protodef_tps_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\ttps.proto\022\005tpspb\032\"pkg/channeldpb/unrea"
-  "l_common.proto\"\305\001\n\022TestRepChannelData\022Q\n"
-  "\024sceneComponentStates\030\001 \003(\01323.tpspb.Test"
-  "RepChannelData.SceneComponentStatesEntry"
-  "\032\\\n\031SceneComponentStatesEntry\022\013\n\003key\030\001 \001"
-  "(\r\022.\n\005value\030\002 \001(\0132\037.channeldpb.SceneComp"
-  "onentState:\0028\001B5Z3channeld.clewcat.com/e"
-  "xamples/channeld-ue-tps/tpspbb\006proto3"
+  "\n\ttps.proto\022\005tpspb\032\023unreal_common.proto\""
+  "\305\001\n\022TestRepChannelData\022Q\n\024sceneComponent"
+  "States\030\001 \003(\01323.tpspb.TestRepChannelData."
+  "SceneComponentStatesEntry\032\\\n\031SceneCompon"
+  "entStatesEntry\022\013\n\003key\030\001 \001(\r\022.\n\005value\030\002 \001"
+  "(\0132\037.channeldpb.SceneComponentState:\0028\001B"
+  "5Z3channeld.clewcat.com/examples/channel"
+  "d-ue-tps/tpspbb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_tps_2eproto_deps[1] = {
-  &::descriptor_table_pkg_2fchanneldpb_2funreal_5fcommon_2eproto,
+  &::descriptor_table_unreal_5fcommon_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_tps_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tps_2eproto = {
-    false, false, 317, descriptor_table_protodef_tps_2eproto,
+    false, false, 302, descriptor_table_protodef_tps_2eproto,
     "tps.proto",
     &descriptor_table_tps_2eproto_once, descriptor_table_tps_2eproto_deps, 1, 2,
     schemas, file_default_instances, TableStruct_tps_2eproto::offsets,

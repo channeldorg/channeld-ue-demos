@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "ChanneldUE/ChanneldNetDriver.h"
-#include "ChanneldUE/Test.pb.h"
+#include "test.pb.h"
 #include "UObject/Object.h"
 #include "TestProtoMerge.generated.h"
 
@@ -12,7 +12,7 @@
  * 
  */
 UCLASS(BlueprintType)
-class CHANNELDUE_API UTestProtoMerge : public UObject, public IChannelDataProvider
+class CHANNELDINTEGRATION_API UTestProtoMerge : public UObject, public IChannelDataProvider
 {
 	GENERATED_BODY()
 
