@@ -89,20 +89,20 @@ static const ::_pb::Message* const file_default_instances[] = {
 
 const char descriptor_table_protodef_tps_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\ttps.proto\022\005tpspb\032\023unreal_common.proto\""
-  "\305\001\n\022TestRepChannelData\022Q\n\024sceneComponent"
+  "\303\001\n\022TestRepChannelData\022Q\n\024sceneComponent"
   "States\030\001 \003(\01323.tpspb.TestRepChannelData."
-  "SceneComponentStatesEntry\032\\\n\031SceneCompon"
-  "entStatesEntry\022\013\n\003key\030\001 \001(\r\022.\n\005value\030\002 \001"
-  "(\0132\037.channeldpb.SceneComponentState:\0028\001B"
-  "5Z3channeld.clewcat.com/examples/channel"
-  "d-ue-tps/tpspbb\006proto3"
+  "SceneComponentStatesEntry\032Z\n\031SceneCompon"
+  "entStatesEntry\022\013\n\003key\030\001 \001(\r\022,\n\005value\030\002 \001"
+  "(\0132\035.unrealpb.SceneComponentState:\0028\001B5Z"
+  "3channeld.clewcat.com/examples/channeld-"
+  "ue-tps/tpspbb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_tps_2eproto_deps[1] = {
   &::descriptor_table_unreal_5fcommon_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_tps_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tps_2eproto = {
-    false, false, 302, descriptor_table_protodef_tps_2eproto,
+    false, false, 300, descriptor_table_protodef_tps_2eproto,
     "tps.proto",
     &descriptor_table_tps_2eproto_once, descriptor_table_tps_2eproto_deps, 1, 2,
     schemas, file_default_instances, TableStruct_tps_2eproto::offsets,
@@ -211,7 +211,7 @@ const char* TestRepChannelData::_InternalParse(const char* ptr, ::_pbi::ParseCon
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // map<uint32, .channeldpb.SceneComponentState> sceneComponentStates = 1;
+      // map<uint32, .unrealpb.SceneComponentState> sceneComponentStates = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr -= 1;
@@ -253,9 +253,9 @@ uint8_t* TestRepChannelData::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // map<uint32, .channeldpb.SceneComponentState> sceneComponentStates = 1;
+  // map<uint32, .unrealpb.SceneComponentState> sceneComponentStates = 1;
   if (!this->_internal_scenecomponentstates().empty()) {
-    using MapType = ::_pb::Map<uint32_t, ::channeldpb::SceneComponentState>;
+    using MapType = ::_pb::Map<uint32_t, ::unrealpb::SceneComponentState>;
     using WireHelper = TestRepChannelData_SceneComponentStatesEntry_DoNotUse::Funcs;
     const auto& map_field = this->_internal_scenecomponentstates();
 
@@ -286,10 +286,10 @@ size_t TestRepChannelData::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // map<uint32, .channeldpb.SceneComponentState> sceneComponentStates = 1;
+  // map<uint32, .unrealpb.SceneComponentState> sceneComponentStates = 1;
   total_size += 1 *
       ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_scenecomponentstates_size());
-  for (::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::channeldpb::SceneComponentState >::const_iterator
+  for (::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::SceneComponentState >::const_iterator
       it = this->_internal_scenecomponentstates().begin();
       it != this->_internal_scenecomponentstates().end(); ++it) {
     total_size += TestRepChannelData_SceneComponentStatesEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);

@@ -65,12 +65,12 @@ namespace tpspb {
 // ===================================================================
 
 class TestRepChannelData_SceneComponentStatesEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestRepChannelData_SceneComponentStatesEntry_DoNotUse, 
-    uint32_t, ::channeldpb::SceneComponentState,
+    uint32_t, ::unrealpb::SceneComponentState,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
 public:
   typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestRepChannelData_SceneComponentStatesEntry_DoNotUse, 
-    uint32_t, ::channeldpb::SceneComponentState,
+    uint32_t, ::unrealpb::SceneComponentState,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
   TestRepChannelData_SceneComponentStatesEntry_DoNotUse();
@@ -214,21 +214,21 @@ class TestRepChannelData final :
   enum : int {
     kSceneComponentStatesFieldNumber = 1,
   };
-  // map<uint32, .channeldpb.SceneComponentState> sceneComponentStates = 1;
+  // map<uint32, .unrealpb.SceneComponentState> sceneComponentStates = 1;
   int scenecomponentstates_size() const;
   private:
   int _internal_scenecomponentstates_size() const;
   public:
   void clear_scenecomponentstates();
   private:
-  const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::channeldpb::SceneComponentState >&
+  const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::SceneComponentState >&
       _internal_scenecomponentstates() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::channeldpb::SceneComponentState >*
+  ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::SceneComponentState >*
       _internal_mutable_scenecomponentstates();
   public:
-  const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::channeldpb::SceneComponentState >&
+  const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::SceneComponentState >&
       scenecomponentstates() const;
-  ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::channeldpb::SceneComponentState >*
+  ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::SceneComponentState >*
       mutable_scenecomponentstates();
 
   // @@protoc_insertion_point(class_scope:tpspb.TestRepChannelData)
@@ -241,7 +241,7 @@ class TestRepChannelData final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::MapField<
         TestRepChannelData_SceneComponentStatesEntry_DoNotUse,
-        uint32_t, ::channeldpb::SceneComponentState,
+        uint32_t, ::unrealpb::SceneComponentState,
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> scenecomponentstates_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -262,27 +262,27 @@ class TestRepChannelData final :
 
 // TestRepChannelData
 
-// map<uint32, .channeldpb.SceneComponentState> sceneComponentStates = 1;
+// map<uint32, .unrealpb.SceneComponentState> sceneComponentStates = 1;
 inline int TestRepChannelData::_internal_scenecomponentstates_size() const {
   return _impl_.scenecomponentstates_.size();
 }
 inline int TestRepChannelData::scenecomponentstates_size() const {
   return _internal_scenecomponentstates_size();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::channeldpb::SceneComponentState >&
+inline const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::SceneComponentState >&
 TestRepChannelData::_internal_scenecomponentstates() const {
   return _impl_.scenecomponentstates_.GetMap();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::channeldpb::SceneComponentState >&
+inline const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::SceneComponentState >&
 TestRepChannelData::scenecomponentstates() const {
   // @@protoc_insertion_point(field_map:tpspb.TestRepChannelData.sceneComponentStates)
   return _internal_scenecomponentstates();
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::channeldpb::SceneComponentState >*
+inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::SceneComponentState >*
 TestRepChannelData::_internal_mutable_scenecomponentstates() {
   return _impl_.scenecomponentstates_.MutableMap();
 }
-inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::channeldpb::SceneComponentState >*
+inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::SceneComponentState >*
 TestRepChannelData::mutable_scenecomponentstates() {
   // @@protoc_insertion_point(field_mutable_map:tpspb.TestRepChannelData.sceneComponentStates)
   return _internal_mutable_scenecomponentstates();
