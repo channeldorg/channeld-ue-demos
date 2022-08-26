@@ -2,12 +2,12 @@
 // source: tps.proto
 
 #ifdef _MSC_VER
-#pragma warning(disable: 4125)
-#pragma warning(disable: 4647)
-#pragma warning(disable: 4668)
-#pragma warning(disable: 4800)
-#pragma warning(disable: 4946)
-#endif //_MSC_VER
+#	pragma warning(disable: 4125)
+#	pragma warning(disable: 4647)
+#	pragma warning(disable: 4668)
+#	pragma warning(disable: 4800)
+#	pragma warning(disable: 4946)
+#endif
 
 #include "tps.pb.h"
 
@@ -22,8 +22,6 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-
-PROTOBUF_PRAGMA_INIT_SEG
 
 namespace _pb = ::PROTOBUF_NAMESPACE_ID;
 namespace _pbi = _pb::internal;
@@ -77,12 +75,12 @@ const uint32_t TableStruct_tps_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(prot
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData, _impl_.scenecomponentstates_),
 };
-static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+static const ::_pbi::MigrationSchema schemas_tps_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 8, -1, sizeof(::tpspb::TestRepChannelData_SceneComponentStatesEntry_DoNotUse)},
   { 10, -1, -1, sizeof(::tpspb::TestRepChannelData)},
 };
 
-static const ::_pb::Message* const file_default_instances[] = {
+static const ::_pb::Message* const file_default_instances_tps_2eproto[] = {
   &::tpspb::_TestRepChannelData_SceneComponentStatesEntry_DoNotUse_default_instance_._instance,
   &::tpspb::_TestRepChannelData_default_instance_._instance,
 };
@@ -105,7 +103,7 @@ const ::_pbi::DescriptorTable descriptor_table_tps_2eproto = {
     false, false, 300, descriptor_table_protodef_tps_2eproto,
     "tps.proto",
     &descriptor_table_tps_2eproto_once, descriptor_table_tps_2eproto_deps, 1, 2,
-    schemas, file_default_instances, TableStruct_tps_2eproto::offsets,
+    schemas_tps_2eproto, file_default_instances_tps_2eproto, TableStruct_tps_2eproto::offsets,
     file_level_metadata_tps_2eproto, file_level_enum_descriptors_tps_2eproto,
     file_level_service_descriptors_tps_2eproto,
 };

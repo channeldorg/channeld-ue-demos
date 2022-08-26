@@ -2,12 +2,12 @@
 // source: test.proto
 
 #ifdef _MSC_VER
-#pragma warning(disable: 4125)
-#pragma warning(disable: 4647)
-#pragma warning(disable: 4668)
-#pragma warning(disable: 4800)
-#pragma warning(disable: 4946)
-#endif //_MSC_VER
+#	pragma warning(disable: 4125)
+#	pragma warning(disable: 4647)
+#	pragma warning(disable: 4668)
+#	pragma warning(disable: 4800)
+#	pragma warning(disable: 4946)
+#endif
 
 #include "test.pb.h"
 
@@ -22,8 +22,6 @@
 #include <google/protobuf/wire_format.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
-
-PROTOBUF_PRAGMA_INIT_SEG
 
 namespace _pb = ::PROTOBUF_NAMESPACE_ID;
 namespace _pbi = _pb::internal;
@@ -363,7 +361,7 @@ const uint32_t TableStruct_test_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pro
   PROTOBUF_FIELD_OFFSET(::testpb::TestFieldMaskMessage, _impl_.kv1_),
   PROTOBUF_FIELD_OFFSET(::testpb::TestFieldMaskMessage, _impl_.kv2_),
 };
-static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+static const ::_pbi::MigrationSchema schemas_test_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::testpb::TestChannelDataMessage)},
   { 8, -1, -1, sizeof(::testpb::TestAnyMessage_Type1)},
   { 15, -1, -1, sizeof(::testpb::TestAnyMessage_Type2)},
@@ -381,7 +379,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 120, -1, -1, sizeof(::testpb::TestFieldMaskMessage)},
 };
 
-static const ::_pb::Message* const file_default_instances[] = {
+static const ::_pb::Message* const file_default_instances_test_2eproto[] = {
   &::testpb::_TestChannelDataMessage_default_instance_._instance,
   &::testpb::_TestAnyMessage_Type1_default_instance_._instance,
   &::testpb::_TestAnyMessage_Type2_default_instance_._instance,
@@ -440,7 +438,7 @@ const ::_pbi::DescriptorTable descriptor_table_test_2eproto = {
     false, false, 1217, descriptor_table_protodef_test_2eproto,
     "test.proto",
     &descriptor_table_test_2eproto_once, descriptor_table_test_2eproto_deps, 1, 15,
-    schemas, file_default_instances, TableStruct_test_2eproto::offsets,
+    schemas_test_2eproto, file_default_instances_test_2eproto, TableStruct_test_2eproto::offsets,
     file_level_metadata_test_2eproto, file_level_enum_descriptors_test_2eproto,
     file_level_service_descriptors_test_2eproto,
 };
