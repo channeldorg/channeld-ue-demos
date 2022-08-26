@@ -17,7 +17,7 @@ class CHANNELDINTEGRATION_API ATestRepChanneldActor : public AChanneldActor
 	GENERATED_BODY()
 
 protected:
-	virtual const unrealpb::SceneComponentState* GetSceneComponentStateFromChannelData(const google::protobuf::Message* ChannelData) override;
+	virtual const unrealpb::SceneComponentState* GetSceneComponentStateFromChannelData(google::protobuf::Message* ChannelData) override;
 	virtual void SetSceneComponentStateToChannelData(unrealpb::SceneComponentState* State, google::protobuf::Message* ChannelData) override;
 
 public:

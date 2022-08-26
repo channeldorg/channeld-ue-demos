@@ -42,7 +42,7 @@ public:
 	virtual bool IsRemoved() override { return bRemoved; }
 	virtual void SetRemoved() override { bRemoved = true; }
 	virtual bool UpdateChannelData(google::protobuf::Message* ChannelData) override;
-	virtual void OnChannelDataUpdated(const google::protobuf::Message* ChannelData) override;
+	virtual void OnChannelDataUpdated(google::protobuf::Message* ChannelData) override;
 	//~ End IChannelDataProvider Interface
 
 

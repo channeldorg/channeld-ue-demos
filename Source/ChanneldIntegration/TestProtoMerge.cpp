@@ -53,7 +53,7 @@ bool UTestProtoMerge::UpdateChannelData(google::protobuf::Message* ChannelData)
 	return Result;
 }
 
-void UTestProtoMerge::OnChannelDataUpdated(const google::protobuf::Message* ChannelData)
+void UTestProtoMerge::OnChannelDataUpdated(google::protobuf::Message* ChannelData)
 {
 	auto UpdateData = static_cast<const testpb::TestChannelDataMessage*>(ChannelData);
 	TestChannelData.MergeFrom(*UpdateData);
