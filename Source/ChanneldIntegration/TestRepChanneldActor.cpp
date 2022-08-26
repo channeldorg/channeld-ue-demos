@@ -4,31 +4,23 @@
 #include "TestRepChanneldActor.h"
 #include "tps.pb.h"
 
-const unrealpb::SceneComponentState* ATestRepChanneldActor::GetSceneComponentStateFromChannelData(google::protobuf::Message* ChannelData)
+const unrealpb::SceneComponentState* ATestRepChanneldActor::GetSceneComponentStateFromChannelData(google::protobuf::Message* ChannelData, uint32 NetGUID)
 {
-	uint32 NetGUID = GetNetGUID();
-	if (NetGUID > 0)
+	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
+	auto States = TestRepChannelData->mutable_scenecomponentstates();
+	if (States->contains(NetGUID))
 	{
-		auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
-		auto States = TestRepChannelData->mutable_scenecomponentstates();
-		if (States->contains(NetGUID))
-		{
-			return &States->at(NetGUID);
-		}
+		return &States->at(NetGUID);
 	}
 
 	return nullptr;//unrealpb::SceneComponentState::default_instance();
 }
 
-void ATestRepChanneldActor::SetSceneComponentStateToChannelData(unrealpb::SceneComponentState* State, google::protobuf::Message* ChannelData)
+void ATestRepChanneldActor::SetSceneComponentStateToChannelData(unrealpb::SceneComponentState* State, google::protobuf::Message* ChannelData, uint32 NetGUID)
 {
-	uint32 NetGUID = GetNetGUID();
-	if (NetGUID > 0)
-	{
-		auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
-		auto States = TestRepChannelData->mutable_scenecomponentstates();
-		(*States)[NetGUID] = *State;
-	}
+	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
+	auto States = TestRepChannelData->mutable_scenecomponentstates();
+	(*States)[NetGUID] = *State;
 }
 
 google::protobuf::Message* ATestRepChanneldActor::GetChannelDataTemplate() const
