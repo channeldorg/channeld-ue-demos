@@ -3,24 +3,32 @@
 
 #include "TestRepComponent.h"
 #include "tps.pb.h"
+#include "unreal_common.pb.h"
 
-const unrealpb::SceneComponentState* UTestRepComponent::GetSceneComponentStateFromChannelData(google::protobuf::Message* ChannelData, uint32 NetGUID)
+const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(google::protobuf::Message* ChannelData, UObject* TargetObject, uint32 NetGUID, bool& bIsRemoved)
 {
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
 	auto States = TestRepChannelData->mutable_scenecomponentstates();
 	if (States->contains(NetGUID))
 	{
-		return &States->at(NetGUID);
+		auto State = &States->at(NetGUID);
+		bIsRemoved = State->removed();
+		return State;
 	}
 
-	return nullptr;//unrealpb::SceneComponentState::default_instance();
+	bIsRemoved = false;
+	return nullptr;
 }
 
-void UTestRepComponent::SetSceneComponentStateToChannelData(unrealpb::SceneComponentState* State, google::protobuf::Message* ChannelData, uint32 NetGUID)
+void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* State, google::protobuf::Message* ChannelData, UObject* TargetObject, uint32 NetGUID)
 {
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
-	auto States = TestRepChannelData->mutable_scenecomponentstates();
-	(*States)[NetGUID] = *State;
+	if (TargetObject->IsA<USceneComponent>())
+	{
+		auto SceneCompState = static_cast<const unrealpb::SceneComponentState*>(State);
+		auto States = TestRepChannelData->mutable_scenecomponentstates();
+		(*States)[NetGUID] = *SceneCompState;
+	}
 }
 
 google::protobuf::Message* UTestRepComponent::GetChannelDataTemplate() const

@@ -15,8 +15,8 @@ class CHANNELDINTEGRATION_API UTestRepComponent : public UChanneldReplicationCom
 	GENERATED_BODY()
 
 protected:
-	virtual const unrealpb::SceneComponentState* GetSceneComponentStateFromChannelData(google::protobuf::Message* ChannelData, uint32 NetGUID) override;
-	virtual void SetSceneComponentStateToChannelData(unrealpb::SceneComponentState* State, google::protobuf::Message* ChannelData, uint32 NetGUID) override;
+	virtual const google::protobuf::Message* GetStateFromChannelData(google::protobuf::Message* ChannelData, UObject* TargetObject, uint32 NetGUID, bool& bRemoved) override;
+	virtual void SetStateToChannelData(const google::protobuf::Message* State, google::protobuf::Message* ChannelData, UObject* TargetObject, uint32 NetGUID) override;
 
 public:
 	virtual google::protobuf::Message* GetChannelDataTemplate() const override;

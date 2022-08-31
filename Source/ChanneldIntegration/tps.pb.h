@@ -52,12 +52,16 @@ namespace tpspb {
 class TestRepChannelData;
 struct TestRepChannelDataDefaultTypeInternal;
 extern TestRepChannelDataDefaultTypeInternal _TestRepChannelData_default_instance_;
+class TestRepChannelData_CharacterStatesEntry_DoNotUse;
+struct TestRepChannelData_CharacterStatesEntry_DoNotUseDefaultTypeInternal;
+extern TestRepChannelData_CharacterStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_CharacterStatesEntry_DoNotUse_default_instance_;
 class TestRepChannelData_SceneComponentStatesEntry_DoNotUse;
 struct TestRepChannelData_SceneComponentStatesEntry_DoNotUseDefaultTypeInternal;
 extern TestRepChannelData_SceneComponentStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_SceneComponentStatesEntry_DoNotUse_default_instance_;
 }  // namespace tpspb
 PROTOBUF_NAMESPACE_OPEN
 template<> ::tpspb::TestRepChannelData* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData>(Arena*);
+template<> ::tpspb::TestRepChannelData_CharacterStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_CharacterStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_SceneComponentStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_SceneComponentStatesEntry_DoNotUse>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace tpspb {
@@ -79,6 +83,30 @@ public:
   explicit TestRepChannelData_SceneComponentStatesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   void MergeFrom(const TestRepChannelData_SceneComponentStatesEntry_DoNotUse& other);
   static const TestRepChannelData_SceneComponentStatesEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const TestRepChannelData_SceneComponentStatesEntry_DoNotUse*>(&_TestRepChannelData_SceneComponentStatesEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(void*) { return true; }
+  static bool ValidateValue(void*) { return true; }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_tps_2eproto;
+};
+
+// -------------------------------------------------------------------
+
+class TestRepChannelData_CharacterStatesEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestRepChannelData_CharacterStatesEntry_DoNotUse, 
+    uint32_t, ::unrealpb::CharacterState,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestRepChannelData_CharacterStatesEntry_DoNotUse, 
+    uint32_t, ::unrealpb::CharacterState,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  TestRepChannelData_CharacterStatesEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR TestRepChannelData_CharacterStatesEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit TestRepChannelData_CharacterStatesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const TestRepChannelData_CharacterStatesEntry_DoNotUse& other);
+  static const TestRepChannelData_CharacterStatesEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const TestRepChannelData_CharacterStatesEntry_DoNotUse*>(&_TestRepChannelData_CharacterStatesEntry_DoNotUse_default_instance_); }
   static bool ValidateKey(void*) { return true; }
   static bool ValidateValue(void*) { return true; }
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
@@ -136,7 +164,7 @@ class TestRepChannelData final :
                &_TestRepChannelData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(TestRepChannelData& a, TestRepChannelData& b) {
     a.Swap(&b);
@@ -213,6 +241,7 @@ class TestRepChannelData final :
 
   enum : int {
     kSceneComponentStatesFieldNumber = 1,
+    kCharacterStatesFieldNumber = 2,
   };
   // map<uint32, .unrealpb.SceneComponentState> sceneComponentStates = 1;
   int scenecomponentstates_size() const;
@@ -231,6 +260,23 @@ class TestRepChannelData final :
   ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::SceneComponentState >*
       mutable_scenecomponentstates();
 
+  // map<uint32, .unrealpb.CharacterState> characterStates = 2;
+  int characterstates_size() const;
+  private:
+  int _internal_characterstates_size() const;
+  public:
+  void clear_characterstates();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::CharacterState >&
+      _internal_characterstates() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::CharacterState >*
+      _internal_mutable_characterstates();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::CharacterState >&
+      characterstates() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::CharacterState >*
+      mutable_characterstates();
+
   // @@protoc_insertion_point(class_scope:tpspb.TestRepChannelData)
  private:
   class _Internal;
@@ -244,6 +290,11 @@ class TestRepChannelData final :
         uint32_t, ::unrealpb::SceneComponentState,
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> scenecomponentstates_;
+    ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+        TestRepChannelData_CharacterStatesEntry_DoNotUse,
+        uint32_t, ::unrealpb::CharacterState,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> characterstates_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -258,6 +309,8 @@ class TestRepChannelData final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // TestRepChannelData
@@ -288,9 +341,37 @@ TestRepChannelData::mutable_scenecomponentstates() {
   return _internal_mutable_scenecomponentstates();
 }
 
+// map<uint32, .unrealpb.CharacterState> characterStates = 2;
+inline int TestRepChannelData::_internal_characterstates_size() const {
+  return _impl_.characterstates_.size();
+}
+inline int TestRepChannelData::characterstates_size() const {
+  return _internal_characterstates_size();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::CharacterState >&
+TestRepChannelData::_internal_characterstates() const {
+  return _impl_.characterstates_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::CharacterState >&
+TestRepChannelData::characterstates() const {
+  // @@protoc_insertion_point(field_map:tpspb.TestRepChannelData.characterStates)
+  return _internal_characterstates();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::CharacterState >*
+TestRepChannelData::_internal_mutable_characterstates() {
+  return _impl_.characterstates_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::CharacterState >*
+TestRepChannelData::mutable_characterstates() {
+  // @@protoc_insertion_point(field_mutable_map:tpspb.TestRepChannelData.characterStates)
+  return _internal_mutable_characterstates();
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 
