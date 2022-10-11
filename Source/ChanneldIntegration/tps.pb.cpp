@@ -49,10 +49,47 @@ struct TestRepChannelData_CharacterStatesEntry_DoNotUseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TestRepChannelData_CharacterStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_CharacterStatesEntry_DoNotUse_default_instance_;
+PROTOBUF_CONSTEXPR TestRepChannelData_PlayerStatesEntry_DoNotUse::TestRepChannelData_PlayerStatesEntry_DoNotUse(
+    ::_pbi::ConstantInitialized) {}
+struct TestRepChannelData_PlayerStatesEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TestRepChannelData_PlayerStatesEntry_DoNotUseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TestRepChannelData_PlayerStatesEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    TestRepChannelData_PlayerStatesEntry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TestRepChannelData_PlayerStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_PlayerStatesEntry_DoNotUse_default_instance_;
+PROTOBUF_CONSTEXPR TestRepChannelData_ControllerStatesEntry_DoNotUse::TestRepChannelData_ControllerStatesEntry_DoNotUse(
+    ::_pbi::ConstantInitialized) {}
+struct TestRepChannelData_ControllerStatesEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TestRepChannelData_ControllerStatesEntry_DoNotUseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TestRepChannelData_ControllerStatesEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    TestRepChannelData_ControllerStatesEntry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TestRepChannelData_ControllerStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_ControllerStatesEntry_DoNotUse_default_instance_;
+PROTOBUF_CONSTEXPR TestRepChannelData_PlayerControllerStatesEntry_DoNotUse::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse(
+    ::_pbi::ConstantInitialized) {}
+struct TestRepChannelData_PlayerControllerStatesEntry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TestRepChannelData_PlayerControllerStatesEntry_DoNotUseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TestRepChannelData_PlayerControllerStatesEntry_DoNotUseDefaultTypeInternal() {}
+  union {
+    TestRepChannelData_PlayerControllerStatesEntry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TestRepChannelData_PlayerControllerStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_PlayerControllerStatesEntry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR TestRepChannelData::TestRepChannelData(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.scenecomponentstates_)*/{::_pbi::ConstantInitialized()}
   , /*decltype(_impl_.characterstates_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_.playerstates_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_.controllerstates_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_.playercontrollerstates_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_.gamestate_)*/nullptr
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TestRepChannelDataDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TestRepChannelDataDefaultTypeInternal()
@@ -64,7 +101,7 @@ struct TestRepChannelDataDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TestRepChannelDataDefaultTypeInternal _TestRepChannelData_default_instance_;
 }  // namespace tpspb
-static ::_pb::Metadata file_level_metadata_tps_2eproto[3];
+static ::_pb::Metadata file_level_metadata_tps_2eproto[6];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_tps_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_tps_2eproto = nullptr;
 
@@ -89,6 +126,36 @@ const uint32_t TableStruct_tps_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(prot
   PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData_CharacterStatesEntry_DoNotUse, value_),
   0,
   1,
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData_PlayerStatesEntry_DoNotUse, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData_PlayerStatesEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData_PlayerStatesEntry_DoNotUse, key_),
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData_PlayerStatesEntry_DoNotUse, value_),
+  0,
+  1,
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData_ControllerStatesEntry_DoNotUse, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData_ControllerStatesEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData_ControllerStatesEntry_DoNotUse, key_),
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData_ControllerStatesEntry_DoNotUse, value_),
+  0,
+  1,
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse, key_),
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse, value_),
+  0,
+  1,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -97,41 +164,64 @@ const uint32_t TableStruct_tps_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(prot
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData, _impl_.scenecomponentstates_),
   PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData, _impl_.characterstates_),
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData, _impl_.playerstates_),
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData, _impl_.controllerstates_),
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData, _impl_.playercontrollerstates_),
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData, _impl_.gamestate_),
 };
 static const ::_pbi::MigrationSchema schemas_tps_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 8, -1, sizeof(::tpspb::TestRepChannelData_SceneComponentStatesEntry_DoNotUse)},
   { 10, 18, -1, sizeof(::tpspb::TestRepChannelData_CharacterStatesEntry_DoNotUse)},
-  { 20, -1, -1, sizeof(::tpspb::TestRepChannelData)},
+  { 20, 28, -1, sizeof(::tpspb::TestRepChannelData_PlayerStatesEntry_DoNotUse)},
+  { 30, 38, -1, sizeof(::tpspb::TestRepChannelData_ControllerStatesEntry_DoNotUse)},
+  { 40, 48, -1, sizeof(::tpspb::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse)},
+  { 50, -1, -1, sizeof(::tpspb::TestRepChannelData)},
 };
 
 static const ::_pb::Message* const file_default_instances_tps_2eproto[] = {
   &::tpspb::_TestRepChannelData_SceneComponentStatesEntry_DoNotUse_default_instance_._instance,
   &::tpspb::_TestRepChannelData_CharacterStatesEntry_DoNotUse_default_instance_._instance,
+  &::tpspb::_TestRepChannelData_PlayerStatesEntry_DoNotUse_default_instance_._instance,
+  &::tpspb::_TestRepChannelData_ControllerStatesEntry_DoNotUse_default_instance_._instance,
+  &::tpspb::_TestRepChannelData_PlayerControllerStatesEntry_DoNotUse_default_instance_._instance,
   &::tpspb::_TestRepChannelData_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_tps_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\ttps.proto\022\005tpspb\032\023unreal_common.proto\""
-  "\336\002\n\022TestRepChannelData\022Q\n\024sceneComponent"
+  "\357\006\n\022TestRepChannelData\022Q\n\024sceneComponent"
   "States\030\001 \003(\01323.tpspb.TestRepChannelData."
   "SceneComponentStatesEntry\022G\n\017characterSt"
   "ates\030\002 \003(\0132..tpspb.TestRepChannelData.Ch"
-  "aracterStatesEntry\032Z\n\031SceneComponentStat"
-  "esEntry\022\013\n\003key\030\001 \001(\r\022,\n\005value\030\002 \001(\0132\035.un"
-  "realpb.SceneComponentState:\0028\001\032P\n\024Charac"
-  "terStatesEntry\022\013\n\003key\030\001 \001(\r\022\'\n\005value\030\002 \001"
-  "(\0132\030.unrealpb.CharacterState:\0028\001B5Z3chan"
-  "neld.clewcat.com/examples/channeld-ue-tp"
-  "s/tpspbb\006proto3"
+  "aracterStatesEntry\022A\n\014playerStates\030\003 \003(\013"
+  "2+.tpspb.TestRepChannelData.PlayerStates"
+  "Entry\022I\n\020controllerStates\030\004 \003(\0132/.tpspb."
+  "TestRepChannelData.ControllerStatesEntry"
+  "\022U\n\026playerControllerStates\030\005 \003(\01325.tpspb"
+  ".TestRepChannelData.PlayerControllerStat"
+  "esEntry\022*\n\tgameState\030\006 \001(\0132\027.unrealpb.Ga"
+  "meStateBase\032Z\n\031SceneComponentStatesEntry"
+  "\022\013\n\003key\030\001 \001(\r\022,\n\005value\030\002 \001(\0132\035.unrealpb."
+  "SceneComponentState:\0028\001\032P\n\024CharacterStat"
+  "esEntry\022\013\n\003key\030\001 \001(\r\022\'\n\005value\030\002 \001(\0132\030.un"
+  "realpb.CharacterState:\0028\001\032J\n\021PlayerState"
+  "sEntry\022\013\n\003key\030\001 \001(\r\022$\n\005value\030\002 \001(\0132\025.unr"
+  "ealpb.PlayerState:\0028\001\032R\n\025ControllerState"
+  "sEntry\022\013\n\003key\030\001 \001(\r\022(\n\005value\030\002 \001(\0132\031.unr"
+  "ealpb.ControllerState:\0028\001\032^\n\033PlayerContr"
+  "ollerStatesEntry\022\013\n\003key\030\001 \001(\r\022.\n\005value\030\002"
+  " \001(\0132\037.unrealpb.PlayerControllerState:\0028"
+  "\001B5Z3channeld.clewcat.com/examples/chann"
+  "eld-ue-tps/tpspbb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_tps_2eproto_deps[1] = {
   &::descriptor_table_unreal_5fcommon_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_tps_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tps_2eproto = {
-    false, false, 455, descriptor_table_protodef_tps_2eproto,
+    false, false, 984, descriptor_table_protodef_tps_2eproto,
     "tps.proto",
-    &descriptor_table_tps_2eproto_once, descriptor_table_tps_2eproto_deps, 1, 3,
+    &descriptor_table_tps_2eproto_once, descriptor_table_tps_2eproto_deps, 1, 6,
     schemas_tps_2eproto, file_default_instances_tps_2eproto, TableStruct_tps_2eproto::offsets,
     file_level_metadata_tps_2eproto, file_level_enum_descriptors_tps_2eproto,
     file_level_service_descriptors_tps_2eproto,
@@ -174,15 +264,77 @@ void TestRepChannelData_CharacterStatesEntry_DoNotUse::MergeFrom(const TestRepCh
 
 // ===================================================================
 
+TestRepChannelData_PlayerStatesEntry_DoNotUse::TestRepChannelData_PlayerStatesEntry_DoNotUse() {}
+TestRepChannelData_PlayerStatesEntry_DoNotUse::TestRepChannelData_PlayerStatesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
+void TestRepChannelData_PlayerStatesEntry_DoNotUse::MergeFrom(const TestRepChannelData_PlayerStatesEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::PROTOBUF_NAMESPACE_ID::Metadata TestRepChannelData_PlayerStatesEntry_DoNotUse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_tps_2eproto_getter, &descriptor_table_tps_2eproto_once,
+      file_level_metadata_tps_2eproto[2]);
+}
+
+// ===================================================================
+
+TestRepChannelData_ControllerStatesEntry_DoNotUse::TestRepChannelData_ControllerStatesEntry_DoNotUse() {}
+TestRepChannelData_ControllerStatesEntry_DoNotUse::TestRepChannelData_ControllerStatesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
+void TestRepChannelData_ControllerStatesEntry_DoNotUse::MergeFrom(const TestRepChannelData_ControllerStatesEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::PROTOBUF_NAMESPACE_ID::Metadata TestRepChannelData_ControllerStatesEntry_DoNotUse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_tps_2eproto_getter, &descriptor_table_tps_2eproto_once,
+      file_level_metadata_tps_2eproto[3]);
+}
+
+// ===================================================================
+
+TestRepChannelData_PlayerControllerStatesEntry_DoNotUse::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse() {}
+TestRepChannelData_PlayerControllerStatesEntry_DoNotUse::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
+void TestRepChannelData_PlayerControllerStatesEntry_DoNotUse::MergeFrom(const TestRepChannelData_PlayerControllerStatesEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::PROTOBUF_NAMESPACE_ID::Metadata TestRepChannelData_PlayerControllerStatesEntry_DoNotUse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_tps_2eproto_getter, &descriptor_table_tps_2eproto_once,
+      file_level_metadata_tps_2eproto[4]);
+}
+
+// ===================================================================
+
 class TestRepChannelData::_Internal {
  public:
+  static const ::unrealpb::GameStateBase& gamestate(const TestRepChannelData* msg);
 };
 
+const ::unrealpb::GameStateBase&
+TestRepChannelData::_Internal::gamestate(const TestRepChannelData* msg) {
+  return *msg->_impl_.gamestate_;
+}
 void TestRepChannelData::clear_scenecomponentstates() {
   _impl_.scenecomponentstates_.Clear();
 }
 void TestRepChannelData::clear_characterstates() {
   _impl_.characterstates_.Clear();
+}
+void TestRepChannelData::clear_playerstates() {
+  _impl_.playerstates_.Clear();
+}
+void TestRepChannelData::clear_controllerstates() {
+  _impl_.controllerstates_.Clear();
+}
+void TestRepChannelData::clear_playercontrollerstates() {
+  _impl_.playercontrollerstates_.Clear();
+}
+void TestRepChannelData::clear_gamestate() {
+  if (GetArenaForAllocation() == nullptr && _impl_.gamestate_ != nullptr) {
+    delete _impl_.gamestate_;
+  }
+  _impl_.gamestate_ = nullptr;
 }
 TestRepChannelData::TestRepChannelData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -199,11 +351,21 @@ TestRepChannelData::TestRepChannelData(const TestRepChannelData& from)
   new (&_impl_) Impl_{
       /*decltype(_impl_.scenecomponentstates_)*/{}
     , /*decltype(_impl_.characterstates_)*/{}
+    , /*decltype(_impl_.playerstates_)*/{}
+    , /*decltype(_impl_.controllerstates_)*/{}
+    , /*decltype(_impl_.playercontrollerstates_)*/{}
+    , decltype(_impl_.gamestate_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   _this->_impl_.scenecomponentstates_.MergeFrom(from._impl_.scenecomponentstates_);
   _this->_impl_.characterstates_.MergeFrom(from._impl_.characterstates_);
+  _this->_impl_.playerstates_.MergeFrom(from._impl_.playerstates_);
+  _this->_impl_.controllerstates_.MergeFrom(from._impl_.controllerstates_);
+  _this->_impl_.playercontrollerstates_.MergeFrom(from._impl_.playercontrollerstates_);
+  if (from._internal_has_gamestate()) {
+    _this->_impl_.gamestate_ = new ::unrealpb::GameStateBase(*from._impl_.gamestate_);
+  }
   // @@protoc_insertion_point(copy_constructor:tpspb.TestRepChannelData)
 }
 
@@ -214,6 +376,10 @@ inline void TestRepChannelData::SharedCtor(
   new (&_impl_) Impl_{
       /*decltype(_impl_.scenecomponentstates_)*/{::_pbi::ArenaInitialized(), arena}
     , /*decltype(_impl_.characterstates_)*/{::_pbi::ArenaInitialized(), arena}
+    , /*decltype(_impl_.playerstates_)*/{::_pbi::ArenaInitialized(), arena}
+    , /*decltype(_impl_.controllerstates_)*/{::_pbi::ArenaInitialized(), arena}
+    , /*decltype(_impl_.playercontrollerstates_)*/{::_pbi::ArenaInitialized(), arena}
+    , decltype(_impl_.gamestate_){nullptr}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -234,12 +400,22 @@ inline void TestRepChannelData::SharedDtor() {
   _impl_.scenecomponentstates_.~MapField();
   _impl_.characterstates_.Destruct();
   _impl_.characterstates_.~MapField();
+  _impl_.playerstates_.Destruct();
+  _impl_.playerstates_.~MapField();
+  _impl_.controllerstates_.Destruct();
+  _impl_.controllerstates_.~MapField();
+  _impl_.playercontrollerstates_.Destruct();
+  _impl_.playercontrollerstates_.~MapField();
+  if (this != internal_default_instance()) delete _impl_.gamestate_;
 }
 
 void TestRepChannelData::ArenaDtor(void* object) {
   TestRepChannelData* _this = reinterpret_cast< TestRepChannelData* >(object);
   _this->_impl_.scenecomponentstates_.Destruct();
   _this->_impl_.characterstates_.Destruct();
+  _this->_impl_.playerstates_.Destruct();
+  _this->_impl_.controllerstates_.Destruct();
+  _this->_impl_.playercontrollerstates_.Destruct();
 }
 void TestRepChannelData::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
@@ -253,6 +429,13 @@ void TestRepChannelData::Clear() {
 
   _impl_.scenecomponentstates_.Clear();
   _impl_.characterstates_.Clear();
+  _impl_.playerstates_.Clear();
+  _impl_.controllerstates_.Clear();
+  _impl_.playercontrollerstates_.Clear();
+  if (GetArenaForAllocation() == nullptr && _impl_.gamestate_ != nullptr) {
+    delete _impl_.gamestate_;
+  }
+  _impl_.gamestate_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -285,6 +468,53 @@ const char* TestRepChannelData::_InternalParse(const char* ptr, ::_pbi::ParseCon
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // map<uint32, .unrealpb.PlayerState> playerStates = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&_impl_.playerstates_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // map<uint32, .unrealpb.ControllerState> controllerStates = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 34)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&_impl_.controllerstates_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // map<uint32, .unrealpb.PlayerControllerState> playerControllerStates = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 42)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&_impl_.playercontrollerstates_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // .unrealpb.GameStateBase gameState = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
+          ptr = ctx->ParseMessage(_internal_mutable_gamestate(), ptr);
+          CHK_(ptr);
         } else
           goto handle_unusual;
         continue;
@@ -351,6 +581,64 @@ uint8_t* TestRepChannelData::_InternalSerialize(
     }
   }
 
+  // map<uint32, .unrealpb.PlayerState> playerStates = 3;
+  if (!this->_internal_playerstates().empty()) {
+    using MapType = ::_pb::Map<uint32_t, ::unrealpb::PlayerState>;
+    using WireHelper = TestRepChannelData_PlayerStatesEntry_DoNotUse::Funcs;
+    const auto& map_field = this->_internal_playerstates();
+
+    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
+      for (const auto& entry : ::_pbi::MapSorterFlat<MapType>(map_field)) {
+        target = WireHelper::InternalSerialize(3, entry.first, entry.second, target, stream);
+      }
+    } else {
+      for (const auto& entry : map_field) {
+        target = WireHelper::InternalSerialize(3, entry.first, entry.second, target, stream);
+      }
+    }
+  }
+
+  // map<uint32, .unrealpb.ControllerState> controllerStates = 4;
+  if (!this->_internal_controllerstates().empty()) {
+    using MapType = ::_pb::Map<uint32_t, ::unrealpb::ControllerState>;
+    using WireHelper = TestRepChannelData_ControllerStatesEntry_DoNotUse::Funcs;
+    const auto& map_field = this->_internal_controllerstates();
+
+    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
+      for (const auto& entry : ::_pbi::MapSorterFlat<MapType>(map_field)) {
+        target = WireHelper::InternalSerialize(4, entry.first, entry.second, target, stream);
+      }
+    } else {
+      for (const auto& entry : map_field) {
+        target = WireHelper::InternalSerialize(4, entry.first, entry.second, target, stream);
+      }
+    }
+  }
+
+  // map<uint32, .unrealpb.PlayerControllerState> playerControllerStates = 5;
+  if (!this->_internal_playercontrollerstates().empty()) {
+    using MapType = ::_pb::Map<uint32_t, ::unrealpb::PlayerControllerState>;
+    using WireHelper = TestRepChannelData_PlayerControllerStatesEntry_DoNotUse::Funcs;
+    const auto& map_field = this->_internal_playercontrollerstates();
+
+    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
+      for (const auto& entry : ::_pbi::MapSorterFlat<MapType>(map_field)) {
+        target = WireHelper::InternalSerialize(5, entry.first, entry.second, target, stream);
+      }
+    } else {
+      for (const auto& entry : map_field) {
+        target = WireHelper::InternalSerialize(5, entry.first, entry.second, target, stream);
+      }
+    }
+  }
+
+  // .unrealpb.GameStateBase gameState = 6;
+  if (this->_internal_has_gamestate()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(6, _Internal::gamestate(this),
+        _Internal::gamestate(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -385,6 +673,40 @@ size_t TestRepChannelData::ByteSizeLong() const {
     total_size += TestRepChannelData_CharacterStatesEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
+  // map<uint32, .unrealpb.PlayerState> playerStates = 3;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_playerstates_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::PlayerState >::const_iterator
+      it = this->_internal_playerstates().begin();
+      it != this->_internal_playerstates().end(); ++it) {
+    total_size += TestRepChannelData_PlayerStatesEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  }
+
+  // map<uint32, .unrealpb.ControllerState> controllerStates = 4;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_controllerstates_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::ControllerState >::const_iterator
+      it = this->_internal_controllerstates().begin();
+      it != this->_internal_controllerstates().end(); ++it) {
+    total_size += TestRepChannelData_ControllerStatesEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  }
+
+  // map<uint32, .unrealpb.PlayerControllerState> playerControllerStates = 5;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_playercontrollerstates_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::PlayerControllerState >::const_iterator
+      it = this->_internal_playercontrollerstates().begin();
+      it != this->_internal_playercontrollerstates().end(); ++it) {
+    total_size += TestRepChannelData_PlayerControllerStatesEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  }
+
+  // .unrealpb.GameStateBase gameState = 6;
+  if (this->_internal_has_gamestate()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *_impl_.gamestate_);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -405,6 +727,13 @@ void TestRepChannelData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, con
 
   _this->_impl_.scenecomponentstates_.MergeFrom(from._impl_.scenecomponentstates_);
   _this->_impl_.characterstates_.MergeFrom(from._impl_.characterstates_);
+  _this->_impl_.playerstates_.MergeFrom(from._impl_.playerstates_);
+  _this->_impl_.controllerstates_.MergeFrom(from._impl_.controllerstates_);
+  _this->_impl_.playercontrollerstates_.MergeFrom(from._impl_.playercontrollerstates_);
+  if (from._internal_has_gamestate()) {
+    _this->_internal_mutable_gamestate()->::unrealpb::GameStateBase::MergeFrom(
+        from._internal_gamestate());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -424,12 +753,16 @@ void TestRepChannelData::InternalSwap(TestRepChannelData* other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.scenecomponentstates_.InternalSwap(&other->_impl_.scenecomponentstates_);
   _impl_.characterstates_.InternalSwap(&other->_impl_.characterstates_);
+  _impl_.playerstates_.InternalSwap(&other->_impl_.playerstates_);
+  _impl_.controllerstates_.InternalSwap(&other->_impl_.controllerstates_);
+  _impl_.playercontrollerstates_.InternalSwap(&other->_impl_.playercontrollerstates_);
+  swap(_impl_.gamestate_, other->_impl_.gamestate_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TestRepChannelData::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tps_2eproto_getter, &descriptor_table_tps_2eproto_once,
-      file_level_metadata_tps_2eproto[2]);
+      file_level_metadata_tps_2eproto[5]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -442,6 +775,18 @@ Arena::CreateMaybeMessage< ::tpspb::TestRepChannelData_SceneComponentStatesEntry
 template<> PROTOBUF_NOINLINE ::tpspb::TestRepChannelData_CharacterStatesEntry_DoNotUse*
 Arena::CreateMaybeMessage< ::tpspb::TestRepChannelData_CharacterStatesEntry_DoNotUse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::tpspb::TestRepChannelData_CharacterStatesEntry_DoNotUse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tpspb::TestRepChannelData_PlayerStatesEntry_DoNotUse*
+Arena::CreateMaybeMessage< ::tpspb::TestRepChannelData_PlayerStatesEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::tpspb::TestRepChannelData_PlayerStatesEntry_DoNotUse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tpspb::TestRepChannelData_ControllerStatesEntry_DoNotUse*
+Arena::CreateMaybeMessage< ::tpspb::TestRepChannelData_ControllerStatesEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::tpspb::TestRepChannelData_ControllerStatesEntry_DoNotUse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tpspb::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse*
+Arena::CreateMaybeMessage< ::tpspb::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::tpspb::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::tpspb::TestRepChannelData*
 Arena::CreateMaybeMessage< ::tpspb::TestRepChannelData >(Arena* arena) {

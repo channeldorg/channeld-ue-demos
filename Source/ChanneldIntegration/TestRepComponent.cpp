@@ -4,7 +4,14 @@
 #include "TestRepComponent.h"
 #include "tps.pb.h"
 #include "unreal_common.pb.h"
+#include "ChanneldUE/ChanneldTypes.h"
 #include "GameFramework/Character.h"
+#include "GameFramework/PlayerState.h"
+#include "GameFramework/Controller.h"
+#include "GameFramework/PlayerController.h"
+#include "GameFramework/GameStateBase.h"
+
+DEFINE_LOG_CATEGORY(LogChanneld);
 
 const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(google::protobuf::Message* ChannelData, UObject* TargetObject, uint32 NetGUID, bool& bIsRemoved)
 {
@@ -28,6 +35,45 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 			bIsRemoved = State->removed();
 			return State;
 		}
+	}
+	else if (TargetObject->IsA<APlayerState>())
+	{
+		auto States = TestRepChannelData->mutable_playerstates();
+		if (States->contains(NetGUID))
+		{
+			auto State = &States->at(NetGUID);
+			bIsRemoved = State->removed();
+			return State;
+		}
+	}
+	else if (TargetObject->IsA<AController>())
+	{
+		auto States = TestRepChannelData->mutable_controllerstates();
+		if (States->contains(NetGUID))
+		{
+			auto State = &States->at(NetGUID);
+			bIsRemoved = State->removed();
+			return State;
+		}
+	}
+	else if (TargetObject->IsA<APlayerController>())
+	{
+		auto States = TestRepChannelData->mutable_playercontrollerstates();
+		if (States->contains(NetGUID))
+		{
+			auto State = &States->at(NetGUID);
+			bIsRemoved = State->removed();
+			return State;
+		}
+	}
+	else if (TargetObject->IsA<AGameStateBase>())
+	{
+		bIsRemoved = false;
+		return TestRepChannelData->mutable_gamestate();
+	}
+	else
+	{
+		UE_LOG(LogChanneld, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetObject->GetClass()->GetName(), NetGUID);
 	}
 	
 	bIsRemoved = false;
