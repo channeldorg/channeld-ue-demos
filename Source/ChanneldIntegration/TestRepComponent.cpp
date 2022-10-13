@@ -10,15 +10,16 @@
 #include "GameFramework/Controller.h"
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/GameStateBase.h"
+#include "GameFramework/Actor.h"
 
 DEFINE_LOG_CATEGORY(LogChanneld);
 
-const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(google::protobuf::Message* ChannelData, UObject* TargetObject, uint32 NetGUID, bool& bIsRemoved)
+const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID, bool& bIsRemoved)
 {
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
-	if (TargetObject->IsA<USceneComponent>())
+	if (TargetClass == AActor::StaticClass())
 	{
-		auto States = TestRepChannelData->mutable_scenecomponentstates();
+		auto States = TestRepChannelData->mutable_actorstates();
 		if (States->contains(NetGUID))
 		{
 			auto State = &States->at(NetGUID);
@@ -26,7 +27,7 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 			return State;
 		}
 	}
-	else if (TargetObject->IsA<ACharacter>())
+	else if (TargetClass == ACharacter::StaticClass())
 	{
 		auto States = TestRepChannelData->mutable_characterstates();
 		if (States->contains(NetGUID))
@@ -36,7 +37,7 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 			return State;
 		}
 	}
-	else if (TargetObject->IsA<APlayerState>())
+	else if (TargetClass == APlayerState::StaticClass())
 	{
 		auto States = TestRepChannelData->mutable_playerstates();
 		if (States->contains(NetGUID))
@@ -46,7 +47,7 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 			return State;
 		}
 	}
-	else if (TargetObject->IsA<AController>())
+	else if (TargetClass == AController::StaticClass())
 	{
 		auto States = TestRepChannelData->mutable_controllerstates();
 		if (States->contains(NetGUID))
@@ -56,7 +57,7 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 			return State;
 		}
 	}
-	else if (TargetObject->IsA<APlayerController>())
+	else if (TargetClass == APlayerController::StaticClass())
 	{
 		auto States = TestRepChannelData->mutable_playercontrollerstates();
 		if (States->contains(NetGUID))
@@ -66,34 +67,77 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 			return State;
 		}
 	}
-	else if (TargetObject->IsA<AGameStateBase>())
+	else if (TargetClass == USceneComponent::StaticClass())
+	{
+		auto States = TestRepChannelData->mutable_scenecomponentstates();
+		if (States->contains(NetGUID))
+		{
+			auto State = &States->at(NetGUID);
+			bIsRemoved = State->removed();
+			return State;
+		}
+	}
+	else if (TargetClass == AGameStateBase::StaticClass())
 	{
 		bIsRemoved = false;
 		return TestRepChannelData->mutable_gamestate();
 	}
 	else
 	{
-		UE_LOG(LogChanneld, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetObject->GetClass()->GetName(), NetGUID);
+		UE_LOG(LogChanneld, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
 	}
 	
 	bIsRemoved = false;
 	return nullptr;
 }
 
-void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* State, google::protobuf::Message* ChannelData, UObject* TargetObject, uint32 NetGUID)
+void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* State, google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID)
 {
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
-	if (TargetObject->IsA<USceneComponent>())
+	if (TargetClass == AActor::StaticClass())
+	{
+		auto ActorState = static_cast<const unrealpb::ActorState*>(State);
+		auto States = TestRepChannelData->mutable_actorstates();
+		(*States)[NetGUID] = *ActorState;
+	}
+	else if (TargetClass == ACharacter::StaticClass())
+	{
+		auto CharacterState = static_cast<const unrealpb::CharacterState*>(State);
+		auto States = TestRepChannelData->mutable_characterstates();
+		(*States)[NetGUID] = *CharacterState;
+	}
+	else if (TargetClass == APlayerState::StaticClass())
+	{
+		auto PlayerState = static_cast<const unrealpb::PlayerState*>(State);
+		auto States = TestRepChannelData->mutable_playerstates();
+		(*States)[NetGUID] = *PlayerState;
+	}
+	else if (TargetClass == AController::StaticClass())
+	{
+		auto ControllerState = static_cast<const unrealpb::ControllerState*>(State);
+		auto States = TestRepChannelData->mutable_controllerstates();
+		(*States)[NetGUID] = *ControllerState;
+	}
+	else if (TargetClass == APlayerController::StaticClass())
+	{
+		auto PlayerControllerState = static_cast<const unrealpb::PlayerControllerState*>(State);
+		auto States = TestRepChannelData->mutable_playercontrollerstates();
+		(*States)[NetGUID] = *PlayerControllerState;
+	}
+	else if (TargetClass == USceneComponent::StaticClass())
 	{
 		auto SceneCompState = static_cast<const unrealpb::SceneComponentState*>(State);
 		auto States = TestRepChannelData->mutable_scenecomponentstates();
 		(*States)[NetGUID] = *SceneCompState;
 	}
-	else if (TargetObject->IsA<ACharacter>())
+	else if (TargetClass == AGameStateBase::StaticClass())
 	{
-		auto CharacterState = static_cast<const unrealpb::CharacterState*>(State);
-		auto States = TestRepChannelData->mutable_characterstates();
-		(*States)[NetGUID] = *CharacterState;
+		auto GameState = static_cast<const unrealpb::GameStateBase*>(State);
+		TestRepChannelData->mutable_gamestate()->MergeFrom(*GameState);
+	}
+	else
+	{
+		UE_LOG(LogChanneld, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
 	}
 }
 
