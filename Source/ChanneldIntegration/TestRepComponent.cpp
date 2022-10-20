@@ -11,6 +11,7 @@
 #include "GameFramework/PlayerController.h"
 #include "GameFramework/GameStateBase.h"
 #include "GameFramework/Actor.h"
+#include "Components/ActorComponent.h"
 
 DEFINE_LOG_CATEGORY(LogChanneld);
 
@@ -32,9 +33,8 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 		auto States = TestRepChannelData->mutable_characterstates();
 		if (States->contains(NetGUID))
 		{
-			auto State = &States->at(NetGUID);
-			bIsRemoved = State->removed();
-			return State;
+			bIsRemoved = false;
+			return &States->at(NetGUID);
 		}
 	}
 	else if (TargetClass == APlayerState::StaticClass())
@@ -42,9 +42,8 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 		auto States = TestRepChannelData->mutable_playerstates();
 		if (States->contains(NetGUID))
 		{
-			auto State = &States->at(NetGUID);
-			bIsRemoved = State->removed();
-			return State;
+			bIsRemoved = false;
+			return &States->at(NetGUID);
 		}
 	}
 	else if (TargetClass == AController::StaticClass())
@@ -52,14 +51,22 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 		auto States = TestRepChannelData->mutable_controllerstates();
 		if (States->contains(NetGUID))
 		{
-			auto State = &States->at(NetGUID);
-			bIsRemoved = State->removed();
-			return State;
+			bIsRemoved = false;
+			return &States->at(NetGUID);
 		}
 	}
 	else if (TargetClass == APlayerController::StaticClass())
 	{
 		auto States = TestRepChannelData->mutable_playercontrollerstates();
+		if (States->contains(NetGUID))
+		{
+			bIsRemoved = false;
+			return &States->at(NetGUID);
+		}
+	}
+	else if (TargetClass == UActorComponent::StaticClass())
+	{
+		auto States = TestRepChannelData->mutable_actorcomponentstates();
 		if (States->contains(NetGUID))
 		{
 			auto State = &States->at(NetGUID);
@@ -72,9 +79,8 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 		auto States = TestRepChannelData->mutable_scenecomponentstates();
 		if (States->contains(NetGUID))
 		{
-			auto State = &States->at(NetGUID);
-			bIsRemoved = State->removed();
-			return State;
+			bIsRemoved = false;
+			return &States->at(NetGUID);
 		}
 	}
 	else if (TargetClass == AGameStateBase::StaticClass())
@@ -123,6 +129,12 @@ void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* S
 		auto PlayerControllerState = static_cast<const unrealpb::PlayerControllerState*>(State);
 		auto States = TestRepChannelData->mutable_playercontrollerstates();
 		(*States)[NetGUID] = *PlayerControllerState;
+	}
+	else if (TargetClass == UActorComponent::StaticClass())
+	{
+		auto ActorCompState = static_cast<const unrealpb::ActorComponentState*>(State);
+		auto States = TestRepChannelData->mutable_actorcomponentstates();
+		(*States)[NetGUID] = *ActorCompState;
 	}
 	else if (TargetClass == USceneComponent::StaticClass())
 	{
