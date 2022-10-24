@@ -88,6 +88,10 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 		bIsRemoved = false;
 		return TestRepChannelData->mutable_gamestate();
 	}
+	else if (TargetClass->GetFName() == FName("BP_TestRepPlayerController_C"))
+	{
+		return nullptr;
+	}
 	else
 	{
 		UE_LOG(LogChanneld, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
@@ -146,6 +150,9 @@ void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* S
 	{
 		auto GameState = static_cast<const unrealpb::GameStateBase*>(State);
 		TestRepChannelData->mutable_gamestate()->MergeFrom(*GameState);
+	}
+	else if (TargetClass->GetFName() == FName("BP_TestRepPlayerController_C"))
+	{
 	}
 	else
 	{
