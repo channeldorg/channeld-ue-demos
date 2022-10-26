@@ -13,8 +13,6 @@
 #include "GameFramework/Actor.h"
 #include "Components/ActorComponent.h"
 
-DEFINE_LOG_CATEGORY(LogChanneld);
-
 const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID, bool& bIsRemoved)
 {
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
@@ -94,7 +92,7 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 	}
 	else
 	{
-		UE_LOG(LogChanneld, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
+		UE_LOG(LogChanneldTest, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
 	}
 	
 	bIsRemoved = false;
@@ -156,7 +154,7 @@ void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* S
 	}
 	else
 	{
-		UE_LOG(LogChanneld, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
+		UE_LOG(LogChanneldTest, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
 	}
 }
 

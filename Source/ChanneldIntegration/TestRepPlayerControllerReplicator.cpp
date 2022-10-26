@@ -47,7 +47,7 @@ TSharedPtr<google::protobuf::Message> FTestRepPlayerControllerReplicator::Serial
 	return nullptr;
 }
 
-void* FTestRepPlayerControllerReplicator::DeserializeFunctionParams(UFunction* Func, const std::string& ParamsPayload, bool& bSuccess, bool& bDelayRPC)
+TSharedPtr<void> FTestRepPlayerControllerReplicator::DeserializeFunctionParams(UFunction* Func, const std::string& ParamsPayload, bool& bSuccess, bool& bDelayRPC)
 {
 	bSuccess = true;
 	if (Func->GetFName() == FName("ServerSpawnTestRepActor"))

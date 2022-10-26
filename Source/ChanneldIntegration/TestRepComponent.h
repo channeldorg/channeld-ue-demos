@@ -6,6 +6,7 @@
 #include "Replication/ChanneldReplicationComponent.h"
 #include "TestRepComponent.generated.h"
 
+DECLARE_LOG_CATEGORY_CLASS(LogChanneldTest, Log, All);
 /**
  * 
  */
