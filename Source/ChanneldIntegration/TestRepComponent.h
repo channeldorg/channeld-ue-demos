@@ -15,10 +15,16 @@ class CHANNELDINTEGRATION_API UTestRepComponent : public UChanneldReplicationCom
 {
 	GENERATED_BODY()
 
+public:
+	UTestRepComponent(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
+	
+	virtual google::protobuf::Message* GetChannelDataTemplate() const override;
+
 protected:
 	virtual const google::protobuf::Message* GetStateFromChannelData(google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID, bool& bRemoved) override;
 	virtual void SetStateToChannelData(const google::protobuf::Message* State, google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID) override;
 
-public:
-	virtual google::protobuf::Message* GetChannelDataTemplate() const override;
+private:
+	TUniquePtr<unrealpb::ActorState> RemovedActorState;
+	TUniquePtr<unrealpb::ActorComponentState> RemovedActorComponentState;
 };

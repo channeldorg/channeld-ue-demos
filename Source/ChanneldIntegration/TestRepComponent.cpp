@@ -13,6 +13,14 @@
 #include "GameFramework/Actor.h"
 #include "Components/ActorComponent.h"
 
+UTestRepComponent::UTestRepComponent(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
+{
+	RemovedActorState = MakeUnique<unrealpb::ActorState>();
+	RemovedActorState->set_removed(true);
+	RemovedActorComponentState = MakeUnique<unrealpb::ActorComponentState>();
+	RemovedActorComponentState->set_removed(true);
+}
+
 const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID, bool& bIsRemoved)
 {
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
@@ -104,50 +112,68 @@ void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* S
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
 	if (TargetClass == AActor::StaticClass())
 	{
-		auto ActorState = static_cast<const unrealpb::ActorState*>(State);
+		auto ActorState = State ? static_cast<const unrealpb::ActorState*>(State) : RemovedActorState.Get();
 		auto States = TestRepChannelData->mutable_actorstates();
 		(*States)[NetGUID] = *ActorState;
 	}
 	else if (TargetClass == ACharacter::StaticClass())
 	{
 		auto CharacterState = static_cast<const unrealpb::CharacterState*>(State);
-		auto States = TestRepChannelData->mutable_characterstates();
-		(*States)[NetGUID] = *CharacterState;
+		if (CharacterState)
+		{
+			auto States = TestRepChannelData->mutable_characterstates();
+			(*States)[NetGUID] = *CharacterState;
+		}
 	}
 	else if (TargetClass == APlayerState::StaticClass())
 	{
 		auto PlayerState = static_cast<const unrealpb::PlayerState*>(State);
-		auto States = TestRepChannelData->mutable_playerstates();
-		(*States)[NetGUID] = *PlayerState;
+		if (PlayerState)
+		{
+			auto States = TestRepChannelData->mutable_playerstates();
+			(*States)[NetGUID] = *PlayerState;
+		}
 	}
 	else if (TargetClass == AController::StaticClass())
 	{
 		auto ControllerState = static_cast<const unrealpb::ControllerState*>(State);
-		auto States = TestRepChannelData->mutable_controllerstates();
-		(*States)[NetGUID] = *ControllerState;
+		if (ControllerState)
+		{
+			auto States = TestRepChannelData->mutable_controllerstates();
+			(*States)[NetGUID] = *ControllerState;
+		}
 	}
 	else if (TargetClass == APlayerController::StaticClass())
 	{
 		auto PlayerControllerState = static_cast<const unrealpb::PlayerControllerState*>(State);
-		auto States = TestRepChannelData->mutable_playercontrollerstates();
-		(*States)[NetGUID] = *PlayerControllerState;
+		if (PlayerControllerState)
+		{
+			auto States = TestRepChannelData->mutable_playercontrollerstates();
+			(*States)[NetGUID] = *PlayerControllerState;
+		}
 	}
 	else if (TargetClass == UActorComponent::StaticClass())
 	{
-		auto ActorCompState = static_cast<const unrealpb::ActorComponentState*>(State);
+		auto ActorCompState = State ? static_cast<const unrealpb::ActorComponentState*>(State) : RemovedActorComponentState.Get();
 		auto States = TestRepChannelData->mutable_actorcomponentstates();
 		(*States)[NetGUID] = *ActorCompState;
 	}
 	else if (TargetClass == USceneComponent::StaticClass())
 	{
 		auto SceneCompState = static_cast<const unrealpb::SceneComponentState*>(State);
-		auto States = TestRepChannelData->mutable_scenecomponentstates();
-		(*States)[NetGUID] = *SceneCompState;
+		if (SceneCompState)
+		{
+			auto States = TestRepChannelData->mutable_scenecomponentstates();
+			(*States)[NetGUID] = *SceneCompState;
+		}
 	}
 	else if (TargetClass == AGameStateBase::StaticClass())
 	{
 		auto GameState = static_cast<const unrealpb::GameStateBase*>(State);
-		TestRepChannelData->mutable_gamestate()->MergeFrom(*GameState);
+		if (GameState)
+		{
+			TestRepChannelData->mutable_gamestate()->MergeFrom(*GameState);
+		}
 	}
 	else if (TargetClass->GetFName() == FName("BP_TestRepPlayerController_C"))
 	{
