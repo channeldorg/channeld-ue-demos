@@ -8,7 +8,7 @@ class CHANNELDINTEGRATION_API FTestRepPlayerControllerReplicator : public FChann
 
 public:
 	FTestRepPlayerControllerReplicator(UObject* InTargetObj, UClass* InTargetClass);
-	virtual ~FTestRepPlayerControllerReplicator();
+	virtual ~FTestRepPlayerControllerReplicator() override;
 
 	//~Begin FChanneldReplicatorBase Interface
 	virtual google::protobuf::Message* GetDeltaState() override;
