@@ -183,8 +183,9 @@ void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* S
 		UE_LOG(LogChanneldTest, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
 	}
 }
-
+/*
 google::protobuf::Message* UTestRepComponent::GetChannelDataTemplate() const
 {
 	return new tpspb::TestRepChannelData;
 }
+*/

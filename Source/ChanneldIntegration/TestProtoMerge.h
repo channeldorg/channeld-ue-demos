@@ -35,10 +35,10 @@ public:
 	//virtual void Serialize(FArchive& Ar) override;
 
 	//~ Begin IChannelDataProvider Interface.
-	virtual channeldpb::ChannelType GetChannelType() override { return channeldpb::GLOBAL; }
-	virtual google::protobuf::Message* GetChannelDataTemplate() const override { return new testpb::TestChannelDataMessage; }
-	virtual uint32 GetChannelId() override { return ChannelId; }
-	virtual void SetChannelId(uint32 ChId) override { ChannelId = ChId; }
+	// virtual channeldpb::ChannelType GetChannelType() override { return channeldpb::GLOBAL; }
+	// virtual google::protobuf::Message* GetChannelDataTemplate() const override { return new testpb::TestChannelDataMessage; }
+	// virtual uint32 GetChannelId() override { return ChannelId; }
+	// virtual void SetChannelId(uint32 ChId) override { ChannelId = ChId; }
 	virtual bool IsRemoved() override { return bRemoved; }
 	virtual void SetRemoved() override { bRemoved = true; }
 	virtual bool UpdateChannelData(google::protobuf::Message* ChannelData) override;
