@@ -49,6 +49,9 @@ struct TableStruct_tps_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tps_2eproto;
 namespace tpspb {
+class GlobalChannelData;
+struct GlobalChannelDataDefaultTypeInternal;
+extern GlobalChannelDataDefaultTypeInternal _GlobalChannelData_default_instance_;
 class TestRepChannelData;
 struct TestRepChannelDataDefaultTypeInternal;
 extern TestRepChannelDataDefaultTypeInternal _TestRepChannelData_default_instance_;
@@ -75,6 +78,7 @@ struct TestRepChannelData_SceneComponentStatesEntry_DoNotUseDefaultTypeInternal;
 extern TestRepChannelData_SceneComponentStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_SceneComponentStatesEntry_DoNotUse_default_instance_;
 }  // namespace tpspb
 PROTOBUF_NAMESPACE_OPEN
+template<> ::tpspb::GlobalChannelData* Arena::CreateMaybeMessage<::tpspb::GlobalChannelData>(Arena*);
 template<> ::tpspb::TestRepChannelData* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData>(Arena*);
 template<> ::tpspb::TestRepChannelData_ActorComponentStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_ActorComponentStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_ActorStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_ActorStatesEntry_DoNotUse>(Arena*);
@@ -575,6 +579,163 @@ class TestRepChannelData final :
   union { Impl_ _impl_; };
   friend struct ::TableStruct_tps_2eproto;
 };
+// -------------------------------------------------------------------
+
+class GlobalChannelData final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tpspb.GlobalChannelData) */ {
+ public:
+  inline GlobalChannelData() : GlobalChannelData(nullptr) {}
+  ~GlobalChannelData() override;
+  explicit PROTOBUF_CONSTEXPR GlobalChannelData(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  GlobalChannelData(const GlobalChannelData& from);
+  GlobalChannelData(GlobalChannelData&& from) noexcept
+    : GlobalChannelData() {
+    *this = ::std::move(from);
+  }
+
+  inline GlobalChannelData& operator=(const GlobalChannelData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline GlobalChannelData& operator=(GlobalChannelData&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const GlobalChannelData& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const GlobalChannelData* internal_default_instance() {
+    return reinterpret_cast<const GlobalChannelData*>(
+               &_GlobalChannelData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(GlobalChannelData& a, GlobalChannelData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(GlobalChannelData* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(GlobalChannelData* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  GlobalChannelData* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<GlobalChannelData>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const GlobalChannelData& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const GlobalChannelData& from) {
+    GlobalChannelData::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(GlobalChannelData* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tpspb.GlobalChannelData";
+  }
+  protected:
+  explicit GlobalChannelData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kGameStateFieldNumber = 1,
+  };
+  // .unrealpb.GameStateBase gameState = 1;
+  bool has_gamestate() const;
+  private:
+  bool _internal_has_gamestate() const;
+  public:
+  void clear_gamestate();
+  const ::unrealpb::GameStateBase& gamestate() const;
+  PROTOBUF_NODISCARD ::unrealpb::GameStateBase* release_gamestate();
+  ::unrealpb::GameStateBase* mutable_gamestate();
+  void set_allocated_gamestate(::unrealpb::GameStateBase* gamestate);
+  private:
+  const ::unrealpb::GameStateBase& _internal_gamestate() const;
+  ::unrealpb::GameStateBase* _internal_mutable_gamestate();
+  public:
+  void unsafe_arena_set_allocated_gamestate(
+      ::unrealpb::GameStateBase* gamestate);
+  ::unrealpb::GameStateBase* unsafe_arena_release_gamestate();
+
+  // @@protoc_insertion_point(class_scope:tpspb.GlobalChannelData)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::unrealpb::GameStateBase* gamestate_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_tps_2eproto;
+};
 // ===================================================================
 
 
@@ -867,9 +1028,100 @@ TestRepChannelData::mutable_scenecomponentstates() {
   return _internal_mutable_scenecomponentstates();
 }
 
+// -------------------------------------------------------------------
+
+// GlobalChannelData
+
+// .unrealpb.GameStateBase gameState = 1;
+inline bool GlobalChannelData::_internal_has_gamestate() const {
+  return this != internal_default_instance() && _impl_.gamestate_ != nullptr;
+}
+inline bool GlobalChannelData::has_gamestate() const {
+  return _internal_has_gamestate();
+}
+inline const ::unrealpb::GameStateBase& GlobalChannelData::_internal_gamestate() const {
+  const ::unrealpb::GameStateBase* p = _impl_.gamestate_;
+  return p != nullptr ? *p : reinterpret_cast<const ::unrealpb::GameStateBase&>(
+      ::unrealpb::_GameStateBase_default_instance_);
+}
+inline const ::unrealpb::GameStateBase& GlobalChannelData::gamestate() const {
+  // @@protoc_insertion_point(field_get:tpspb.GlobalChannelData.gameState)
+  return _internal_gamestate();
+}
+inline void GlobalChannelData::unsafe_arena_set_allocated_gamestate(
+    ::unrealpb::GameStateBase* gamestate) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.gamestate_);
+  }
+  _impl_.gamestate_ = gamestate;
+  if (gamestate) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tpspb.GlobalChannelData.gameState)
+}
+inline ::unrealpb::GameStateBase* GlobalChannelData::release_gamestate() {
+  
+  ::unrealpb::GameStateBase* temp = _impl_.gamestate_;
+  _impl_.gamestate_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::unrealpb::GameStateBase* GlobalChannelData::unsafe_arena_release_gamestate() {
+  // @@protoc_insertion_point(field_release:tpspb.GlobalChannelData.gameState)
+  
+  ::unrealpb::GameStateBase* temp = _impl_.gamestate_;
+  _impl_.gamestate_ = nullptr;
+  return temp;
+}
+inline ::unrealpb::GameStateBase* GlobalChannelData::_internal_mutable_gamestate() {
+  
+  if (_impl_.gamestate_ == nullptr) {
+    auto* p = CreateMaybeMessage<::unrealpb::GameStateBase>(GetArenaForAllocation());
+    _impl_.gamestate_ = p;
+  }
+  return _impl_.gamestate_;
+}
+inline ::unrealpb::GameStateBase* GlobalChannelData::mutable_gamestate() {
+  ::unrealpb::GameStateBase* _msg = _internal_mutable_gamestate();
+  // @@protoc_insertion_point(field_mutable:tpspb.GlobalChannelData.gameState)
+  return _msg;
+}
+inline void GlobalChannelData::set_allocated_gamestate(::unrealpb::GameStateBase* gamestate) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.gamestate_);
+  }
+  if (gamestate) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(gamestate));
+    if (message_arena != submessage_arena) {
+      gamestate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, gamestate, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.gamestate_ = gamestate;
+  // @@protoc_insertion_point(field_set_allocated:tpspb.GlobalChannelData.gameState)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
