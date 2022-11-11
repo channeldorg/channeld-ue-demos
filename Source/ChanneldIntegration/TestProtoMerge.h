@@ -35,6 +35,7 @@ public:
 	//virtual void Serialize(FArchive& Ar) override;
 
 	//~ Begin IChannelDataProvider Interface.
+	virtual UObject* GetTargetObject() override {return this;}
 	// virtual channeldpb::ChannelType GetChannelType() override { return channeldpb::GLOBAL; }
 	// virtual google::protobuf::Message* GetChannelDataTemplate() const override { return new testpb::TestChannelDataMessage; }
 	// virtual uint32 GetChannelId() override { return ChannelId; }
