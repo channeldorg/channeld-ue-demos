@@ -67,6 +67,9 @@ extern TestRepChannelData_CharacterStatesEntry_DoNotUseDefaultTypeInternal _Test
 class TestRepChannelData_ControllerStatesEntry_DoNotUse;
 struct TestRepChannelData_ControllerStatesEntry_DoNotUseDefaultTypeInternal;
 extern TestRepChannelData_ControllerStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_ControllerStatesEntry_DoNotUse_default_instance_;
+class TestRepChannelData_PawnStatesEntry_DoNotUse;
+struct TestRepChannelData_PawnStatesEntry_DoNotUseDefaultTypeInternal;
+extern TestRepChannelData_PawnStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_PawnStatesEntry_DoNotUse_default_instance_;
 class TestRepChannelData_PlayerControllerStatesEntry_DoNotUse;
 struct TestRepChannelData_PlayerControllerStatesEntry_DoNotUseDefaultTypeInternal;
 extern TestRepChannelData_PlayerControllerStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_PlayerControllerStatesEntry_DoNotUse_default_instance_;
@@ -84,6 +87,7 @@ template<> ::tpspb::TestRepChannelData_ActorComponentStatesEntry_DoNotUse* Arena
 template<> ::tpspb::TestRepChannelData_ActorStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_ActorStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_CharacterStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_CharacterStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_ControllerStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_ControllerStatesEntry_DoNotUse>(Arena*);
+template<> ::tpspb::TestRepChannelData_PawnStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_PawnStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_PlayerStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_PlayerStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_SceneComponentStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_SceneComponentStatesEntry_DoNotUse>(Arena*);
@@ -107,6 +111,30 @@ public:
   explicit TestRepChannelData_ActorStatesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
   void MergeFrom(const TestRepChannelData_ActorStatesEntry_DoNotUse& other);
   static const TestRepChannelData_ActorStatesEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const TestRepChannelData_ActorStatesEntry_DoNotUse*>(&_TestRepChannelData_ActorStatesEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(void*) { return true; }
+  static bool ValidateValue(void*) { return true; }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_tps_2eproto;
+};
+
+// -------------------------------------------------------------------
+
+class TestRepChannelData_PawnStatesEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestRepChannelData_PawnStatesEntry_DoNotUse, 
+    uint32_t, ::unrealpb::PawnState,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestRepChannelData_PawnStatesEntry_DoNotUse, 
+    uint32_t, ::unrealpb::PawnState,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  TestRepChannelData_PawnStatesEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR TestRepChannelData_PawnStatesEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit TestRepChannelData_PawnStatesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const TestRepChannelData_PawnStatesEntry_DoNotUse& other);
+  static const TestRepChannelData_PawnStatesEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const TestRepChannelData_PawnStatesEntry_DoNotUse*>(&_TestRepChannelData_PawnStatesEntry_DoNotUse_default_instance_); }
   static bool ValidateKey(void*) { return true; }
   static bool ValidateValue(void*) { return true; }
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
@@ -308,7 +336,7 @@ class TestRepChannelData final :
                &_TestRepChannelData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(TestRepChannelData& a, TestRepChannelData& b) {
     a.Swap(&b);
@@ -385,12 +413,13 @@ class TestRepChannelData final :
 
   enum : int {
     kActorStatesFieldNumber = 2,
-    kCharacterStatesFieldNumber = 3,
-    kPlayerStatesFieldNumber = 4,
-    kControllerStatesFieldNumber = 5,
-    kPlayerControllerStatesFieldNumber = 6,
-    kActorComponentStatesFieldNumber = 7,
-    kSceneComponentStatesFieldNumber = 8,
+    kPawnStatesFieldNumber = 3,
+    kCharacterStatesFieldNumber = 4,
+    kPlayerStatesFieldNumber = 5,
+    kControllerStatesFieldNumber = 6,
+    kPlayerControllerStatesFieldNumber = 7,
+    kActorComponentStatesFieldNumber = 8,
+    kSceneComponentStatesFieldNumber = 9,
     kGameStateFieldNumber = 1,
   };
   // map<uint32, .unrealpb.ActorState> actorStates = 2;
@@ -410,7 +439,24 @@ class TestRepChannelData final :
   ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::ActorState >*
       mutable_actorstates();
 
-  // map<uint32, .unrealpb.CharacterState> characterStates = 3;
+  // map<uint32, .unrealpb.PawnState> pawnStates = 3;
+  int pawnstates_size() const;
+  private:
+  int _internal_pawnstates_size() const;
+  public:
+  void clear_pawnstates();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::PawnState >&
+      _internal_pawnstates() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::PawnState >*
+      _internal_mutable_pawnstates();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::PawnState >&
+      pawnstates() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::PawnState >*
+      mutable_pawnstates();
+
+  // map<uint32, .unrealpb.CharacterState> characterStates = 4;
   int characterstates_size() const;
   private:
   int _internal_characterstates_size() const;
@@ -427,7 +473,7 @@ class TestRepChannelData final :
   ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::CharacterState >*
       mutable_characterstates();
 
-  // map<uint32, .unrealpb.PlayerState> playerStates = 4;
+  // map<uint32, .unrealpb.PlayerState> playerStates = 5;
   int playerstates_size() const;
   private:
   int _internal_playerstates_size() const;
@@ -444,7 +490,7 @@ class TestRepChannelData final :
   ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::PlayerState >*
       mutable_playerstates();
 
-  // map<uint32, .unrealpb.ControllerState> controllerStates = 5;
+  // map<uint32, .unrealpb.ControllerState> controllerStates = 6;
   int controllerstates_size() const;
   private:
   int _internal_controllerstates_size() const;
@@ -461,7 +507,7 @@ class TestRepChannelData final :
   ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::ControllerState >*
       mutable_controllerstates();
 
-  // map<uint32, .unrealpb.PlayerControllerState> playerControllerStates = 6;
+  // map<uint32, .unrealpb.PlayerControllerState> playerControllerStates = 7;
   int playercontrollerstates_size() const;
   private:
   int _internal_playercontrollerstates_size() const;
@@ -478,7 +524,7 @@ class TestRepChannelData final :
   ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::PlayerControllerState >*
       mutable_playercontrollerstates();
 
-  // map<uint32, .unrealpb.ActorComponentState> actorComponentStates = 7;
+  // map<uint32, .unrealpb.ActorComponentState> actorComponentStates = 8;
   int actorcomponentstates_size() const;
   private:
   int _internal_actorcomponentstates_size() const;
@@ -495,7 +541,7 @@ class TestRepChannelData final :
   ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::ActorComponentState >*
       mutable_actorcomponentstates();
 
-  // map<uint32, .unrealpb.SceneComponentState> sceneComponentStates = 8;
+  // map<uint32, .unrealpb.SceneComponentState> sceneComponentStates = 9;
   int scenecomponentstates_size() const;
   private:
   int _internal_scenecomponentstates_size() const;
@@ -543,6 +589,11 @@ class TestRepChannelData final :
         uint32_t, ::unrealpb::ActorState,
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> actorstates_;
+    ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+        TestRepChannelData_PawnStatesEntry_DoNotUse,
+        uint32_t, ::unrealpb::PawnState,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> pawnstates_;
     ::PROTOBUF_NAMESPACE_ID::internal::MapField<
         TestRepChannelData_CharacterStatesEntry_DoNotUse,
         uint32_t, ::unrealpb::CharacterState,
@@ -629,7 +680,7 @@ class GlobalChannelData final :
                &_GlobalChannelData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(GlobalChannelData& a, GlobalChannelData& b) {
     a.Swap(&b);
@@ -759,6 +810,8 @@ class GlobalChannelData final :
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
 // TestRepChannelData
 
 // .unrealpb.GameStateBase gameState = 1;
@@ -872,7 +925,33 @@ TestRepChannelData::mutable_actorstates() {
   return _internal_mutable_actorstates();
 }
 
-// map<uint32, .unrealpb.CharacterState> characterStates = 3;
+// map<uint32, .unrealpb.PawnState> pawnStates = 3;
+inline int TestRepChannelData::_internal_pawnstates_size() const {
+  return _impl_.pawnstates_.size();
+}
+inline int TestRepChannelData::pawnstates_size() const {
+  return _internal_pawnstates_size();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::PawnState >&
+TestRepChannelData::_internal_pawnstates() const {
+  return _impl_.pawnstates_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::PawnState >&
+TestRepChannelData::pawnstates() const {
+  // @@protoc_insertion_point(field_map:tpspb.TestRepChannelData.pawnStates)
+  return _internal_pawnstates();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::PawnState >*
+TestRepChannelData::_internal_mutable_pawnstates() {
+  return _impl_.pawnstates_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::PawnState >*
+TestRepChannelData::mutable_pawnstates() {
+  // @@protoc_insertion_point(field_mutable_map:tpspb.TestRepChannelData.pawnStates)
+  return _internal_mutable_pawnstates();
+}
+
+// map<uint32, .unrealpb.CharacterState> characterStates = 4;
 inline int TestRepChannelData::_internal_characterstates_size() const {
   return _impl_.characterstates_.size();
 }
@@ -898,7 +977,7 @@ TestRepChannelData::mutable_characterstates() {
   return _internal_mutable_characterstates();
 }
 
-// map<uint32, .unrealpb.PlayerState> playerStates = 4;
+// map<uint32, .unrealpb.PlayerState> playerStates = 5;
 inline int TestRepChannelData::_internal_playerstates_size() const {
   return _impl_.playerstates_.size();
 }
@@ -924,7 +1003,7 @@ TestRepChannelData::mutable_playerstates() {
   return _internal_mutable_playerstates();
 }
 
-// map<uint32, .unrealpb.ControllerState> controllerStates = 5;
+// map<uint32, .unrealpb.ControllerState> controllerStates = 6;
 inline int TestRepChannelData::_internal_controllerstates_size() const {
   return _impl_.controllerstates_.size();
 }
@@ -950,7 +1029,7 @@ TestRepChannelData::mutable_controllerstates() {
   return _internal_mutable_controllerstates();
 }
 
-// map<uint32, .unrealpb.PlayerControllerState> playerControllerStates = 6;
+// map<uint32, .unrealpb.PlayerControllerState> playerControllerStates = 7;
 inline int TestRepChannelData::_internal_playercontrollerstates_size() const {
   return _impl_.playercontrollerstates_.size();
 }
@@ -976,7 +1055,7 @@ TestRepChannelData::mutable_playercontrollerstates() {
   return _internal_mutable_playercontrollerstates();
 }
 
-// map<uint32, .unrealpb.ActorComponentState> actorComponentStates = 7;
+// map<uint32, .unrealpb.ActorComponentState> actorComponentStates = 8;
 inline int TestRepChannelData::_internal_actorcomponentstates_size() const {
   return _impl_.actorcomponentstates_.size();
 }
@@ -1002,7 +1081,7 @@ TestRepChannelData::mutable_actorcomponentstates() {
   return _internal_mutable_actorcomponentstates();
 }
 
-// map<uint32, .unrealpb.SceneComponentState> sceneComponentStates = 8;
+// map<uint32, .unrealpb.SceneComponentState> sceneComponentStates = 9;
 inline int TestRepChannelData::_internal_scenecomponentstates_size() const {
   return _impl_.scenecomponentstates_.size();
 }
@@ -1120,6 +1199,8 @@ inline void GlobalChannelData::set_allocated_gamestate(::unrealpb::GameStateBase
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

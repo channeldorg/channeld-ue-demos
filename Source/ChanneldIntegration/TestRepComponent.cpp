@@ -34,6 +34,15 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 			return State;
 		}
 	}
+	else if (TargetClass == APawn::StaticClass())
+	{
+		auto States = TestRepChannelData->mutable_pawnstates();
+		if (States->contains(NetGUID))
+		{
+			bIsRemoved = false;
+			return &States->at(NetGUID);
+		}
+	}
 	else if (TargetClass == ACharacter::StaticClass())
 	{
 		auto States = TestRepChannelData->mutable_characterstates();
@@ -116,7 +125,15 @@ void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* S
 		auto States = TestRepChannelData->mutable_actorstates();
 		(*States)[NetGUID] = *ActorState;
 	}
-	else if (TargetClass == ACharacter::StaticClass())
+	else if (TargetClass == APawn::StaticClass())
+	{
+		auto PawnState = static_cast<const unrealpb::PawnState*>(State);
+		if (PawnState)
+		{
+			auto States = TestRepChannelData->mutable_pawnstates();
+			(*States)[NetGUID] = *PawnState;
+		}
+	}	else if (TargetClass == ACharacter::StaticClass())
 	{
 		auto CharacterState = static_cast<const unrealpb::CharacterState*>(State);
 		if (CharacterState)
