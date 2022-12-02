@@ -1,7 +1,7 @@
 #include "TestRepPlayerControllerReplicator.h"
 
-FTestRepPlayerControllerReplicator::FTestRepPlayerControllerReplicator(UObject* InTargetObj, UClass* InTargetClass)
-	: FChanneldReplicatorBase_BP(InTargetObj, InTargetClass)
+FTestRepPlayerControllerReplicator::FTestRepPlayerControllerReplicator(UObject* InTargetObj)
+	: FChanneldReplicatorBase_BP(InTargetObj)
 {
 
 }

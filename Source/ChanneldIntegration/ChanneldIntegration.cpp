@@ -9,7 +9,7 @@
 
 void FChanneldIntegrationModule::StartupModule()
 {
-	REGISTER_REPLICATOR_BP(FTestRepPlayerControllerReplicator, "BlueprintGeneratedClass'/Game/Blueprints/BP_TestRepPlayerController.BP_TestRepPlayerController_C'");
+	REGISTER_REPLICATOR_BP(FTestRepPlayerControllerReplicator, "/Game/Blueprints/BP_TestRepPlayerController.BP_TestRepPlayerController_C");
 }
 
 void FChanneldIntegrationModule::ShutdownModule()
