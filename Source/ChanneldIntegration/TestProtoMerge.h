@@ -41,7 +41,7 @@ public:
 	// virtual uint32 GetChannelId() override { return ChannelId; }
 	// virtual void SetChannelId(uint32 ChId) override { ChannelId = ChId; }
 	virtual bool IsRemoved() override { return bRemoved; }
-	virtual void SetRemoved() override { bRemoved = true; }
+	virtual void SetRemoved(bool bInRemoved) override { bRemoved = bInRemoved; }
 	virtual bool UpdateChannelData(google::protobuf::Message* ChannelData) override;
 	virtual void OnChannelDataUpdated(google::protobuf::Message* ChannelData) override;
 	//~ End IChannelDataProvider Interface
