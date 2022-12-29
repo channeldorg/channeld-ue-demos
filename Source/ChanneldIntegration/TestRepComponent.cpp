@@ -103,6 +103,11 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 		bIsRemoved = false;
 		return TestRepChannelData->mutable_gamestate();
 	}
+	else if (TargetClass->GetFName() == FName("BP_RepGameState_C"))
+	{
+		bIsRemoved = false;
+		return TestRepChannelData->mutable_testgamestate();
+	}
 	else if (TargetClass->GetFName() == FName("BP_TestRepPlayerController_C"))
 	{
 		return nullptr;
@@ -190,6 +195,14 @@ void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* S
 		if (GameState)
 		{
 			TestRepChannelData->mutable_gamestate()->MergeFrom(*GameState);
+		}
+	}
+	else if (TargetClass->GetFName() == FName("BP_RepGameState_C"))
+	{
+		auto TestGameState = static_cast<const tpspb::TestRepGameState*>(State);
+		if (TestGameState)
+		{
+			TestRepChannelData->mutable_testgamestate()->MergeFrom(*TestGameState);
 		}
 	}
 	else if (TargetClass->GetFName() == FName("BP_TestRepPlayerController_C"))
