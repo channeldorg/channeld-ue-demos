@@ -110,7 +110,12 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 	}
 	else if (TargetClass->GetFName() == FName("BP_TestRepPlayerController_C"))
 	{
-		return nullptr;
+		auto States = TestRepChannelData->mutable_testrepplayercontrollerstates();
+		if (States->contains(NetGUID))
+		{
+			bIsRemoved = false;
+			return &States->at(NetGUID);
+		}
 	}
 	else
 	{
@@ -123,6 +128,11 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 
 void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* State, google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID)
 {
+	if (State == nullptr)
+	{
+		return;
+	}
+	
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
 	if (TargetClass == AActor::StaticClass())
 	{
@@ -207,6 +217,12 @@ void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* S
 	}
 	else if (TargetClass->GetFName() == FName("BP_TestRepPlayerController_C"))
 	{
+		auto TestRepPlayerControllerState = static_cast<const tpspb::TestRepPlayerControllerState*>(State);
+		if (TestRepPlayerControllerState)
+		{
+			auto States = TestRepChannelData->mutable_testrepplayercontrollerstates();
+			(*States)[NetGUID] = *TestRepPlayerControllerState;
+		}
 	}
 	else
 	{

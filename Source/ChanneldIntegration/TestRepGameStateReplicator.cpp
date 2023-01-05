@@ -7,7 +7,7 @@ FTestRepGameStateReplicator::FTestRepGameStateReplicator(UObject* InTargetObj, U
 	: FChanneldReplicatorBase_BP(InTargetObj, InTargetClass)
 {
 	TArray<FLifetimeProperty> RepProps;
-	DisableAllReplicatedPropertiesOfClass(InTargetClass, InTargetClass, EFieldIteratorFlags::ExcludeSuper, RepProps);
+	DisableAllReplicatedPropertiesOfClass(InTargetObj->GetClass(), InTargetClass, EFieldIteratorFlags::ExcludeSuper, RepProps);
 
 	FullState = new tpspb::TestRepGameState;
 	DeltaState = new tpspb::TestRepGameState;
