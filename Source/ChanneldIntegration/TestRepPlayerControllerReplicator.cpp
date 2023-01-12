@@ -79,6 +79,10 @@ TSharedPtr<google::protobuf::Message> FTestRepPlayerControllerReplicator::Serial
 	{
 		return nullptr;
 	}
+	else if (Func->GetFName() == FName("ServerSpawnCube"))
+	{
+		return nullptr;
+	}
 	else if (Func->GetFName() == FName("ServerToggleRotation"))
 	{
 		return nullptr;
@@ -88,10 +92,14 @@ TSharedPtr<google::protobuf::Message> FTestRepPlayerControllerReplicator::Serial
 	return nullptr;
 }
 
-TSharedPtr<void> FTestRepPlayerControllerReplicator::DeserializeFunctionParams(UFunction* Func, const std::string& ParamsPayload, bool& bSuccess, bool& bDelayRPC)
+TSharedPtr<void> FTestRepPlayerControllerReplicator::DeserializeFunctionParams(UFunction* Func, const std::string& ParamsPayload, bool& bSuccess, bool& bDeferredRPC)
 {
 	bSuccess = true;
 	if (Func->GetFName() == FName("ServerSpawnTestRepActor"))
+	{
+		return nullptr;
+	}
+	else if (Func->GetFName() == FName("ServerSpawnCube"))
 	{
 		return nullptr;
 	}

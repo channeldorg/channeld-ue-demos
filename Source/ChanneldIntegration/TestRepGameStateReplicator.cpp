@@ -101,7 +101,7 @@ TSharedPtr<google::protobuf::Message> FTestRepGameStateReplicator::SerializeFunc
 	return nullptr;
 }
 
-TSharedPtr<void> FTestRepGameStateReplicator::DeserializeFunctionParams(UFunction* Func, const std::string& ParamsPayload, bool& bSuccess, bool& bDelayRPC)
+TSharedPtr<void> FTestRepGameStateReplicator::DeserializeFunctionParams(UFunction* Func, const std::string& ParamsPayload, bool& bSuccess, bool& bDeferredRPC)
 {
 	bSuccess = true;
 	if (Func->GetFName() == FName("AddJumps"))
