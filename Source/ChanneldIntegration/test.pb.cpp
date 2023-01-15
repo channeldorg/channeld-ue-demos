@@ -156,10 +156,37 @@ struct TestMapMessage_Kv2Entry_DoNotUseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TestMapMessage_Kv2Entry_DoNotUseDefaultTypeInternal _TestMapMessage_Kv2Entry_DoNotUse_default_instance_;
+PROTOBUF_CONSTEXPR TestMapMessage_NullableWrapper::TestMapMessage_NullableWrapper(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.content_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.num_)*/int64_t{0}} {}
+struct TestMapMessage_NullableWrapperDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TestMapMessage_NullableWrapperDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TestMapMessage_NullableWrapperDefaultTypeInternal() {}
+  union {
+    TestMapMessage_NullableWrapper _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TestMapMessage_NullableWrapperDefaultTypeInternal _TestMapMessage_NullableWrapper_default_instance_;
+PROTOBUF_CONSTEXPR TestMapMessage_Kv3Entry_DoNotUse::TestMapMessage_Kv3Entry_DoNotUse(
+    ::_pbi::ConstantInitialized) {}
+struct TestMapMessage_Kv3Entry_DoNotUseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TestMapMessage_Kv3Entry_DoNotUseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~TestMapMessage_Kv3Entry_DoNotUseDefaultTypeInternal() {}
+  union {
+    TestMapMessage_Kv3Entry_DoNotUse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TestMapMessage_Kv3Entry_DoNotUseDefaultTypeInternal _TestMapMessage_Kv3Entry_DoNotUse_default_instance_;
 PROTOBUF_CONSTEXPR TestMapMessage::TestMapMessage(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.kv_)*/{::_pbi::ConstantInitialized()}
   , /*decltype(_impl_.kv2_)*/{::_pbi::ConstantInitialized()}
+  , /*decltype(_impl_.kv3_)*/{::_pbi::ConstantInitialized()}
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct TestMapMessageDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TestMapMessageDefaultTypeInternal()
@@ -224,7 +251,7 @@ struct TestFieldMaskMessageDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TestFieldMaskMessageDefaultTypeInternal _TestFieldMaskMessage_default_instance_;
 }  // namespace testpb
-static ::_pb::Metadata file_level_metadata_test_2eproto[15];
+static ::_pb::Metadata file_level_metadata_test_2eproto[17];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_test_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_test_2eproto = nullptr;
 
@@ -313,6 +340,26 @@ const uint32_t TableStruct_test_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pro
   PROTOBUF_FIELD_OFFSET(::testpb::TestMapMessage_Kv2Entry_DoNotUse, value_),
   0,
   1,
+  PROTOBUF_FIELD_OFFSET(::testpb::TestMapMessage_NullableWrapper, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::testpb::TestMapMessage_NullableWrapper, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::testpb::TestMapMessage_NullableWrapper, _impl_.content_),
+  PROTOBUF_FIELD_OFFSET(::testpb::TestMapMessage_NullableWrapper, _impl_.num_),
+  0,
+  1,
+  PROTOBUF_FIELD_OFFSET(::testpb::TestMapMessage_Kv3Entry_DoNotUse, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::testpb::TestMapMessage_Kv3Entry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::testpb::TestMapMessage_Kv3Entry_DoNotUse, key_),
+  PROTOBUF_FIELD_OFFSET(::testpb::TestMapMessage_Kv3Entry_DoNotUse, value_),
+  0,
+  1,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::testpb::TestMapMessage, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -321,6 +368,7 @@ const uint32_t TableStruct_test_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(pro
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::testpb::TestMapMessage, _impl_.kv_),
   PROTOBUF_FIELD_OFFSET(::testpb::TestMapMessage, _impl_.kv2_),
+  PROTOBUF_FIELD_OFFSET(::testpb::TestMapMessage, _impl_.kv3_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::testpb::TestFieldMaskMessage_NestedMessage, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -372,11 +420,13 @@ static const ::_pbi::MigrationSchema schemas_test_2eproto[] PROTOBUF_SECTION_VAR
   { 56, 64, -1, sizeof(::testpb::TestMapMessage_KvEntry_DoNotUse)},
   { 66, -1, -1, sizeof(::testpb::TestMapMessage_StringWrapper)},
   { 74, 82, -1, sizeof(::testpb::TestMapMessage_Kv2Entry_DoNotUse)},
-  { 84, -1, -1, sizeof(::testpb::TestMapMessage)},
-  { 92, -1, -1, sizeof(::testpb::TestFieldMaskMessage_NestedMessage)},
-  { 100, 108, -1, sizeof(::testpb::TestFieldMaskMessage_Kv1Entry_DoNotUse)},
-  { 110, 118, -1, sizeof(::testpb::TestFieldMaskMessage_Kv2Entry_DoNotUse)},
-  { 120, -1, -1, sizeof(::testpb::TestFieldMaskMessage)},
+  { 84, 92, -1, sizeof(::testpb::TestMapMessage_NullableWrapper)},
+  { 94, 102, -1, sizeof(::testpb::TestMapMessage_Kv3Entry_DoNotUse)},
+  { 104, -1, -1, sizeof(::testpb::TestMapMessage)},
+  { 113, -1, -1, sizeof(::testpb::TestFieldMaskMessage_NestedMessage)},
+  { 121, 129, -1, sizeof(::testpb::TestFieldMaskMessage_Kv1Entry_DoNotUse)},
+  { 131, 139, -1, sizeof(::testpb::TestFieldMaskMessage_Kv2Entry_DoNotUse)},
+  { 141, -1, -1, sizeof(::testpb::TestFieldMaskMessage)},
 };
 
 static const ::_pb::Message* const file_default_instances_test_2eproto[] = {
@@ -390,6 +440,8 @@ static const ::_pb::Message* const file_default_instances_test_2eproto[] = {
   &::testpb::_TestMapMessage_KvEntry_DoNotUse_default_instance_._instance,
   &::testpb::_TestMapMessage_StringWrapper_default_instance_._instance,
   &::testpb::_TestMapMessage_Kv2Entry_DoNotUse_default_instance_._instance,
+  &::testpb::_TestMapMessage_NullableWrapper_default_instance_._instance,
+  &::testpb::_TestMapMessage_Kv3Entry_DoNotUse_default_instance_._instance,
   &::testpb::_TestMapMessage_default_instance_._instance,
   &::testpb::_TestFieldMaskMessage_NestedMessage_default_instance_._instance,
   &::testpb::_TestFieldMaskMessage_Kv1Entry_DoNotUse_default_instance_._instance,
@@ -409,35 +461,40 @@ const char descriptor_table_protodef_test_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "1\n\rStringWrapper\022\017\n\007removed\030\001 \001(\010\022\017\n\007con"
   "tent\030\002 \001(\t\032Q\n\007KvEntry\022\013\n\003key\030\001 \001(\003\0225\n\005va"
   "lue\030\002 \001(\0132&.testpb.TestMergeMessage.Stri"
-  "ngWrapper:\0028\001\"\226\002\n\016TestMapMessage\022*\n\002kv\030\001"
+  "ngWrapper:\0028\001\"\347\003\n\016TestMapMessage\022*\n\002kv\030\001"
   " \003(\0132\036.testpb.TestMapMessage.KvEntry\022,\n\003"
   "kv2\030\002 \003(\0132\037.testpb.TestMapMessage.Kv2Ent"
-  "ry\032)\n\007KvEntry\022\013\n\003key\030\001 \001(\r\022\r\n\005value\030\002 \001("
-  "\t:\0028\001\032-\n\rStringWrapper\022\017\n\007content\030\001 \001(\t\022"
-  "\013\n\003num\030\002 \001(\003\032P\n\010Kv2Entry\022\013\n\003key\030\001 \001(\r\0223\n"
-  "\005value\030\002 \001(\0132$.testpb.TestMapMessage.Str"
-  "ingWrapper:\0028\001\"\254\003\n\024TestFieldMaskMessage\022"
-  "\014\n\004name\030\001 \001(\t\0227\n\003msg\030\002 \001(\0132*.testpb.Test"
-  "FieldMaskMessage.NestedMessage\0228\n\004list\030\003"
-  " \003(\0132*.testpb.TestFieldMaskMessage.Neste"
-  "dMessage\0222\n\003kv1\030\004 \003(\0132%.testpb.TestField"
-  "MaskMessage.Kv1Entry\0222\n\003kv2\030\005 \003(\0132%.test"
-  "pb.TestFieldMaskMessage.Kv2Entry\032\'\n\rNest"
-  "edMessage\022\n\n\002p1\030\001 \001(\003\022\n\n\002p2\030\002 \001(\r\032V\n\010Kv1"
-  "Entry\022\013\n\003key\030\001 \001(\003\0229\n\005value\030\002 \001(\0132*.test"
-  "pb.TestFieldMaskMessage.NestedMessage:\0028"
-  "\001\032*\n\010Kv2Entry\022\013\n\003key\030\001 \001(\003\022\r\n\005value\030\002 \001("
-  "\t:\0028\001B*Z(channeld.clewcat.com/channeld/p"
-  "kg/testpbb\006proto3"
+  "ry\022,\n\003kv3\030\003 \003(\0132\037.testpb.TestMapMessage."
+  "Kv3Entry\032)\n\007KvEntry\022\013\n\003key\030\001 \001(\r\022\r\n\005valu"
+  "e\030\002 \001(\t:\0028\001\032-\n\rStringWrapper\022\017\n\007content\030"
+  "\001 \001(\t\022\013\n\003num\030\002 \001(\003\032P\n\010Kv2Entry\022\013\n\003key\030\001 "
+  "\001(\r\0223\n\005value\030\002 \001(\0132$.testpb.TestMapMessa"
+  "ge.StringWrapper:\0028\001\032M\n\017NullableWrapper\022"
+  "\024\n\007content\030\001 \001(\tH\000\210\001\001\022\020\n\003num\030\002 \001(\003H\001\210\001\001B"
+  "\n\n\010_contentB\006\n\004_num\032R\n\010Kv3Entry\022\013\n\003key\030\001"
+  " \001(\r\0225\n\005value\030\002 \001(\0132&.testpb.TestMapMess"
+  "age.NullableWrapper:\0028\001\"\254\003\n\024TestFieldMas"
+  "kMessage\022\014\n\004name\030\001 \001(\t\0227\n\003msg\030\002 \001(\0132*.te"
+  "stpb.TestFieldMaskMessage.NestedMessage\022"
+  "8\n\004list\030\003 \003(\0132*.testpb.TestFieldMaskMess"
+  "age.NestedMessage\0222\n\003kv1\030\004 \003(\0132%.testpb."
+  "TestFieldMaskMessage.Kv1Entry\0222\n\003kv2\030\005 \003"
+  "(\0132%.testpb.TestFieldMaskMessage.Kv2Entr"
+  "y\032\'\n\rNestedMessage\022\n\n\002p1\030\001 \001(\003\022\n\n\002p2\030\002 \001"
+  "(\r\032V\n\010Kv1Entry\022\013\n\003key\030\001 \001(\003\0229\n\005value\030\002 \001"
+  "(\0132*.testpb.TestFieldMaskMessage.NestedM"
+  "essage:\0028\001\032*\n\010Kv2Entry\022\013\n\003key\030\001 \001(\003\022\r\n\005v"
+  "alue\030\002 \001(\t:\0028\001B*Z(channeld.clewcat.com/c"
+  "hanneld/pkg/testpbb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_test_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_test_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_test_2eproto = {
-    false, false, 1217, descriptor_table_protodef_test_2eproto,
+    false, false, 1426, descriptor_table_protodef_test_2eproto,
     "test.proto",
-    &descriptor_table_test_2eproto_once, descriptor_table_test_2eproto_deps, 1, 15,
+    &descriptor_table_test_2eproto_once, descriptor_table_test_2eproto_deps, 1, 17,
     schemas_test_2eproto, file_default_instances_test_2eproto, TableStruct_test_2eproto::offsets,
     file_level_metadata_test_2eproto, file_level_enum_descriptors_test_2eproto,
     file_level_service_descriptors_test_2eproto,
@@ -2046,6 +2103,274 @@ void TestMapMessage_Kv2Entry_DoNotUse::MergeFrom(const TestMapMessage_Kv2Entry_D
 
 // ===================================================================
 
+class TestMapMessage_NullableWrapper::_Internal {
+ public:
+  using HasBits = decltype(std::declval<TestMapMessage_NullableWrapper>()._impl_._has_bits_);
+  static void set_has_content(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_num(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+};
+
+TestMapMessage_NullableWrapper::TestMapMessage_NullableWrapper(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:testpb.TestMapMessage.NullableWrapper)
+}
+TestMapMessage_NullableWrapper::TestMapMessage_NullableWrapper(const TestMapMessage_NullableWrapper& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  TestMapMessage_NullableWrapper* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.content_){}
+    , decltype(_impl_.num_){}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.content_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.content_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (from._internal_has_content()) {
+    _this->_impl_.content_.Set(from._internal_content(), 
+      _this->GetArenaForAllocation());
+  }
+  _this->_impl_.num_ = from._impl_.num_;
+  // @@protoc_insertion_point(copy_constructor:testpb.TestMapMessage.NullableWrapper)
+}
+
+inline void TestMapMessage_NullableWrapper::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.content_){}
+    , decltype(_impl_.num_){int64_t{0}}
+  };
+  _impl_.content_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.content_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+TestMapMessage_NullableWrapper::~TestMapMessage_NullableWrapper() {
+  // @@protoc_insertion_point(destructor:testpb.TestMapMessage.NullableWrapper)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void TestMapMessage_NullableWrapper::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.content_.Destroy();
+}
+
+void TestMapMessage_NullableWrapper::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void TestMapMessage_NullableWrapper::Clear() {
+// @@protoc_insertion_point(message_clear_start:testpb.TestMapMessage.NullableWrapper)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    _impl_.content_.ClearNonDefaultToEmpty();
+  }
+  _impl_.num_ = int64_t{0};
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* TestMapMessage_NullableWrapper::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // optional string content = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_content();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "testpb.TestMapMessage.NullableWrapper.content"));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional int64 num = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _Internal::set_has_num(&has_bits);
+          _impl_.num_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _impl_._has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* TestMapMessage_NullableWrapper::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:testpb.TestMapMessage.NullableWrapper)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // optional string content = 1;
+  if (_internal_has_content()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_content().data(), static_cast<int>(this->_internal_content().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "testpb.TestMapMessage.NullableWrapper.content");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_content(), target);
+  }
+
+  // optional int64 num = 2;
+  if (_internal_has_num()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(2, this->_internal_num(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:testpb.TestMapMessage.NullableWrapper)
+  return target;
+}
+
+size_t TestMapMessage_NullableWrapper::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:testpb.TestMapMessage.NullableWrapper)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    // optional string content = 1;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+          this->_internal_content());
+    }
+
+    // optional int64 num = 2;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_num());
+    }
+
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TestMapMessage_NullableWrapper::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    TestMapMessage_NullableWrapper::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TestMapMessage_NullableWrapper::GetClassData() const { return &_class_data_; }
+
+
+void TestMapMessage_NullableWrapper::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<TestMapMessage_NullableWrapper*>(&to_msg);
+  auto& from = static_cast<const TestMapMessage_NullableWrapper&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:testpb.TestMapMessage.NullableWrapper)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000003u) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_internal_set_content(from._internal_content());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.num_ = from._impl_.num_;
+    }
+    _this->_impl_._has_bits_[0] |= cached_has_bits;
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void TestMapMessage_NullableWrapper::CopyFrom(const TestMapMessage_NullableWrapper& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:testpb.TestMapMessage.NullableWrapper)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TestMapMessage_NullableWrapper::IsInitialized() const {
+  return true;
+}
+
+void TestMapMessage_NullableWrapper::InternalSwap(TestMapMessage_NullableWrapper* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.content_, lhs_arena,
+      &other->_impl_.content_, rhs_arena
+  );
+  swap(_impl_.num_, other->_impl_.num_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata TestMapMessage_NullableWrapper::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_test_2eproto_getter, &descriptor_table_test_2eproto_once,
+      file_level_metadata_test_2eproto[10]);
+}
+
+// ===================================================================
+
+TestMapMessage_Kv3Entry_DoNotUse::TestMapMessage_Kv3Entry_DoNotUse() {}
+TestMapMessage_Kv3Entry_DoNotUse::TestMapMessage_Kv3Entry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
+void TestMapMessage_Kv3Entry_DoNotUse::MergeFrom(const TestMapMessage_Kv3Entry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::PROTOBUF_NAMESPACE_ID::Metadata TestMapMessage_Kv3Entry_DoNotUse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_test_2eproto_getter, &descriptor_table_test_2eproto_once,
+      file_level_metadata_test_2eproto[11]);
+}
+
+// ===================================================================
+
 class TestMapMessage::_Internal {
  public:
 };
@@ -2065,11 +2390,13 @@ TestMapMessage::TestMapMessage(const TestMapMessage& from)
   new (&_impl_) Impl_{
       /*decltype(_impl_.kv_)*/{}
     , /*decltype(_impl_.kv2_)*/{}
+    , /*decltype(_impl_.kv3_)*/{}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   _this->_impl_.kv_.MergeFrom(from._impl_.kv_);
   _this->_impl_.kv2_.MergeFrom(from._impl_.kv2_);
+  _this->_impl_.kv3_.MergeFrom(from._impl_.kv3_);
   // @@protoc_insertion_point(copy_constructor:testpb.TestMapMessage)
 }
 
@@ -2080,6 +2407,7 @@ inline void TestMapMessage::SharedCtor(
   new (&_impl_) Impl_{
       /*decltype(_impl_.kv_)*/{::_pbi::ArenaInitialized(), arena}
     , /*decltype(_impl_.kv2_)*/{::_pbi::ArenaInitialized(), arena}
+    , /*decltype(_impl_.kv3_)*/{::_pbi::ArenaInitialized(), arena}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -2100,12 +2428,15 @@ inline void TestMapMessage::SharedDtor() {
   _impl_.kv_.~MapField();
   _impl_.kv2_.Destruct();
   _impl_.kv2_.~MapField();
+  _impl_.kv3_.Destruct();
+  _impl_.kv3_.~MapField();
 }
 
 void TestMapMessage::ArenaDtor(void* object) {
   TestMapMessage* _this = reinterpret_cast< TestMapMessage* >(object);
   _this->_impl_.kv_.Destruct();
   _this->_impl_.kv2_.Destruct();
+  _this->_impl_.kv3_.Destruct();
 }
 void TestMapMessage::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
@@ -2119,6 +2450,7 @@ void TestMapMessage::Clear() {
 
   _impl_.kv_.Clear();
   _impl_.kv2_.Clear();
+  _impl_.kv3_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2151,6 +2483,19 @@ const char* TestMapMessage::_InternalParse(const char* ptr, ::_pbi::ParseContext
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // map<uint32, .testpb.TestMapMessage.NullableWrapper> kv3 = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&_impl_.kv3_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
         } else
           goto handle_unusual;
         continue;
@@ -2226,6 +2571,23 @@ uint8_t* TestMapMessage::_InternalSerialize(
     }
   }
 
+  // map<uint32, .testpb.TestMapMessage.NullableWrapper> kv3 = 3;
+  if (!this->_internal_kv3().empty()) {
+    using MapType = ::_pb::Map<uint32_t, ::testpb::TestMapMessage_NullableWrapper>;
+    using WireHelper = TestMapMessage_Kv3Entry_DoNotUse::Funcs;
+    const auto& map_field = this->_internal_kv3();
+
+    if (stream->IsSerializationDeterministic() && map_field.size() > 1) {
+      for (const auto& entry : ::_pbi::MapSorterFlat<MapType>(map_field)) {
+        target = WireHelper::InternalSerialize(3, entry.first, entry.second, target, stream);
+      }
+    } else {
+      for (const auto& entry : map_field) {
+        target = WireHelper::InternalSerialize(3, entry.first, entry.second, target, stream);
+      }
+    }
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2260,6 +2622,15 @@ size_t TestMapMessage::ByteSizeLong() const {
     total_size += TestMapMessage_Kv2Entry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
+  // map<uint32, .testpb.TestMapMessage.NullableWrapper> kv3 = 3;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_kv3_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::testpb::TestMapMessage_NullableWrapper >::const_iterator
+      it = this->_internal_kv3().begin();
+      it != this->_internal_kv3().end(); ++it) {
+    total_size += TestMapMessage_Kv3Entry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -2280,6 +2651,7 @@ void TestMapMessage::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const :
 
   _this->_impl_.kv_.MergeFrom(from._impl_.kv_);
   _this->_impl_.kv2_.MergeFrom(from._impl_.kv2_);
+  _this->_impl_.kv3_.MergeFrom(from._impl_.kv3_);
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2299,12 +2671,13 @@ void TestMapMessage::InternalSwap(TestMapMessage* other) {
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.kv_.InternalSwap(&other->_impl_.kv_);
   _impl_.kv2_.InternalSwap(&other->_impl_.kv2_);
+  _impl_.kv3_.InternalSwap(&other->_impl_.kv3_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TestMapMessage::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_test_2eproto_getter, &descriptor_table_test_2eproto_once,
-      file_level_metadata_test_2eproto[10]);
+      file_level_metadata_test_2eproto[12]);
 }
 
 // ===================================================================
@@ -2515,7 +2888,7 @@ void TestFieldMaskMessage_NestedMessage::InternalSwap(TestFieldMaskMessage_Neste
 ::PROTOBUF_NAMESPACE_ID::Metadata TestFieldMaskMessage_NestedMessage::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_test_2eproto_getter, &descriptor_table_test_2eproto_once,
-      file_level_metadata_test_2eproto[11]);
+      file_level_metadata_test_2eproto[13]);
 }
 
 // ===================================================================
@@ -2529,7 +2902,7 @@ void TestFieldMaskMessage_Kv1Entry_DoNotUse::MergeFrom(const TestFieldMaskMessag
 ::PROTOBUF_NAMESPACE_ID::Metadata TestFieldMaskMessage_Kv1Entry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_test_2eproto_getter, &descriptor_table_test_2eproto_once,
-      file_level_metadata_test_2eproto[12]);
+      file_level_metadata_test_2eproto[14]);
 }
 
 // ===================================================================
@@ -2543,7 +2916,7 @@ void TestFieldMaskMessage_Kv2Entry_DoNotUse::MergeFrom(const TestFieldMaskMessag
 ::PROTOBUF_NAMESPACE_ID::Metadata TestFieldMaskMessage_Kv2Entry_DoNotUse::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_test_2eproto_getter, &descriptor_table_test_2eproto_once,
-      file_level_metadata_test_2eproto[13]);
+      file_level_metadata_test_2eproto[15]);
 }
 
 // ===================================================================
@@ -2934,7 +3307,7 @@ void TestFieldMaskMessage::InternalSwap(TestFieldMaskMessage* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata TestFieldMaskMessage::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_test_2eproto_getter, &descriptor_table_test_2eproto_once,
-      file_level_metadata_test_2eproto[14]);
+      file_level_metadata_test_2eproto[16]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -2979,6 +3352,14 @@ Arena::CreateMaybeMessage< ::testpb::TestMapMessage_StringWrapper >(Arena* arena
 template<> PROTOBUF_NOINLINE ::testpb::TestMapMessage_Kv2Entry_DoNotUse*
 Arena::CreateMaybeMessage< ::testpb::TestMapMessage_Kv2Entry_DoNotUse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::testpb::TestMapMessage_Kv2Entry_DoNotUse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::testpb::TestMapMessage_NullableWrapper*
+Arena::CreateMaybeMessage< ::testpb::TestMapMessage_NullableWrapper >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::testpb::TestMapMessage_NullableWrapper >(arena);
+}
+template<> PROTOBUF_NOINLINE ::testpb::TestMapMessage_Kv3Entry_DoNotUse*
+Arena::CreateMaybeMessage< ::testpb::TestMapMessage_Kv3Entry_DoNotUse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::testpb::TestMapMessage_Kv3Entry_DoNotUse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::testpb::TestMapMessage*
 Arena::CreateMaybeMessage< ::testpb::TestMapMessage >(Arena* arena) {

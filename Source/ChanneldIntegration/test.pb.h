@@ -79,9 +79,15 @@ extern TestMapMessageDefaultTypeInternal _TestMapMessage_default_instance_;
 class TestMapMessage_Kv2Entry_DoNotUse;
 struct TestMapMessage_Kv2Entry_DoNotUseDefaultTypeInternal;
 extern TestMapMessage_Kv2Entry_DoNotUseDefaultTypeInternal _TestMapMessage_Kv2Entry_DoNotUse_default_instance_;
+class TestMapMessage_Kv3Entry_DoNotUse;
+struct TestMapMessage_Kv3Entry_DoNotUseDefaultTypeInternal;
+extern TestMapMessage_Kv3Entry_DoNotUseDefaultTypeInternal _TestMapMessage_Kv3Entry_DoNotUse_default_instance_;
 class TestMapMessage_KvEntry_DoNotUse;
 struct TestMapMessage_KvEntry_DoNotUseDefaultTypeInternal;
 extern TestMapMessage_KvEntry_DoNotUseDefaultTypeInternal _TestMapMessage_KvEntry_DoNotUse_default_instance_;
+class TestMapMessage_NullableWrapper;
+struct TestMapMessage_NullableWrapperDefaultTypeInternal;
+extern TestMapMessage_NullableWrapperDefaultTypeInternal _TestMapMessage_NullableWrapper_default_instance_;
 class TestMapMessage_StringWrapper;
 struct TestMapMessage_StringWrapperDefaultTypeInternal;
 extern TestMapMessage_StringWrapperDefaultTypeInternal _TestMapMessage_StringWrapper_default_instance_;
@@ -106,7 +112,9 @@ template<> ::testpb::TestFieldMaskMessage_Kv2Entry_DoNotUse* Arena::CreateMaybeM
 template<> ::testpb::TestFieldMaskMessage_NestedMessage* Arena::CreateMaybeMessage<::testpb::TestFieldMaskMessage_NestedMessage>(Arena*);
 template<> ::testpb::TestMapMessage* Arena::CreateMaybeMessage<::testpb::TestMapMessage>(Arena*);
 template<> ::testpb::TestMapMessage_Kv2Entry_DoNotUse* Arena::CreateMaybeMessage<::testpb::TestMapMessage_Kv2Entry_DoNotUse>(Arena*);
+template<> ::testpb::TestMapMessage_Kv3Entry_DoNotUse* Arena::CreateMaybeMessage<::testpb::TestMapMessage_Kv3Entry_DoNotUse>(Arena*);
 template<> ::testpb::TestMapMessage_KvEntry_DoNotUse* Arena::CreateMaybeMessage<::testpb::TestMapMessage_KvEntry_DoNotUse>(Arena*);
+template<> ::testpb::TestMapMessage_NullableWrapper* Arena::CreateMaybeMessage<::testpb::TestMapMessage_NullableWrapper>(Arena*);
 template<> ::testpb::TestMapMessage_StringWrapper* Arena::CreateMaybeMessage<::testpb::TestMapMessage_StringWrapper>(Arena*);
 template<> ::testpb::TestMergeMessage* Arena::CreateMaybeMessage<::testpb::TestMergeMessage>(Arena*);
 template<> ::testpb::TestMergeMessage_KvEntry_DoNotUse* Arena::CreateMaybeMessage<::testpb::TestMergeMessage_KvEntry_DoNotUse>(Arena*);
@@ -1353,6 +1361,203 @@ public:
 
 // -------------------------------------------------------------------
 
+class TestMapMessage_NullableWrapper final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:testpb.TestMapMessage.NullableWrapper) */ {
+ public:
+  inline TestMapMessage_NullableWrapper() : TestMapMessage_NullableWrapper(nullptr) {}
+  ~TestMapMessage_NullableWrapper() override;
+  explicit PROTOBUF_CONSTEXPR TestMapMessage_NullableWrapper(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TestMapMessage_NullableWrapper(const TestMapMessage_NullableWrapper& from);
+  TestMapMessage_NullableWrapper(TestMapMessage_NullableWrapper&& from) noexcept
+    : TestMapMessage_NullableWrapper() {
+    *this = ::std::move(from);
+  }
+
+  inline TestMapMessage_NullableWrapper& operator=(const TestMapMessage_NullableWrapper& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestMapMessage_NullableWrapper& operator=(TestMapMessage_NullableWrapper&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TestMapMessage_NullableWrapper& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TestMapMessage_NullableWrapper* internal_default_instance() {
+    return reinterpret_cast<const TestMapMessage_NullableWrapper*>(
+               &_TestMapMessage_NullableWrapper_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    10;
+
+  friend void swap(TestMapMessage_NullableWrapper& a, TestMapMessage_NullableWrapper& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestMapMessage_NullableWrapper* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TestMapMessage_NullableWrapper* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TestMapMessage_NullableWrapper* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TestMapMessage_NullableWrapper>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TestMapMessage_NullableWrapper& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const TestMapMessage_NullableWrapper& from) {
+    TestMapMessage_NullableWrapper::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestMapMessage_NullableWrapper* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "testpb.TestMapMessage.NullableWrapper";
+  }
+  protected:
+  explicit TestMapMessage_NullableWrapper(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kContentFieldNumber = 1,
+    kNumFieldNumber = 2,
+  };
+  // optional string content = 1;
+  bool has_content() const;
+  private:
+  bool _internal_has_content() const;
+  public:
+  void clear_content();
+  const std::string& content() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_content(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_content();
+  PROTOBUF_NODISCARD std::string* release_content();
+  void set_allocated_content(std::string* content);
+  private:
+  const std::string& _internal_content() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_content(const std::string& value);
+  std::string* _internal_mutable_content();
+  public:
+
+  // optional int64 num = 2;
+  bool has_num() const;
+  private:
+  bool _internal_has_num() const;
+  public:
+  void clear_num();
+  int64_t num() const;
+  void set_num(int64_t value);
+  private:
+  int64_t _internal_num() const;
+  void _internal_set_num(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:testpb.TestMapMessage.NullableWrapper)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr content_;
+    int64_t num_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_test_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestMapMessage_Kv3Entry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestMapMessage_Kv3Entry_DoNotUse, 
+    uint32_t, ::testpb::TestMapMessage_NullableWrapper,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestMapMessage_Kv3Entry_DoNotUse, 
+    uint32_t, ::testpb::TestMapMessage_NullableWrapper,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  TestMapMessage_Kv3Entry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR TestMapMessage_Kv3Entry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit TestMapMessage_Kv3Entry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const TestMapMessage_Kv3Entry_DoNotUse& other);
+  static const TestMapMessage_Kv3Entry_DoNotUse* internal_default_instance() { return reinterpret_cast<const TestMapMessage_Kv3Entry_DoNotUse*>(&_TestMapMessage_Kv3Entry_DoNotUse_default_instance_); }
+  static bool ValidateKey(void*) { return true; }
+  static bool ValidateValue(void*) { return true; }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_test_2eproto;
+};
+
+// -------------------------------------------------------------------
+
 class TestMapMessage final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:testpb.TestMapMessage) */ {
  public:
@@ -1401,7 +1606,7 @@ class TestMapMessage final :
                &_TestMapMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(TestMapMessage& a, TestMapMessage& b) {
     a.Swap(&b);
@@ -1474,12 +1679,14 @@ class TestMapMessage final :
   // nested types ----------------------------------------------------
 
   typedef TestMapMessage_StringWrapper StringWrapper;
+  typedef TestMapMessage_NullableWrapper NullableWrapper;
 
   // accessors -------------------------------------------------------
 
   enum : int {
     kKvFieldNumber = 1,
     kKv2FieldNumber = 2,
+    kKv3FieldNumber = 3,
   };
   // map<uint32, string> kv = 1;
   int kv_size() const;
@@ -1515,6 +1722,23 @@ class TestMapMessage final :
   ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::testpb::TestMapMessage_StringWrapper >*
       mutable_kv2();
 
+  // map<uint32, .testpb.TestMapMessage.NullableWrapper> kv3 = 3;
+  int kv3_size() const;
+  private:
+  int _internal_kv3_size() const;
+  public:
+  void clear_kv3();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::testpb::TestMapMessage_NullableWrapper >&
+      _internal_kv3() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::testpb::TestMapMessage_NullableWrapper >*
+      _internal_mutable_kv3();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::testpb::TestMapMessage_NullableWrapper >&
+      kv3() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::testpb::TestMapMessage_NullableWrapper >*
+      mutable_kv3();
+
   // @@protoc_insertion_point(class_scope:testpb.TestMapMessage)
  private:
   class _Internal;
@@ -1533,6 +1757,11 @@ class TestMapMessage final :
         uint32_t, ::testpb::TestMapMessage_StringWrapper,
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> kv2_;
+    ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+        TestMapMessage_Kv3Entry_DoNotUse,
+        uint32_t, ::testpb::TestMapMessage_NullableWrapper,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> kv3_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1588,7 +1817,7 @@ class TestFieldMaskMessage_NestedMessage final :
                &_TestFieldMaskMessage_NestedMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(TestFieldMaskMessage_NestedMessage& a, TestFieldMaskMessage_NestedMessage& b) {
     a.Swap(&b);
@@ -1797,7 +2026,7 @@ class TestFieldMaskMessage final :
                &_TestFieldMaskMessage_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    16;
 
   friend void swap(TestFieldMaskMessage& a, TestFieldMaskMessage& b) {
     a.Swap(&b);
@@ -2539,6 +2768,108 @@ inline void TestMapMessage_StringWrapper::set_num(int64_t value) {
 
 // -------------------------------------------------------------------
 
+// TestMapMessage_NullableWrapper
+
+// optional string content = 1;
+inline bool TestMapMessage_NullableWrapper::_internal_has_content() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool TestMapMessage_NullableWrapper::has_content() const {
+  return _internal_has_content();
+}
+inline void TestMapMessage_NullableWrapper::clear_content() {
+  _impl_.content_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& TestMapMessage_NullableWrapper::content() const {
+  // @@protoc_insertion_point(field_get:testpb.TestMapMessage.NullableWrapper.content)
+  return _internal_content();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TestMapMessage_NullableWrapper::set_content(ArgT0&& arg0, ArgT... args) {
+ _impl_._has_bits_[0] |= 0x00000001u;
+ _impl_.content_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:testpb.TestMapMessage.NullableWrapper.content)
+}
+inline std::string* TestMapMessage_NullableWrapper::mutable_content() {
+  std::string* _s = _internal_mutable_content();
+  // @@protoc_insertion_point(field_mutable:testpb.TestMapMessage.NullableWrapper.content)
+  return _s;
+}
+inline const std::string& TestMapMessage_NullableWrapper::_internal_content() const {
+  return _impl_.content_.Get();
+}
+inline void TestMapMessage_NullableWrapper::_internal_set_content(const std::string& value) {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.content_.Set(value, GetArenaForAllocation());
+}
+inline std::string* TestMapMessage_NullableWrapper::_internal_mutable_content() {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.content_.Mutable(GetArenaForAllocation());
+}
+inline std::string* TestMapMessage_NullableWrapper::release_content() {
+  // @@protoc_insertion_point(field_release:testpb.TestMapMessage.NullableWrapper.content)
+  if (!_internal_has_content()) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* p = _impl_.content_.Release();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.content_.IsDefault()) {
+    _impl_.content_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  return p;
+}
+inline void TestMapMessage_NullableWrapper::set_allocated_content(std::string* content) {
+  if (content != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.content_.SetAllocated(content, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.content_.IsDefault()) {
+    _impl_.content_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:testpb.TestMapMessage.NullableWrapper.content)
+}
+
+// optional int64 num = 2;
+inline bool TestMapMessage_NullableWrapper::_internal_has_num() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool TestMapMessage_NullableWrapper::has_num() const {
+  return _internal_has_num();
+}
+inline void TestMapMessage_NullableWrapper::clear_num() {
+  _impl_.num_ = int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline int64_t TestMapMessage_NullableWrapper::_internal_num() const {
+  return _impl_.num_;
+}
+inline int64_t TestMapMessage_NullableWrapper::num() const {
+  // @@protoc_insertion_point(field_get:testpb.TestMapMessage.NullableWrapper.num)
+  return _internal_num();
+}
+inline void TestMapMessage_NullableWrapper::_internal_set_num(int64_t value) {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.num_ = value;
+}
+inline void TestMapMessage_NullableWrapper::set_num(int64_t value) {
+  _internal_set_num(value);
+  // @@protoc_insertion_point(field_set:testpb.TestMapMessage.NullableWrapper.num)
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // TestMapMessage
 
 // map<uint32, string> kv = 1;
@@ -2597,6 +2928,35 @@ inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::testpb::TestMapMessage_StringWr
 TestMapMessage::mutable_kv2() {
   // @@protoc_insertion_point(field_mutable_map:testpb.TestMapMessage.kv2)
   return _internal_mutable_kv2();
+}
+
+// map<uint32, .testpb.TestMapMessage.NullableWrapper> kv3 = 3;
+inline int TestMapMessage::_internal_kv3_size() const {
+  return _impl_.kv3_.size();
+}
+inline int TestMapMessage::kv3_size() const {
+  return _internal_kv3_size();
+}
+inline void TestMapMessage::clear_kv3() {
+  _impl_.kv3_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::testpb::TestMapMessage_NullableWrapper >&
+TestMapMessage::_internal_kv3() const {
+  return _impl_.kv3_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::testpb::TestMapMessage_NullableWrapper >&
+TestMapMessage::kv3() const {
+  // @@protoc_insertion_point(field_map:testpb.TestMapMessage.kv3)
+  return _internal_kv3();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::testpb::TestMapMessage_NullableWrapper >*
+TestMapMessage::_internal_mutable_kv3() {
+  return _impl_.kv3_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::testpb::TestMapMessage_NullableWrapper >*
+TestMapMessage::mutable_kv3() {
+  // @@protoc_insertion_point(field_mutable_map:testpb.TestMapMessage.kv3)
+  return _internal_mutable_kv3();
 }
 
 // -------------------------------------------------------------------
@@ -2892,6 +3252,10 @@ TestFieldMaskMessage::mutable_kv2() {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
