@@ -66,17 +66,17 @@ bool FProtobufMergeTest::RunTest(const FString& Parameters)
 
 	// TestTrue(TEXT("Map's obj value should remain the same if the new value is not set"), TestMsg.mutable_kv2()->at(1).content() == "a");
 	TestTrue(TEXT("Map's obj value would be replaced with default if the new value is not set"), TestMsg.mutable_kv2()->at(1).content() == "");
-	TestEqual(TEXT("Map's obj value should be updated"), TestMsg.mutable_kv2()->at(2).num(), 3u);
+	TestEqual(TEXT("Map's obj value should be updated"), TestMsg.mutable_kv2()->at(2).num(), (int64)3L);
 	// TestTrue(TEXT("Map's obj value should remain the same if only the other key-value is updated"), TestMsg.mutable_kv2()->at(2).content() == "b");
 	TestTrue(TEXT("Map's obj value would be replaced with default if only the other key-value is updated"), TestMsg.mutable_kv2()->at(2).content() == "");
 
-	TestEqual(TEXT("Map's nullable value should be updated"), TestMsg.mutable_kv3()->at(1).num(), 333u);
+	TestEqual(TEXT("Map's nullable value should be updated"), TestMsg.mutable_kv3()->at(1).num(), (int64)333L);
 	// TestTrue(TEXT("Map's nullable value should remain the same if the new value is not set"), TestMsg.mutable_kv3()->at(1).content() == "c");
 	TestTrue(TEXT("Map's nullable value would be replaced with default if the new value is not set"), TestMsg.mutable_kv3()->at(1).content() == "");
 
 	TestTrue(TEXT("Map's nullable value should be updated"), TestMsg.mutable_kv3()->at(2).content() == "ddd");
 	// TestEqual(TEXT("Map's nullable value should remain the same if the new value is not set"), TestMsg.mutable_kv3()->at(2).num(), 4u);
-	TestEqual(TEXT("Map's nullable value would be replaced with default if the new value is not set"), TestMsg.mutable_kv3()->at(2).num(), 0u);
+	TestEqual(TEXT("Map's nullable value would be replaced with default if the new value is not set"), TestMsg.mutable_kv3()->at(2).num(), (int64)0L);
 
 	return true;
 }
