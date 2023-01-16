@@ -128,11 +128,6 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 
 void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* State, google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID)
 {
-	if (State == nullptr)
-	{
-		return;
-	}
-	
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
 	if (TargetClass == AActor::StaticClass())
 	{
