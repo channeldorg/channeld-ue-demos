@@ -5,12 +5,13 @@
 
 #include "tps.pb.h"
 
-TArray<uint32> UTpsSpatialChannelDataView::GetNetGUIDsFromChannelData(const google::protobuf::Message* Message)
+TSet<uint32> UTpsSpatialChannelDataView::GetNetGUIDsFromChannelData(const google::protobuf::Message* Message)
 {
 	auto ChannelData = static_cast<const tpspb::TestRepChannelData*>(Message);
-	TArray<uint32> NetGUIDs;
+	TSet<uint32> NetGUIDs;
 	for (auto& Pair : ChannelData->actorstates())
 	{
+		/* Instead of using a blacklist, we should use a whitelist as the data in the blacklist may not exist in the ChannelData.
 		// Ignore GameState
 		if (Pair.first == GameStateNetId)
 		{
@@ -26,7 +27,20 @@ TArray<uint32> UTpsSpatialChannelDataView::GetNetGUIDsFromChannelData(const goog
 		{
 			continue;
 		}
-		NetGUIDs.Add(Pair.first);
+		*/
+
+		if (ChannelData->pawnstates_size() > 0 && ChannelData->pawnstates().contains(Pair.first))
+		{
+			NetGUIDs.Add(Pair.first);
+		}
+		else if (ChannelData->characterstates_size() > 0 && ChannelData->characterstates().contains(Pair.first))
+		{
+			NetGUIDs.Add(Pair.first);
+		}
+		else if (ChannelData->scenecomponentstates_size() > 0 && ChannelData->scenecomponentstates().contains(Pair.first))
+		{
+			NetGUIDs.Add(Pair.first);
+		}
 	}
 	return NetGUIDs;
 }
