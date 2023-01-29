@@ -52,6 +52,9 @@ namespace tpspb {
 class GlobalChannelData;
 struct GlobalChannelDataDefaultTypeInternal;
 extern GlobalChannelDataDefaultTypeInternal _GlobalChannelData_default_instance_;
+class TestNPCControllerState;
+struct TestNPCControllerStateDefaultTypeInternal;
+extern TestNPCControllerStateDefaultTypeInternal _TestNPCControllerState_default_instance_;
 class TestRepChannelData;
 struct TestRepChannelDataDefaultTypeInternal;
 extern TestRepChannelDataDefaultTypeInternal _TestRepChannelData_default_instance_;
@@ -79,6 +82,9 @@ extern TestRepChannelData_PlayerStatesEntry_DoNotUseDefaultTypeInternal _TestRep
 class TestRepChannelData_SceneComponentStatesEntry_DoNotUse;
 struct TestRepChannelData_SceneComponentStatesEntry_DoNotUseDefaultTypeInternal;
 extern TestRepChannelData_SceneComponentStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_SceneComponentStatesEntry_DoNotUse_default_instance_;
+class TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse;
+struct TestRepChannelData_TestNPCControllerStatesEntry_DoNotUseDefaultTypeInternal;
+extern TestRepChannelData_TestNPCControllerStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse_default_instance_;
 class TestRepChannelData_TestRepPlayerControllerStatesEntry_DoNotUse;
 struct TestRepChannelData_TestRepPlayerControllerStatesEntry_DoNotUseDefaultTypeInternal;
 extern TestRepChannelData_TestRepPlayerControllerStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_TestRepPlayerControllerStatesEntry_DoNotUse_default_instance_;
@@ -91,6 +97,7 @@ extern TestRepPlayerControllerStateDefaultTypeInternal _TestRepPlayerControllerS
 }  // namespace tpspb
 PROTOBUF_NAMESPACE_OPEN
 template<> ::tpspb::GlobalChannelData* Arena::CreateMaybeMessage<::tpspb::GlobalChannelData>(Arena*);
+template<> ::tpspb::TestNPCControllerState* Arena::CreateMaybeMessage<::tpspb::TestNPCControllerState>(Arena*);
 template<> ::tpspb::TestRepChannelData* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData>(Arena*);
 template<> ::tpspb::TestRepChannelData_ActorComponentStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_ActorComponentStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_ActorStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_ActorStatesEntry_DoNotUse>(Arena*);
@@ -100,6 +107,7 @@ template<> ::tpspb::TestRepChannelData_PawnStatesEntry_DoNotUse* Arena::CreateMa
 template<> ::tpspb::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_PlayerStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_PlayerStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_SceneComponentStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_SceneComponentStatesEntry_DoNotUse>(Arena*);
+template<> ::tpspb::TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_TestRepPlayerControllerStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_TestRepPlayerControllerStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepGameState* Arena::CreateMaybeMessage<::tpspb::TestRepGameState>(Arena*);
 template<> ::tpspb::TestRepPlayerControllerState* Arena::CreateMaybeMessage<::tpspb::TestRepPlayerControllerState>(Arena*);
@@ -418,6 +426,179 @@ class TestRepPlayerControllerState final :
 };
 // -------------------------------------------------------------------
 
+class TestNPCControllerState final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tpspb.TestNPCControllerState) */ {
+ public:
+  inline TestNPCControllerState() : TestNPCControllerState(nullptr) {}
+  ~TestNPCControllerState() override;
+  explicit PROTOBUF_CONSTEXPR TestNPCControllerState(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TestNPCControllerState(const TestNPCControllerState& from);
+  TestNPCControllerState(TestNPCControllerState&& from) noexcept
+    : TestNPCControllerState() {
+    *this = ::std::move(from);
+  }
+
+  inline TestNPCControllerState& operator=(const TestNPCControllerState& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestNPCControllerState& operator=(TestNPCControllerState&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TestNPCControllerState& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TestNPCControllerState* internal_default_instance() {
+    return reinterpret_cast<const TestNPCControllerState*>(
+               &_TestNPCControllerState_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(TestNPCControllerState& a, TestNPCControllerState& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestNPCControllerState* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TestNPCControllerState* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  TestNPCControllerState* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<TestNPCControllerState>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TestNPCControllerState& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const TestNPCControllerState& from) {
+    TestNPCControllerState::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestNPCControllerState* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tpspb.TestNPCControllerState";
+  }
+  protected:
+  explicit TestNPCControllerState(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kGoalLocationFieldNumber = 2,
+    kBMovingFieldNumber = 1,
+  };
+  // optional .unrealpb.FVector goalLocation = 2;
+  bool has_goallocation() const;
+  private:
+  bool _internal_has_goallocation() const;
+  public:
+  void clear_goallocation();
+  const ::unrealpb::FVector& goallocation() const;
+  PROTOBUF_NODISCARD ::unrealpb::FVector* release_goallocation();
+  ::unrealpb::FVector* mutable_goallocation();
+  void set_allocated_goallocation(::unrealpb::FVector* goallocation);
+  private:
+  const ::unrealpb::FVector& _internal_goallocation() const;
+  ::unrealpb::FVector* _internal_mutable_goallocation();
+  public:
+  void unsafe_arena_set_allocated_goallocation(
+      ::unrealpb::FVector* goallocation);
+  ::unrealpb::FVector* unsafe_arena_release_goallocation();
+
+  // optional bool bMoving = 1;
+  bool has_bmoving() const;
+  private:
+  bool _internal_has_bmoving() const;
+  public:
+  void clear_bmoving();
+  bool bmoving() const;
+  void set_bmoving(bool value);
+  private:
+  bool _internal_bmoving() const;
+  void _internal_set_bmoving(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tpspb.TestNPCControllerState)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::unrealpb::FVector* goallocation_;
+    bool bmoving_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_tps_2eproto;
+};
+// -------------------------------------------------------------------
+
 class TestRepChannelData_ActorStatesEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestRepChannelData_ActorStatesEntry_DoNotUse, 
     uint32_t, ::unrealpb::ActorState,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
@@ -634,6 +815,30 @@ public:
 
 // -------------------------------------------------------------------
 
+class TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse, 
+    uint32_t, ::tpspb::TestNPCControllerState,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse, 
+    uint32_t, ::tpspb::TestNPCControllerState,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse& other);
+  static const TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse*>(&_TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(void*) { return true; }
+  static bool ValidateValue(void*) { return true; }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_tps_2eproto;
+};
+
+// -------------------------------------------------------------------
+
 class TestRepChannelData final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tpspb.TestRepChannelData) */ {
  public:
@@ -682,7 +887,7 @@ class TestRepChannelData final :
                &_TestRepChannelData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(TestRepChannelData& a, TestRepChannelData& b) {
     a.Swap(&b);
@@ -767,6 +972,7 @@ class TestRepChannelData final :
     kActorComponentStatesFieldNumber = 8,
     kSceneComponentStatesFieldNumber = 9,
     kTestRepPlayerControllerStatesFieldNumber = 11,
+    kTestNPCControllerStatesFieldNumber = 12,
     kGameStateFieldNumber = 1,
     kTestGameStateFieldNumber = 10,
   };
@@ -923,6 +1129,23 @@ class TestRepChannelData final :
   ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::tpspb::TestRepPlayerControllerState >*
       mutable_testrepplayercontrollerstates();
 
+  // map<uint32, .tpspb.TestNPCControllerState> testNPCControllerStates = 12;
+  int testnpccontrollerstates_size() const;
+  private:
+  int _internal_testnpccontrollerstates_size() const;
+  public:
+  void clear_testnpccontrollerstates();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::tpspb::TestNPCControllerState >&
+      _internal_testnpccontrollerstates() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::tpspb::TestNPCControllerState >*
+      _internal_mutable_testnpccontrollerstates();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::tpspb::TestNPCControllerState >&
+      testnpccontrollerstates() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::tpspb::TestNPCControllerState >*
+      mutable_testnpccontrollerstates();
+
   // .unrealpb.GameStateBase gameState = 1;
   bool has_gamestate() const;
   private:
@@ -1012,6 +1235,11 @@ class TestRepChannelData final :
         uint32_t, ::tpspb::TestRepPlayerControllerState,
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> testrepplayercontrollerstates_;
+    ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+        TestRepChannelData_TestNPCControllerStatesEntry_DoNotUse,
+        uint32_t, ::tpspb::TestNPCControllerState,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> testnpccontrollerstates_;
     ::unrealpb::GameStateBase* gamestate_;
     ::tpspb::TestRepGameState* testgamestate_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -1069,7 +1297,7 @@ class GlobalChannelData final :
                &_GlobalChannelData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    14;
 
   friend void swap(GlobalChannelData& a, GlobalChannelData& b) {
     a.Swap(&b);
@@ -1303,6 +1531,127 @@ inline void TestRepPlayerControllerState::set_allocated_testrepactor(::unrealpb:
   _impl_.testrepactor_ = testrepactor;
   // @@protoc_insertion_point(field_set_allocated:tpspb.TestRepPlayerControllerState.testRepActor)
 }
+
+// -------------------------------------------------------------------
+
+// TestNPCControllerState
+
+// optional bool bMoving = 1;
+inline bool TestNPCControllerState::_internal_has_bmoving() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool TestNPCControllerState::has_bmoving() const {
+  return _internal_has_bmoving();
+}
+inline void TestNPCControllerState::clear_bmoving() {
+  _impl_.bmoving_ = false;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline bool TestNPCControllerState::_internal_bmoving() const {
+  return _impl_.bmoving_;
+}
+inline bool TestNPCControllerState::bmoving() const {
+  // @@protoc_insertion_point(field_get:tpspb.TestNPCControllerState.bMoving)
+  return _internal_bmoving();
+}
+inline void TestNPCControllerState::_internal_set_bmoving(bool value) {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.bmoving_ = value;
+}
+inline void TestNPCControllerState::set_bmoving(bool value) {
+  _internal_set_bmoving(value);
+  // @@protoc_insertion_point(field_set:tpspb.TestNPCControllerState.bMoving)
+}
+
+// optional .unrealpb.FVector goalLocation = 2;
+inline bool TestNPCControllerState::_internal_has_goallocation() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.goallocation_ != nullptr);
+  return value;
+}
+inline bool TestNPCControllerState::has_goallocation() const {
+  return _internal_has_goallocation();
+}
+inline const ::unrealpb::FVector& TestNPCControllerState::_internal_goallocation() const {
+  const ::unrealpb::FVector* p = _impl_.goallocation_;
+  return p != nullptr ? *p : reinterpret_cast<const ::unrealpb::FVector&>(
+      ::unrealpb::_FVector_default_instance_);
+}
+inline const ::unrealpb::FVector& TestNPCControllerState::goallocation() const {
+  // @@protoc_insertion_point(field_get:tpspb.TestNPCControllerState.goalLocation)
+  return _internal_goallocation();
+}
+inline void TestNPCControllerState::unsafe_arena_set_allocated_goallocation(
+    ::unrealpb::FVector* goallocation) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.goallocation_);
+  }
+  _impl_.goallocation_ = goallocation;
+  if (goallocation) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tpspb.TestNPCControllerState.goalLocation)
+}
+inline ::unrealpb::FVector* TestNPCControllerState::release_goallocation() {
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::unrealpb::FVector* temp = _impl_.goallocation_;
+  _impl_.goallocation_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::unrealpb::FVector* TestNPCControllerState::unsafe_arena_release_goallocation() {
+  // @@protoc_insertion_point(field_release:tpspb.TestNPCControllerState.goalLocation)
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::unrealpb::FVector* temp = _impl_.goallocation_;
+  _impl_.goallocation_ = nullptr;
+  return temp;
+}
+inline ::unrealpb::FVector* TestNPCControllerState::_internal_mutable_goallocation() {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.goallocation_ == nullptr) {
+    auto* p = CreateMaybeMessage<::unrealpb::FVector>(GetArenaForAllocation());
+    _impl_.goallocation_ = p;
+  }
+  return _impl_.goallocation_;
+}
+inline ::unrealpb::FVector* TestNPCControllerState::mutable_goallocation() {
+  ::unrealpb::FVector* _msg = _internal_mutable_goallocation();
+  // @@protoc_insertion_point(field_mutable:tpspb.TestNPCControllerState.goalLocation)
+  return _msg;
+}
+inline void TestNPCControllerState::set_allocated_goallocation(::unrealpb::FVector* goallocation) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.goallocation_);
+  }
+  if (goallocation) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(goallocation));
+    if (message_arena != submessage_arena) {
+      goallocation = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, goallocation, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.goallocation_ = goallocation;
+  // @@protoc_insertion_point(field_set_allocated:tpspb.TestNPCControllerState.goalLocation)
+}
+
+// -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
 
@@ -1738,6 +2087,35 @@ TestRepChannelData::mutable_testrepplayercontrollerstates() {
   return _internal_mutable_testrepplayercontrollerstates();
 }
 
+// map<uint32, .tpspb.TestNPCControllerState> testNPCControllerStates = 12;
+inline int TestRepChannelData::_internal_testnpccontrollerstates_size() const {
+  return _impl_.testnpccontrollerstates_.size();
+}
+inline int TestRepChannelData::testnpccontrollerstates_size() const {
+  return _internal_testnpccontrollerstates_size();
+}
+inline void TestRepChannelData::clear_testnpccontrollerstates() {
+  _impl_.testnpccontrollerstates_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::tpspb::TestNPCControllerState >&
+TestRepChannelData::_internal_testnpccontrollerstates() const {
+  return _impl_.testnpccontrollerstates_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::tpspb::TestNPCControllerState >&
+TestRepChannelData::testnpccontrollerstates() const {
+  // @@protoc_insertion_point(field_map:tpspb.TestRepChannelData.testNPCControllerStates)
+  return _internal_testnpccontrollerstates();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::tpspb::TestNPCControllerState >*
+TestRepChannelData::_internal_mutable_testnpccontrollerstates() {
+  return _impl_.testnpccontrollerstates_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::tpspb::TestNPCControllerState >*
+TestRepChannelData::mutable_testnpccontrollerstates() {
+  // @@protoc_insertion_point(field_mutable_map:tpspb.TestRepChannelData.testNPCControllerStates)
+  return _internal_mutable_testnpccontrollerstates();
+}
+
 // -------------------------------------------------------------------
 
 // GlobalChannelData
@@ -1830,6 +2208,10 @@ inline void GlobalChannelData::set_allocated_gamestate(::unrealpb::GameStateBase
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

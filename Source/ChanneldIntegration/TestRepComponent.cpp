@@ -117,6 +117,15 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 			return &States->at(NetGUID);
 		}
 	}
+	else if (TargetClass->GetFName() == FName("BP_TestNPCController_C"))
+	{
+		auto States = TestRepChannelData->mutable_testnpccontrollerstates();
+		if (States->contains(NetGUID))
+		{
+			bIsRemoved = false;
+			return &States->at(NetGUID);
+		}
+	}
 	else
 	{
 		UE_LOG(LogChanneldTest, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
@@ -217,6 +226,15 @@ void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* S
 		{
 			auto States = TestRepChannelData->mutable_testrepplayercontrollerstates();
 			(*States)[NetGUID] = *TestRepPlayerControllerState;
+		}
+	}
+	else if (TargetClass->GetFName() == FName("BP_TestNPCController_C"))
+	{
+		auto TestNPCControllerState = static_cast<const tpspb::TestNPCControllerState*>(State);
+		if (TestNPCControllerState)
+		{
+			auto States = TestRepChannelData->mutable_testnpccontrollerstates();
+			(*States)[NetGUID] = *TestNPCControllerState;
 		}
 	}
 	else
