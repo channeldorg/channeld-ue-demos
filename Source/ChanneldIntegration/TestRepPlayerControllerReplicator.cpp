@@ -83,6 +83,10 @@ TSharedPtr<google::protobuf::Message> FTestRepPlayerControllerReplicator::Serial
 	{
 		return nullptr;
 	}
+	else if (Func->GetFName() == FName("ServerSpawnNPC"))
+	{
+		return nullptr;
+	}
 	else if (Func->GetFName() == FName("ServerToggleRotation"))
 	{
 		return nullptr;
@@ -100,6 +104,10 @@ TSharedPtr<void> FTestRepPlayerControllerReplicator::DeserializeFunctionParams(U
 		return nullptr;
 	}
 	else if (Func->GetFName() == FName("ServerSpawnCube"))
+	{
+		return nullptr;
+	}
+	else if (Func->GetFName() == FName("ServerSpawnNPC"))
 	{
 		return nullptr;
 	}
