@@ -4,12 +4,12 @@
 #include "tps.pb.h"
 #include "Replication/ChanneldReplicatorBase.h"
 
-class CHANNELDINTEGRATION_API FTestNPCControllerReplicator : public FChanneldReplicatorBase_BP
+class CHANNELDINTEGRATION_API FTestNPCReplicator : public FChanneldReplicatorBase_BP
 {
 
 public:
-	FTestNPCControllerReplicator(UObject* InTargetObj, UClass* InTargetClass);
-	virtual ~FTestNPCControllerReplicator() override;
+	FTestNPCReplicator(UObject* InTargetObj, UClass* InTargetClass);
+	virtual ~FTestNPCReplicator() override;
 
 	//~Begin FChanneldReplicatorBase Interface
 	virtual google::protobuf::Message* GetDeltaState() override;
@@ -19,8 +19,8 @@ public:
 	//~End FChanneldReplicatorBase Interface
 
 private:
-	tpspb::TestNPCControllerState* FullState;
-	tpspb::TestNPCControllerState* DeltaState;
+	tpspb::TestNPCState* FullState;
+	tpspb::TestNPCState* DeltaState;
 	bool* bMovingPtr;
 	FVector* GoalLocationPtr;
 };

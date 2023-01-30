@@ -1,15 +1,15 @@
-#include "TestNPCControllerReplicator.h"
+#include "TestNPCReplicator.h"
 #include "ChanneldUtils.h"
 #include "Net/UnrealNetwork.h"
 
-FTestNPCControllerReplicator::FTestNPCControllerReplicator(UObject* InTargetObj, UClass* InTargetClass)
+FTestNPCReplicator::FTestNPCReplicator(UObject* InTargetObj, UClass* InTargetClass)
 : FChanneldReplicatorBase_BP(InTargetObj, InTargetClass)
 {
 	TArray<FLifetimeProperty> RepProps;
 	DisableAllReplicatedPropertiesOfClass(InTargetObj->GetClass(), InTargetClass, EFieldIteratorFlags::ExcludeSuper, RepProps);
 
-	FullState = new tpspb::TestNPCControllerState;
-	DeltaState = new tpspb::TestNPCControllerState;
+	FullState = new tpspb::TestNPCState;
+	DeltaState = new tpspb::TestNPCState;
 	
 	// Prepare Reflection pointers
 	{
@@ -24,24 +24,24 @@ FTestNPCControllerReplicator::FTestNPCControllerReplicator(UObject* InTargetObj,
 	}
 }
 
-FTestNPCControllerReplicator::~FTestNPCControllerReplicator()
+FTestNPCReplicator::~FTestNPCReplicator()
 {
 	delete FullState;
 	delete DeltaState;
 }
 
-google::protobuf::Message* FTestNPCControllerReplicator::GetDeltaState()
+google::protobuf::Message* FTestNPCReplicator::GetDeltaState()
 {
 	return DeltaState;
 }
 
-void FTestNPCControllerReplicator::ClearState()
+void FTestNPCReplicator::ClearState()
 {
 	DeltaState->Clear();
 	bStateChanged = false;
 }
 
-void FTestNPCControllerReplicator::Tick(float DeltaTime)
+void FTestNPCReplicator::Tick(float DeltaTime)
 {
 	if (!TargetObject.IsValid())
 	{
@@ -66,14 +66,14 @@ void FTestNPCControllerReplicator::Tick(float DeltaTime)
 	}
 }
 
-void FTestNPCControllerReplicator::OnStateChanged(const google::protobuf::Message* InNewState)
+void FTestNPCReplicator::OnStateChanged(const google::protobuf::Message* InNewState)
 {
 	if (!TargetObject.IsValid())
 	{
 		return;
 	}
 	
-	auto NewState = static_cast<const tpspb::TestNPCControllerState*>(InNewState);
+	auto NewState = static_cast<const tpspb::TestNPCState*>(InNewState);
 	FullState->MergeFrom(*NewState);
 	bStateChanged = false;
 
