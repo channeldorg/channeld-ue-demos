@@ -34,6 +34,15 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 			return State;
 		}
 	}
+	else if (TargetClass == APawn::StaticClass())
+	{
+		auto States = TestRepChannelData->mutable_pawnstates();
+		if (States->contains(NetGUID))
+		{
+			bIsRemoved = false;
+			return &States->at(NetGUID);
+		}
+	}
 	else if (TargetClass == ACharacter::StaticClass())
 	{
 		auto States = TestRepChannelData->mutable_characterstates();
@@ -94,9 +103,28 @@ const google::protobuf::Message* UTestRepComponent::GetStateFromChannelData(goog
 		bIsRemoved = false;
 		return TestRepChannelData->mutable_gamestate();
 	}
+	else if (TargetClass->GetFName() == FName("BP_RepGameState_C"))
+	{
+		bIsRemoved = false;
+		return TestRepChannelData->mutable_testgamestate();
+	}
 	else if (TargetClass->GetFName() == FName("BP_TestRepPlayerController_C"))
 	{
-		return nullptr;
+		auto States = TestRepChannelData->mutable_testrepplayercontrollerstates();
+		if (States->contains(NetGUID))
+		{
+			bIsRemoved = false;
+			return &States->at(NetGUID);
+		}
+	}
+	else if (TargetClass->GetFName() == FName("BP_TestNPC_C"))
+	{
+		auto States = TestRepChannelData->mutable_testnpcstates();
+		if (States->contains(NetGUID))
+		{
+			bIsRemoved = false;
+			return &States->at(NetGUID);
+		}
 	}
 	else
 	{
@@ -116,7 +144,15 @@ void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* S
 		auto States = TestRepChannelData->mutable_actorstates();
 		(*States)[NetGUID] = *ActorState;
 	}
-	else if (TargetClass == ACharacter::StaticClass())
+	else if (TargetClass == APawn::StaticClass())
+	{
+		auto PawnState = static_cast<const unrealpb::PawnState*>(State);
+		if (PawnState)
+		{
+			auto States = TestRepChannelData->mutable_pawnstates();
+			(*States)[NetGUID] = *PawnState;
+		}
+	}	else if (TargetClass == ACharacter::StaticClass())
 	{
 		auto CharacterState = static_cast<const unrealpb::CharacterState*>(State);
 		if (CharacterState)
@@ -175,8 +211,31 @@ void UTestRepComponent::SetStateToChannelData(const google::protobuf::Message* S
 			TestRepChannelData->mutable_gamestate()->MergeFrom(*GameState);
 		}
 	}
+	else if (TargetClass->GetFName() == FName("BP_RepGameState_C"))
+	{
+		auto TestGameState = static_cast<const tpspb::TestRepGameState*>(State);
+		if (TestGameState)
+		{
+			TestRepChannelData->mutable_testgamestate()->MergeFrom(*TestGameState);
+		}
+	}
 	else if (TargetClass->GetFName() == FName("BP_TestRepPlayerController_C"))
 	{
+		auto TestRepPlayerControllerState = static_cast<const tpspb::TestRepPlayerControllerState*>(State);
+		if (TestRepPlayerControllerState)
+		{
+			auto States = TestRepChannelData->mutable_testrepplayercontrollerstates();
+			(*States)[NetGUID] = *TestRepPlayerControllerState;
+		}
+	}
+	else if (TargetClass->GetFName() == FName("BP_TestNPC_C"))
+	{
+		auto TestNPCState = static_cast<const tpspb::TestNPCState*>(State);
+		if (TestNPCState)
+		{
+			auto States = TestRepChannelData->mutable_testnpcstates();
+			(*States)[NetGUID] = *TestNPCState;
+		}
 	}
 	else
 	{

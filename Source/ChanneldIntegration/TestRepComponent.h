@@ -10,7 +10,7 @@ DECLARE_LOG_CATEGORY_CLASS(LogChanneldTest, Log, All);
 /**
  * 
  */
-UCLASS(BlueprintType, meta = (DisplayName = "Test Replication", BlueprintSpawnableComponent))
+UCLASS(BlueprintType, meta = (DisplayName = "Channeld Test Replication Component", BlueprintSpawnableComponent))
 class CHANNELDINTEGRATION_API UTestRepComponent : public UChanneldReplicationComponent
 {
 	GENERATED_BODY()
