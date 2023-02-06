@@ -8,7 +8,7 @@ class CHANNELDINTEGRATION_API FTestRepPlayerControllerReplicator : public FChann
 {
 
 public:
-	FTestRepPlayerControllerReplicator(UObject* InTargetObj, UClass* InTargetClass);
+	FTestRepPlayerControllerReplicator(UObject* InTargetObj);
 	virtual ~FTestRepPlayerControllerReplicator() override;
 
 	//~Begin FChanneldReplicatorBase Interface
