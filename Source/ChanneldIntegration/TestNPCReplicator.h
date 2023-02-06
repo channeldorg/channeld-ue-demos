@@ -8,7 +8,7 @@ class CHANNELDINTEGRATION_API FTestNPCReplicator : public FChanneldReplicatorBas
 {
 
 public:
-	FTestNPCReplicator(UObject* InTargetObj, UClass* InTargetClass);
+	FTestNPCReplicator(UObject* InTargetObj, const FString& BlueprintPath);
 	virtual ~FTestNPCReplicator() override;
 
 	//~Begin FChanneldReplicatorBase Interface

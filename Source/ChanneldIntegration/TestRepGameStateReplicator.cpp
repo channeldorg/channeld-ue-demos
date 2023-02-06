@@ -3,22 +3,22 @@
 #include "tps.pb.h"
 #include "Net/UnrealNetwork.h"
 
-FTestRepGameStateReplicator::FTestRepGameStateReplicator(UObject* InTargetObj, UClass* InTargetClass)
-	: FChanneldReplicatorBase_BP(InTargetObj, InTargetClass)
+FTestRepGameStateReplicator::FTestRepGameStateReplicator(UObject* InTargetObj, const FString& BlueprintPath)
+	: FChanneldReplicatorBase_BP(InTargetObj, BlueprintPath)
 {
 	TArray<FLifetimeProperty> RepProps;
-	DisableAllReplicatedPropertiesOfClass(InTargetObj->GetClass(), InTargetClass, EFieldIteratorFlags::ExcludeSuper, RepProps);
+	DisableAllReplicatedPropertiesOfClass(InTargetObj->GetClass(), GetTargetClass(), EFieldIteratorFlags::ExcludeSuper, RepProps);
 
 	FullState = new tpspb::TestRepGameState;
 	DeltaState = new tpspb::TestRepGameState;
 
 	// Prepare Reflection pointers
 	{
-		auto Property = CastFieldChecked<const FIntProperty>(InTargetClass->FindPropertyByName(FName("Jumps")));
+		auto Property = CastFieldChecked<const FIntProperty>(GetTargetClass()->FindPropertyByName(FName("Jumps")));
 		JumpsPtr = Property->ContainerPtrToValuePtr<int32>(InTargetObj);
 		check(JumpsPtr);
 	}
-	OnRep_JumpsFunc = InTargetClass->FindFunctionByName(FName("OnRep_Jumps"));
+	OnRep_JumpsFunc = GetTargetClass()->FindFunctionByName(FName("OnRep_Jumps"));
 	check(OnRep_JumpsFunc);
 
 }
@@ -89,7 +89,7 @@ void FTestRepGameStateReplicator::OnStateChanged(const google::protobuf::Message
 	}
 }
 
-TSharedPtr<google::protobuf::Message> FTestRepGameStateReplicator::SerializeFunctionParams(UFunction* Func, void* Params, bool& bSuccess)
+TSharedPtr<google::protobuf::Message> FTestRepGameStateReplicator::SerializeFunctionParams(UFunction* Func, void* Params, FOutParmRec* OutParams, bool& bSuccess)
 {
 	bSuccess = true;
 	if (Func->GetFName() == FName("AddJumps"))

@@ -8,7 +8,7 @@ class CHANNELDINTEGRATION_API FTestRepPlayerControllerReplicator : public FChann
 {
 
 public:
-	FTestRepPlayerControllerReplicator(UObject* InTargetObj);
+	FTestRepPlayerControllerReplicator(UObject* InTargetOb, const FString& BlueprintPath);
 	virtual ~FTestRepPlayerControllerReplicator() override;
 
 	//~Begin FChanneldReplicatorBase Interface
@@ -18,7 +18,7 @@ public:
 	virtual void OnStateChanged(const google::protobuf::Message* InNewState) override;
 	//~End FChanneldReplicatorBase Interface
 
-	virtual TSharedPtr<google::protobuf::Message> SerializeFunctionParams(UFunction* Func, void* Params, bool& bSuccess) override;
+	virtual TSharedPtr<google::protobuf::Message> SerializeFunctionParams(UFunction* Func, void* Params, FOutParmRec* OutParams, bool& bSuccess) override;
 	virtual TSharedPtr<void> DeserializeFunctionParams(UFunction* Func, const std::string& ParamsPayload, bool& bSuccess, bool& bDeferredRPC) override;
 
 private:

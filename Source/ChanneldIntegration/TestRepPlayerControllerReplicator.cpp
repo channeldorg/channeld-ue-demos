@@ -2,18 +2,18 @@
 #include "ChanneldUtils.h"
 #include "Net/UnrealNetwork.h"
 
-FTestRepPlayerControllerReplicator::FTestRepPlayerControllerReplicator(UObject* InTargetObj)
-	: FChanneldReplicatorBase_BP(InTargetObj)
+FTestRepPlayerControllerReplicator::FTestRepPlayerControllerReplicator(UObject* InTargetObj, const FString& BlueprintPath)
+	: FChanneldReplicatorBase_BP(InTargetObj, BlueprintPath)
 {
 	TArray<FLifetimeProperty> RepProps;
-	DisableAllReplicatedPropertiesOfClass(InTargetObj->GetClass(), InTargetClass, EFieldIteratorFlags::ExcludeSuper, RepProps);
+	DisableAllReplicatedPropertiesOfClass(InTargetObj->GetClass(), GetTargetClass(), EFieldIteratorFlags::ExcludeSuper, RepProps);
 
 	FullState = new tpspb::TestRepPlayerControllerState;
 	DeltaState = new tpspb::TestRepPlayerControllerState;
 	
 	// Prepare Reflection pointers
 	{
-		auto Property = CastFieldChecked<const FObjectProperty>(InTargetClass->FindPropertyByName(FName("TestRepActor")));
+		auto Property = CastFieldChecked<const FObjectProperty>(GetTargetClass()->FindPropertyByName(FName("TestRepActor")));
 		TestRepActorPtr = Property->ContainerPtrToValuePtr<AActor*>(InTargetObj);
 		check(TestRepActorPtr);
 	}
@@ -72,7 +72,7 @@ void FTestRepPlayerControllerReplicator::OnStateChanged(const google::protobuf::
 	}
 }
 
-TSharedPtr<google::protobuf::Message> FTestRepPlayerControllerReplicator::SerializeFunctionParams(UFunction* Func, void* Params, bool& bSuccess)
+TSharedPtr<google::protobuf::Message> FTestRepPlayerControllerReplicator::SerializeFunctionParams(UFunction* Func, void* Params, FOutParmRec* OutParams, bool& bSuccess)
 {
 	bSuccess = true;
 	if (Func->GetFName() == FName("ServerSpawnTestRepActor"))

@@ -2,23 +2,23 @@
 #include "ChanneldUtils.h"
 #include "Net/UnrealNetwork.h"
 
-FTestNPCReplicator::FTestNPCReplicator(UObject* InTargetObj, UClass* InTargetClass)
-: FChanneldReplicatorBase_BP(InTargetObj, InTargetClass)
+FTestNPCReplicator::FTestNPCReplicator(UObject* InTargetObj, const FString& BlueprintPath)
+: FChanneldReplicatorBase_BP(InTargetObj, BlueprintPath)
 {
 	TArray<FLifetimeProperty> RepProps;
-	DisableAllReplicatedPropertiesOfClass(InTargetObj->GetClass(), InTargetClass, EFieldIteratorFlags::ExcludeSuper, RepProps);
+	DisableAllReplicatedPropertiesOfClass(InTargetObj->GetClass(), GetTargetClass(), EFieldIteratorFlags::ExcludeSuper, RepProps);
 
 	FullState = new tpspb::TestNPCState;
 	DeltaState = new tpspb::TestNPCState;
 	
 	// Prepare Reflection pointers
 	{
-		auto Property = CastFieldChecked<const FBoolProperty>(InTargetClass->FindPropertyByName(FName("bMoving")));
+		auto Property = CastFieldChecked<const FBoolProperty>(GetTargetClass()->FindPropertyByName(FName("bMoving")));
 		bMovingPtr = Property->ContainerPtrToValuePtr<bool>(InTargetObj);
 		check(bMovingPtr);
 	}
 	{
-		auto Property = CastFieldChecked<const FStructProperty>(InTargetClass->FindPropertyByName(FName("GoalLocation")));
+		auto Property = CastFieldChecked<const FStructProperty>(GetTargetClass()->FindPropertyByName(FName("GoalLocation")));
 		GoalLocationPtr = Property->ContainerPtrToValuePtr<FVector>(InTargetObj);
 		check(GoalLocationPtr);
 	}
