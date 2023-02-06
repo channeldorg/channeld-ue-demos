@@ -32,7 +32,7 @@ FTestRepGameStateReplicator::~FTestRepGameStateReplicator()
 uint32 FTestRepGameStateReplicator::GetNetGUID()
 {
 	// GameState doesn't have a valid NetGUID, so let's use a constant value.
-	return GameStateNetId;
+	return Channeld::GameStateNetId;
 }
 
 google::protobuf::Message* FTestRepGameStateReplicator::GetDeltaState()
