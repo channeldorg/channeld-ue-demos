@@ -2,8 +2,8 @@
 #include "ChanneldUtils.h"
 #include "Net/UnrealNetwork.h"
 
-FTestRepPlayerControllerReplicator::FTestRepPlayerControllerReplicator(UObject* InTargetObj, UClass* InTargetClass)
-	: FChanneldReplicatorBase_BP(InTargetObj, InTargetClass)
+FTestRepPlayerControllerReplicator::FTestRepPlayerControllerReplicator(UObject* InTargetObj)
+	: FChanneldReplicatorBase_BP(InTargetObj)
 {
 	TArray<FLifetimeProperty> RepProps;
 	DisableAllReplicatedPropertiesOfClass(InTargetObj->GetClass(), InTargetClass, EFieldIteratorFlags::ExcludeSuper, RepProps);
