@@ -5,7 +5,7 @@
 
 #include "tps.pb.h"
 
-TSet<uint32> UTpsSpatialChannelDataView::GetNetGUIDsFromChannelData(const google::protobuf::Message* Message)
+TSet<uint32> UTpsSpatialChannelDataView::GetRelevantNetGUIDsFromChannelData(const google::protobuf::Message* Message)
 {
 	auto ChannelData = static_cast<const tpspb::TestRepChannelData*>(Message);
 	TSet<uint32> NetGUIDs;

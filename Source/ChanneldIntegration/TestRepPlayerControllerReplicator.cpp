@@ -91,7 +91,11 @@ TSharedPtr<google::protobuf::Message> FTestRepPlayerControllerReplicator::Serial
 	{
 		return nullptr;
 	}
-
+	else if (Func->GetFName() == FName("ServerTestMulticast"))
+	{
+		return nullptr;
+	}
+	
 	bSuccess = false;
 	return nullptr;
 }
@@ -115,7 +119,11 @@ TSharedPtr<void> FTestRepPlayerControllerReplicator::DeserializeFunctionParams(U
 	{
 		return nullptr;
 	}
-
+	else if (Func->GetFName() == FName("ServerTestMulticast"))
+	{
+		return nullptr;
+	}
+	
 	bSuccess = false;
 	return nullptr;
 }
