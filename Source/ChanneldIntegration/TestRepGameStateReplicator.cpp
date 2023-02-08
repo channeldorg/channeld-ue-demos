@@ -96,6 +96,13 @@ TSharedPtr<google::protobuf::Message> FTestRepGameStateReplicator::SerializeFunc
 	{
 		return nullptr;
 	}
+	else if (Func->GetFName() == FName("MulticastNumber"))
+	{
+		auto TypedParams = static_cast<MulticastNumberParams*>(Params);
+		auto SerializedParams = MakeShared<tpspb::TestRepGameState_MulticastNumber_Params>();
+		SerializedParams->set_num(TypedParams->Num);
+		return SerializedParams;
+	}
 
 	bSuccess = false;
 	return nullptr;
@@ -107,6 +114,18 @@ TSharedPtr<void> FTestRepGameStateReplicator::DeserializeFunctionParams(UFunctio
 	if (Func->GetFName() == FName("AddJumps"))
 	{
 		return nullptr;
+	}
+	else if (Func->GetFName() == FName("MulticastNumber"))
+	{
+		tpspb::TestRepGameState_MulticastNumber_Params Msg;
+		if (!Msg.ParseFromString(ParamsPayload))
+		{
+			bSuccess = false;
+			return nullptr;
+		}
+		auto Params = MakeShared<MulticastNumberParams>();
+		Params->Num = Msg.num();
+		return Params;
 	}
 
 	bSuccess = false;

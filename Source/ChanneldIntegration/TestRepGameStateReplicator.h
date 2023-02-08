@@ -29,4 +29,9 @@ protected:
 private:
 	int* JumpsPtr;
 	UFunction* OnRep_JumpsFunc;
+
+	struct MulticastNumberParams
+	{
+		int32 Num;
+	};
 };

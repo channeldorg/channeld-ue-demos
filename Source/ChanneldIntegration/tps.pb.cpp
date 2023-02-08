@@ -203,19 +203,20 @@ struct TestRepChannelDataDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TestRepChannelDataDefaultTypeInternal _TestRepChannelData_default_instance_;
-PROTOBUF_CONSTEXPR GlobalChannelData::GlobalChannelData(
+PROTOBUF_CONSTEXPR TestRepGameState_MulticastNumber_Params::TestRepGameState_MulticastNumber_Params(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.gamestate_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct GlobalChannelDataDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR GlobalChannelDataDefaultTypeInternal()
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.num_)*/0} {}
+struct TestRepGameState_MulticastNumber_ParamsDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR TestRepGameState_MulticastNumber_ParamsDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~GlobalChannelDataDefaultTypeInternal() {}
+  ~TestRepGameState_MulticastNumber_ParamsDefaultTypeInternal() {}
   union {
-    GlobalChannelData _instance;
+    TestRepGameState_MulticastNumber_Params _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 GlobalChannelDataDefaultTypeInternal _GlobalChannelData_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TestRepGameState_MulticastNumber_ParamsDefaultTypeInternal _TestRepGameState_MulticastNumber_Params_default_instance_;
 }  // namespace tpspb
 static ::_pb::Metadata file_level_metadata_tps_2eproto[15];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_tps_2eproto = nullptr;
@@ -365,13 +366,14 @@ const uint32_t TableStruct_tps_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(prot
   PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData, _impl_.testgamestate_),
   PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData, _impl_.testrepplayercontrollerstates_),
   PROTOBUF_FIELD_OFFSET(::tpspb::TestRepChannelData, _impl_.testnpcstates_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::tpspb::GlobalChannelData, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepGameState_MulticastNumber_Params, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepGameState_MulticastNumber_Params, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::tpspb::GlobalChannelData, _impl_.gamestate_),
+  PROTOBUF_FIELD_OFFSET(::tpspb::TestRepGameState_MulticastNumber_Params, _impl_.num_),
+  0,
 };
 static const ::_pbi::MigrationSchema schemas_tps_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 7, -1, sizeof(::tpspb::TestRepGameState)},
@@ -388,7 +390,7 @@ static const ::_pbi::MigrationSchema schemas_tps_2eproto[] PROTOBUF_SECTION_VARI
   { 105, 113, -1, sizeof(::tpspb::TestRepChannelData_TestRepPlayerControllerStatesEntry_DoNotUse)},
   { 115, 123, -1, sizeof(::tpspb::TestRepChannelData_TestNPCStatesEntry_DoNotUse)},
   { 125, -1, -1, sizeof(::tpspb::TestRepChannelData)},
-  { 143, -1, -1, sizeof(::tpspb::GlobalChannelData)},
+  { 143, 150, -1, sizeof(::tpspb::TestRepGameState_MulticastNumber_Params)},
 };
 
 static const ::_pb::Message* const file_default_instances_tps_2eproto[] = {
@@ -406,7 +408,7 @@ static const ::_pb::Message* const file_default_instances_tps_2eproto[] = {
   &::tpspb::_TestRepChannelData_TestRepPlayerControllerStatesEntry_DoNotUse_default_instance_._instance,
   &::tpspb::_TestRepChannelData_TestNPCStatesEntry_DoNotUse_default_instance_._instance,
   &::tpspb::_TestRepChannelData_default_instance_._instance,
-  &::tpspb::_GlobalChannelData_default_instance_._instance,
+  &::tpspb::_TestRepGameState_MulticastNumber_Params_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_tps_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -460,17 +462,17 @@ const char descriptor_table_protodef_tps_2eproto[] PROTOBUF_SECTION_VARIABLE(pro
   "\001(\r\0222\n\005value\030\002 \001(\0132#.tpspb.TestRepPlayer"
   "ControllerState:\0028\001\032I\n\022TestNPCStatesEntr"
   "y\022\013\n\003key\030\001 \001(\r\022\"\n\005value\030\002 \001(\0132\023.tpspb.Te"
-  "stNPCState:\0028\001\"\?\n\021GlobalChannelData\022*\n\tg"
-  "ameState\030\001 \001(\0132\027.unrealpb.GameStateBaseB"
-  ">Z<channeld.clewcat.com/channeld/example"
-  "s/channeld-ue-tps/tpspbb\006proto3"
+  "stNPCState:\0028\001\"C\n\'TestRepGameState_Multi"
+  "castNumber_Params\022\020\n\003num\030\001 \001(\005H\000\210\001\001B\006\n\004_"
+  "numB>Z<channeld.clewcat.com/channeld/exa"
+  "mples/channeld-ue-tps/tpspbb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_tps_2eproto_deps[1] = {
   &::descriptor_table_unreal_5fcommon_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_tps_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_tps_2eproto = {
-    false, false, 2151, descriptor_table_protodef_tps_2eproto,
+    false, false, 2155, descriptor_table_protodef_tps_2eproto,
     "tps.proto",
     &descriptor_table_tps_2eproto_once, descriptor_table_tps_2eproto_deps, 1, 15,
     schemas_tps_2eproto, file_default_instances_tps_2eproto, TableStruct_tps_2eproto::offsets,
@@ -2022,53 +2024,46 @@ void TestRepChannelData::InternalSwap(TestRepChannelData* other) {
 
 // ===================================================================
 
-class GlobalChannelData::_Internal {
+class TestRepGameState_MulticastNumber_Params::_Internal {
  public:
-  static const ::unrealpb::GameStateBase& gamestate(const GlobalChannelData* msg);
+  using HasBits = decltype(std::declval<TestRepGameState_MulticastNumber_Params>()._impl_._has_bits_);
+  static void set_has_num(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
 };
 
-const ::unrealpb::GameStateBase&
-GlobalChannelData::_Internal::gamestate(const GlobalChannelData* msg) {
-  return *msg->_impl_.gamestate_;
-}
-void GlobalChannelData::clear_gamestate() {
-  if (GetArenaForAllocation() == nullptr && _impl_.gamestate_ != nullptr) {
-    delete _impl_.gamestate_;
-  }
-  _impl_.gamestate_ = nullptr;
-}
-GlobalChannelData::GlobalChannelData(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+TestRepGameState_MulticastNumber_Params::TestRepGameState_MulticastNumber_Params(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:tpspb.GlobalChannelData)
+  // @@protoc_insertion_point(arena_constructor:tpspb.TestRepGameState_MulticastNumber_Params)
 }
-GlobalChannelData::GlobalChannelData(const GlobalChannelData& from)
+TestRepGameState_MulticastNumber_Params::TestRepGameState_MulticastNumber_Params(const TestRepGameState_MulticastNumber_Params& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  GlobalChannelData* const _this = this; (void)_this;
+  TestRepGameState_MulticastNumber_Params* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.gamestate_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.num_){}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_gamestate()) {
-    _this->_impl_.gamestate_ = new ::unrealpb::GameStateBase(*from._impl_.gamestate_);
-  }
-  // @@protoc_insertion_point(copy_constructor:tpspb.GlobalChannelData)
+  _this->_impl_.num_ = from._impl_.num_;
+  // @@protoc_insertion_point(copy_constructor:tpspb.TestRepGameState_MulticastNumber_Params)
 }
 
-inline void GlobalChannelData::SharedCtor(
+inline void TestRepGameState_MulticastNumber_Params::SharedCtor(
     ::_pb::Arena* arena, bool is_message_owned) {
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.gamestate_){nullptr}
+      decltype(_impl_._has_bits_){}
     , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.num_){0}
   };
 }
 
-GlobalChannelData::~GlobalChannelData() {
-  // @@protoc_insertion_point(destructor:tpspb.GlobalChannelData)
+TestRepGameState_MulticastNumber_Params::~TestRepGameState_MulticastNumber_Params() {
+  // @@protoc_insertion_point(destructor:tpspb.TestRepGameState_MulticastNumber_Params)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -2076,38 +2071,37 @@ GlobalChannelData::~GlobalChannelData() {
   SharedDtor();
 }
 
-inline void GlobalChannelData::SharedDtor() {
+inline void TestRepGameState_MulticastNumber_Params::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.gamestate_;
 }
 
-void GlobalChannelData::SetCachedSize(int size) const {
+void TestRepGameState_MulticastNumber_Params::SetCachedSize(int size) const {
   _impl_._cached_size_.Set(size);
 }
 
-void GlobalChannelData::Clear() {
-// @@protoc_insertion_point(message_clear_start:tpspb.GlobalChannelData)
+void TestRepGameState_MulticastNumber_Params::Clear() {
+// @@protoc_insertion_point(message_clear_start:tpspb.TestRepGameState_MulticastNumber_Params)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.gamestate_ != nullptr) {
-    delete _impl_.gamestate_;
-  }
-  _impl_.gamestate_ = nullptr;
+  _impl_.num_ = 0;
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
-const char* GlobalChannelData::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+const char* TestRepGameState_MulticastNumber_Params::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // .unrealpb.GameStateBase gameState = 1;
+      // optional int32 num = 1;
       case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr = ctx->ParseMessage(_internal_mutable_gamestate(), ptr);
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          _Internal::set_has_num(&has_bits);
+          _impl_.num_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2128,6 +2122,7 @@ const char* GlobalChannelData::_InternalParse(const char* ptr, ::_pbi::ParseCont
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _impl_._has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -2135,85 +2130,83 @@ failure:
 #undef CHK_
 }
 
-uint8_t* GlobalChannelData::_InternalSerialize(
+uint8_t* TestRepGameState_MulticastNumber_Params::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:tpspb.GlobalChannelData)
+  // @@protoc_insertion_point(serialize_to_array_start:tpspb.TestRepGameState_MulticastNumber_Params)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // .unrealpb.GameStateBase gameState = 1;
-  if (this->_internal_has_gamestate()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(1, _Internal::gamestate(this),
-        _Internal::gamestate(this).GetCachedSize(), target, stream);
+  // optional int32 num = 1;
+  if (_internal_has_num()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_num(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:tpspb.GlobalChannelData)
+  // @@protoc_insertion_point(serialize_to_array_end:tpspb.TestRepGameState_MulticastNumber_Params)
   return target;
 }
 
-size_t GlobalChannelData::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:tpspb.GlobalChannelData)
+size_t TestRepGameState_MulticastNumber_Params::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tpspb.TestRepGameState_MulticastNumber_Params)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // .unrealpb.GameStateBase gameState = 1;
-  if (this->_internal_has_gamestate()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.gamestate_);
+  // optional int32 num = 1;
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_num());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData GlobalChannelData::_class_data_ = {
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData TestRepGameState_MulticastNumber_Params::_class_data_ = {
     ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    GlobalChannelData::MergeImpl
+    TestRepGameState_MulticastNumber_Params::MergeImpl
 };
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GlobalChannelData::GetClassData() const { return &_class_data_; }
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*TestRepGameState_MulticastNumber_Params::GetClassData() const { return &_class_data_; }
 
 
-void GlobalChannelData::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<GlobalChannelData*>(&to_msg);
-  auto& from = static_cast<const GlobalChannelData&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:tpspb.GlobalChannelData)
+void TestRepGameState_MulticastNumber_Params::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<TestRepGameState_MulticastNumber_Params*>(&to_msg);
+  auto& from = static_cast<const TestRepGameState_MulticastNumber_Params&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:tpspb.TestRepGameState_MulticastNumber_Params)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  if (from._internal_has_gamestate()) {
-    _this->_internal_mutable_gamestate()->::unrealpb::GameStateBase::MergeFrom(
-        from._internal_gamestate());
+  if (from._internal_has_num()) {
+    _this->_internal_set_num(from._internal_num());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
-void GlobalChannelData::CopyFrom(const GlobalChannelData& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:tpspb.GlobalChannelData)
+void TestRepGameState_MulticastNumber_Params::CopyFrom(const TestRepGameState_MulticastNumber_Params& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tpspb.TestRepGameState_MulticastNumber_Params)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
-bool GlobalChannelData::IsInitialized() const {
+bool TestRepGameState_MulticastNumber_Params::IsInitialized() const {
   return true;
 }
 
-void GlobalChannelData::InternalSwap(GlobalChannelData* other) {
+void TestRepGameState_MulticastNumber_Params::InternalSwap(TestRepGameState_MulticastNumber_Params* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_.gamestate_, other->_impl_.gamestate_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_impl_.num_, other->_impl_.num_);
 }
 
-::PROTOBUF_NAMESPACE_ID::Metadata GlobalChannelData::GetMetadata() const {
+::PROTOBUF_NAMESPACE_ID::Metadata TestRepGameState_MulticastNumber_Params::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_tps_2eproto_getter, &descriptor_table_tps_2eproto_once,
       file_level_metadata_tps_2eproto[14]);
@@ -2278,9 +2271,9 @@ template<> PROTOBUF_NOINLINE ::tpspb::TestRepChannelData*
 Arena::CreateMaybeMessage< ::tpspb::TestRepChannelData >(Arena* arena) {
   return Arena::CreateMessageInternal< ::tpspb::TestRepChannelData >(arena);
 }
-template<> PROTOBUF_NOINLINE ::tpspb::GlobalChannelData*
-Arena::CreateMaybeMessage< ::tpspb::GlobalChannelData >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::tpspb::GlobalChannelData >(arena);
+template<> PROTOBUF_NOINLINE ::tpspb::TestRepGameState_MulticastNumber_Params*
+Arena::CreateMaybeMessage< ::tpspb::TestRepGameState_MulticastNumber_Params >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::tpspb::TestRepGameState_MulticastNumber_Params >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 
