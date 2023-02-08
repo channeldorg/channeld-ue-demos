@@ -10,5 +10,5 @@ class CHANNELDINTEGRATION_API UTpsSpatialChannelDataView : public USpatialChanne
 	GENERATED_BODY()
 
 protected:
-	virtual TSet<uint32> GetNetGUIDsFromChannelData(const google::protobuf::Message* Message) override;
+	virtual TSet<uint32> GetRelevantNetGUIDsFromChannelData(const google::protobuf::Message* Message) override;
 };
