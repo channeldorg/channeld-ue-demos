@@ -75,3 +75,6 @@ DerivedDataCache/*
 *.ipch
 /RunServers.bat
 /Packages
+
+# Protoc
+!/Plugins/ChanneldUE/Source/ChanneldProtobuf/ThirdParty/bin/protoc.exe
