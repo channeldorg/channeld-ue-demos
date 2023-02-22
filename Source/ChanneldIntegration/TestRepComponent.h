@@ -17,9 +17,18 @@ class CHANNELDINTEGRATION_API UTestRepComponent : public UChanneldReplicationCom
 
 public:
 	UTestRepComponent(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get());
-	
-	// virtual google::protobuf::Message* GetChannelDataTemplate() const override;
 
+#if WITH_DEV_AUTOMATION_TESTS
+	const google::protobuf::Message* TestGetStateFromChannelData(google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID, bool& bIsRemoved)
+	{
+		return GetStateFromChannelData(ChannelData, TargetClass, NetGUID, bIsRemoved);
+	}
+	void TestSetStateToChannelData(const google::protobuf::Message* State, google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID)
+	{
+		SetStateToChannelData(State, ChannelData, TargetClass, NetGUID);
+	}
+#endif
+	
 protected:
 	virtual const google::protobuf::Message* GetStateFromChannelData(google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID, bool& bRemoved) override;
 	virtual void SetStateToChannelData(const google::protobuf::Message* State, google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID) override;
