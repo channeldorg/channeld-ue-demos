@@ -10,10 +10,13 @@
 
 void FChanneldIntegrationModule::StartupModule()
 {
-	REGISTER_REPLICATOR_BP(FTestRepPlayerControllerReplicator, "/Game/Blueprints/BP_TestRepPlayerController.BP_TestRepPlayerController_C");
-	REGISTER_REPLICATOR_BP(FTestRepGameStateReplicator, "/Game/Blueprints/BP_RepGameState.BP_RepGameState_C");
+	/* We need to move the registration of the replicators in the game module to an engine subsystem, as the registration
+	 * should happen after the FChanneldUEModule::StartupModule(), so the field indices can match the proto.
+	 * 
+	REGISTER_REPLICATOR_BP_SINGLETON(FTestRepGameStateReplicator, "/Game/Blueprints/BP_RepGameState.BP_RepGameState_C");
 	REGISTER_REPLICATOR_BP(FTestRepPlayerControllerReplicator, "/Game/Blueprints/BP_TestRepPlayerController.BP_TestRepPlayerController_C");
 	REGISTER_REPLICATOR_BP(FTestNPCReplicator, "/Game/AI/BP_TestNPC.BP_TestNPC_C");
+	*/
 }
 
 void FChanneldIntegrationModule::ShutdownModule()
