@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "TpsChannelDataProcessor.h"
 #include "Modules/ModuleManager.h"
 
 class FChanneldIntegrationModule : public IModuleInterface
@@ -16,5 +17,7 @@ public:
 	{
 		return true;
 	}
+
+	FTpsChannelDataProcessor* TpsChannelDataProcessor;
 };
 
