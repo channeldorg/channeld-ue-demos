@@ -1,11 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "CoreTypes.h"
-#include "ChanneldIntegration/TestRepComponent.h"
 #include "ChanneldIntegration/tps.pb.h"
 #include "Containers/UnrealString.h"
 #include "google/protobuf/util/json_util.h"
 #include "Misc/AutomationTest.h"
+
+
+DECLARE_LOG_CATEGORY_CLASS(LogChanneldTest, Log, All);
 
 #if WITH_DEV_AUTOMATION_TESTS
 

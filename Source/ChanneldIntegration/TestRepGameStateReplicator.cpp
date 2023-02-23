@@ -1,5 +1,6 @@
 #include "TestRepGameStateReplicator.h"
 
+#include "ChanneldTypes.h"
 #include "tps.pb.h"
 #include "Net/UnrealNetwork.h"
 

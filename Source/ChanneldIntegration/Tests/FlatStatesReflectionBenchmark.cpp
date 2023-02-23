@@ -1,13 +1,15 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "CoreTypes.h"
+#include "FFlatStatesChannelDataProcessor.h"
 #include "ChanneldIntegration/tps.pb.h"
 #include "Containers/UnrealString.h"
 #include "google/protobuf/util/json_util.h"
 #include "Misc/AutomationTest.h"
-#include "Replication/FlatStatesRepComponent.h"
-#include "ChanneldIntegration/TestRepComponent.h"
+#include "ChanneldIntegration/TpsChannelDataProcessor.h"
 
+
+DECLARE_LOG_CATEGORY_CLASS(LogChanneldTest, Log, All);
 
 // #ifndef BENCHMARK
 	#define BENCHMARK(TIMES, EXEC, NAME) \
@@ -27,7 +29,7 @@
 
 #if WITH_DEV_AUTOMATION_TESTS
 
-IMPLEMENT_SIMPLE_AUTOMATION_TEST(FFlatStatesRepComponentBenchmark, "Channeld.FlatStatesRepComponentBenchmark", EAutomationTestFlags::ApplicationContextMask | EAutomationTestFlags::PerfFilter)
+IMPLEMENT_SIMPLE_AUTOMATION_TEST(FFlatStatesReflectionBenchmark, "Channeld.FlatStatesReflectionBenchmark", EAutomationTestFlags::ApplicationContextMask | EAutomationTestFlags::PerfFilter)
 
 namespace
 {
@@ -35,7 +37,7 @@ namespace
 	const char* SmallChannelDataJson = R"({"actorStates":{"1048598":{"replicatedMovement":{"linearVelocity":{"x":599.873718,"y":-11.7270174,"z":564.423462},"location":{"x":1484.74963,"y":897.948486,"z":139.410782},"rotation":{"y":-3.56381297}}}},"characterStates":{"1048598":{"basedMovement":{"movementBase":{"owner":{"netGUID":0}},"bServerHasBaseComponent":false},"movementMode":3}}})";
 }
 
-bool FFlatStatesRepComponentBenchmark::RunTest(const FString& Parameters)
+bool FFlatStatesReflectionBenchmark::RunTest(const FString& Parameters)
 {
 	google::protobuf::Arena* Arena = new google::protobuf::Arena;
 	auto FullChannelData = Arena->CreateMessage<tpspb::TestRepChannelData>(Arena);
@@ -44,26 +46,26 @@ bool FFlatStatesRepComponentBenchmark::RunTest(const FString& Parameters)
 	TestTrue(TEXT("SrcData should have CharacterStates"), FullChannelData->characterstates_size() > 0);
 	TestTrue(TEXT("SrcData should have ActorStates[1048580]"), FullChannelData->actorstates().contains(1048580));
 
-	UFlatStatesRepComponent* FlatStatesRepComponent = NewObject<UFlatStatesRepComponent>();
+	auto FlatProcessor = MakeUnique<FFlatStatesChannelDataProcessor>();
 	bool bIsRemoved = false;
-	auto ActorState = FlatStatesRepComponent->TestGetStateFromChannelData(FullChannelData, AActor::StaticClass(), 1048580, bIsRemoved);
+	auto ActorState = FlatProcessor->GetStateFromChannelData(FullChannelData, AActor::StaticClass(), 1048580, bIsRemoved);
 	TestNotNull(TEXT("GetStateFromChannelData failed for actor state 1048580"), ActorState);
 	TestFalse(TEXT("Actor state 1048580 is not removed"), bIsRemoved);
 
-	UTestRepComponent* TestRepComponent = NewObject<UTestRepComponent>();
+	auto TpsProcessor = MakeUnique<FTpsChannelDataProcessor>();
 	
 	constexpr int TIMES = 1000000;
-	BENCHMARK(TIMES, TestRepComponent->TestGetStateFromChannelData(FullChannelData, AActor::StaticClass(), 1048580, bIsRemoved), UTestRepComponent::GetStateFromChannelData(Full));
-	BENCHMARK(TIMES, TestRepComponent->TestSetStateToChannelData(ActorState, FullChannelData, AActor::StaticClass(), 1048580), UTestRepComponent::SetStateToChannelData(Full));
-	BENCHMARK(TIMES, FlatStatesRepComponent->TestGetStateFromChannelData(FullChannelData, AActor::StaticClass(), 1048580, bIsRemoved), UFlatStatesRepComponent::GetStateFromChannelData(Full));
-	BENCHMARK(TIMES, FlatStatesRepComponent->TestSetStateToChannelData(ActorState, FullChannelData, AActor::StaticClass(), 1048580), UFlatStatesRepComponent::SetStateToChannelData(Full));
+	BENCHMARK(TIMES, TpsProcessor->GetStateFromChannelData(FullChannelData, AActor::StaticClass(), 1048580, bIsRemoved), FTpsChannelDataProcessor::GetStateFromChannelData(Full));
+	BENCHMARK(TIMES, TpsProcessor->SetStateToChannelData(ActorState, FullChannelData, AActor::StaticClass(), 1048580), FTpsChannelDataProcessor::SetStateToChannelData(Full));
+	BENCHMARK(TIMES, FlatProcessor->GetStateFromChannelData(FullChannelData, AActor::StaticClass(), 1048580, bIsRemoved), FFlatStatesChannelDataProcessor::GetStateFromChannelData(Full));
+	BENCHMARK(TIMES, FlatProcessor->SetStateToChannelData(ActorState, FullChannelData, AActor::StaticClass(), 1048580), FFlatStatesChannelDataProcessor::SetStateToChannelData(Full));
 
 	auto SmallChannelData = Arena->CreateMessage<tpspb::TestRepChannelData>(Arena);
 	google::protobuf::util::JsonStringToMessage(SmallChannelDataJson, SmallChannelData);
-	BENCHMARK(TIMES, TestRepComponent->TestGetStateFromChannelData(SmallChannelData, AActor::StaticClass(), 1048580, bIsRemoved), UTestRepComponent::GetStateFromChannelData(Small));
-	BENCHMARK(TIMES, TestRepComponent->TestSetStateToChannelData(ActorState, SmallChannelData, AActor::StaticClass(), 1048580), UTestRepComponent::SetStateToChannelData(Small));
-	BENCHMARK(TIMES, FlatStatesRepComponent->TestGetStateFromChannelData(SmallChannelData, AActor::StaticClass(), 1048580, bIsRemoved), UFlatStatesRepComponent::GetStateFromChannelData(Small));
-	BENCHMARK(TIMES, FlatStatesRepComponent->TestSetStateToChannelData(ActorState, SmallChannelData, AActor::StaticClass(), 1048580), UFlatStatesRepComponent::SetStateToChannelData(Small));
+	BENCHMARK(TIMES, TpsProcessor->GetStateFromChannelData(SmallChannelData, AActor::StaticClass(), 1048580, bIsRemoved), FTpsChannelDataProcessor::GetStateFromChannelData(Small));
+	BENCHMARK(TIMES, TpsProcessor->SetStateToChannelData(ActorState, SmallChannelData, AActor::StaticClass(), 1048580), FTpsChannelDataProcessor::SetStateToChannelData(Small));
+	BENCHMARK(TIMES, FlatProcessor->GetStateFromChannelData(SmallChannelData, AActor::StaticClass(), 1048580, bIsRemoved), FFlatStatesChannelDataProcessor::GetStateFromChannelData(Small));
+	BENCHMARK(TIMES, FlatProcessor->SetStateToChannelData(ActorState, SmallChannelData, AActor::StaticClass(), 1048580), FFlatStatesChannelDataProcessor::SetStateToChannelData(Small));
 
 	delete Arena;
 	return true;
@@ -72,15 +74,15 @@ bool FFlatStatesRepComponentBenchmark::RunTest(const FString& Parameters)
 #endif //WITH_DEV_AUTOMATION_TESTS
 
 /*
-Benchmark UTestRepComponent::GetStateFromChannelData(Full): 113 ns/op, 0 B inc
-Benchmark UTestRepComponent::SetStateToChannelData(Full): 206 ns/op, 0 B inc
-Benchmark UFlatStatesRepComponent::GetStateFromChannelData(Full): 2486 ns/op, 0 B inc
-Benchmark UFlatStatesRepComponent::SetStateToChannelData(Full): 1462 ns/op, 157790208 B inc
+Benchmark FTpsChannelDataProcessor::GetStateFromChannelData(Full): 113 ns/op, 0 B inc
+Benchmark FTpsChannelDataProcessor::SetStateToChannelData(Full): 206 ns/op, 0 B inc
+Benchmark FFlatStatesChannelDataProcessor::GetStateFromChannelData(Full): 2486 ns/op, 0 B inc
+Benchmark FFlatStatesChannelDataProcessor::SetStateToChannelData(Full): 1462 ns/op, 157790208 B inc
 
-Benchmark UTestRepComponent::GetStateFromChannelData(Small): 91 ns/op, 0 B inc
-Benchmark UTestRepComponent::SetStateToChannelData(Small): 165 ns/op, 0 B inc
-Benchmark UFlatStatesRepComponent::GetStateFromChannelData(Small): 2582 ns/op, 0 B inc
-Benchmark UFlatStatesRepComponent::SetStateToChannelData(Small): 1593 ns/op, 219631616 B inc
+Benchmark FTpsChannelDataProcessor::GetStateFromChannelData(Small): 91 ns/op, 0 B inc
+Benchmark FTpsChannelDataProcessor::SetStateToChannelData(Small): 165 ns/op, 0 B inc
+Benchmark FFlatStatesChannelDataProcessor::GetStateFromChannelData(Small): 2582 ns/op, 0 B inc
+Benchmark FFlatStatesChannelDataProcessor::SetStateToChannelData(Small): 1593 ns/op, 219631616 B inc
 
 Get: 22-28x slower
 Set: 7-10x slower

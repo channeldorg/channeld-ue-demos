@@ -5,7 +5,6 @@
 // #include "TestRepGameStateReplicator.h"
 // #include "TestRepPlayerControllerReplicator.h"
 // #include "TestNPCReplicator.h"
-#include "TpsChannelDataMerger.h"
 
 //IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, ChanneldIntegration, "ChanneldIntegration" );
 
@@ -19,12 +18,13 @@ void FChanneldIntegrationModule::StartupModule()
 	REGISTER_REPLICATOR_BP(FTestNPCReplicator, "/Game/AI/BP_TestNPC.BP_TestNPC_C");
 	*/
 
-	ChanneldReplication::RegisterChannelDataMerger(TEXT("tpspb.TestRepChannelData"), new FTpsChannelDataMerger());
+	TpsChannelDataProcessor = new FTpsChannelDataProcessor();
+	ChanneldReplication::RegisterChannelDataMerger(TEXT("tpspb.TestRepChannelData"), TpsChannelDataProcessor);
 }
 
 void FChanneldIntegrationModule::ShutdownModule()
 {
-
+	delete TpsChannelDataProcessor;
 }
 
 IMPLEMENT_PRIMARY_GAME_MODULE(FChanneldIntegrationModule, ChanneldIntegration, "ChanneldIntegration");
