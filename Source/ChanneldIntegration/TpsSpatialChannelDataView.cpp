@@ -5,10 +5,10 @@
 
 #include "tps.pb.h"
 
-TSet<uint32> UTpsSpatialChannelDataView::GetRelevantNetGUIDsFromChannelData(const google::protobuf::Message* Message)
+TArray<uint32> UTpsSpatialChannelDataView::GetRelevantNetGUIDsFromChannelData(const google::protobuf::Message* Message)
 {
 	auto ChannelData = static_cast<const tpspb::TestRepChannelData*>(Message);
-	TSet<uint32> NetGUIDs;
+	TArray<uint32> NetGUIDs;
 	for (auto& Pair : ChannelData->actorstates())
 	{
 		/* Instead of using a blacklist, we should use a whitelist as the data in the blacklist may not exist in the ChannelData.
@@ -28,8 +28,12 @@ TSet<uint32> UTpsSpatialChannelDataView::GetRelevantNetGUIDsFromChannelData(cons
 			continue;
 		}
 		*/
-
-		if (ChannelData->pawnstates_size() > 0 && ChannelData->pawnstates().contains(Pair.first))
+		
+		if (Pair.second.has_replicatedmovement())
+		{
+			NetGUIDs.Add(Pair.first);
+		}
+		else if (ChannelData->pawnstates_size() > 0 && ChannelData->pawnstates().contains(Pair.first))
 		{
 			NetGUIDs.Add(Pair.first);
 		}
