@@ -1,3 +1,0 @@
-[submodule "Plugins/PrometheusUE"]
-	path = Plugins/PrometheusUE
-	url = https://github.com/metaworking/ue4-prometheus.git
