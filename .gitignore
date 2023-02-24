@@ -77,4 +77,4 @@ DerivedDataCache/*
 /Packages
 
 # Protoc
-!/Plugins/ChanneldUE/Source/ChanneldProtobuf/ThirdParty/bin/protoc.exe
+!/Plugins/ChanneldUE/Source/ProtobufUE/ThirdParty/bin/protoc.exe

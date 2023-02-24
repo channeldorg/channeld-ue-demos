@@ -16,7 +16,7 @@ public class ChanneldIntegration : ModuleRules
 			"NetCore", 
 			"Sockets",
             "PacketHandler",
-            "Protobuf",
+            "ProtobufUE",
 			"ChanneldUE",
         });
 		bEnableUndefinedIdentifierWarnings = false;
