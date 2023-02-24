@@ -34,30 +34,6 @@ bool FTpsChannelDataProcessor::Merge(const google::protobuf::Message* SrcMsg, go
 		Dst->mutable_testgamestate()->MergeFrom(Dst->testgamestate());
 	}
 
-	for (auto& Pair : Src->actorstates())
-	{
-		if (Pair.second.removed())
-		{
-			Dst->mutable_actorstates()->erase(Pair.first);
-			Dst->mutable_pawnstates()->erase(Pair.first);
-			Dst->mutable_characterstates()->erase(Pair.first);
-			Dst->mutable_controllerstates()->erase(Pair.first);
-			Dst->mutable_playercontrollerstates()->erase(Pair.first);
-			Dst->mutable_testrepplayercontrollerstates()->erase(Pair.first);
-		}
-		else
-		{
-			if (Dst->actorstates().contains(Pair.first))
-			{
-				Dst->mutable_actorstates()->at(Pair.first).MergeFrom(Pair.second);
-			}
-			else
-			{
-				Dst->mutable_actorstates()->emplace(Pair.first, Pair.second);
-			}
-		}
-	}
-
 	for (auto& Pair : Src->pawnstates())
 	{
 		if (Dst->pawnstates().contains(Pair.first))
@@ -130,27 +106,66 @@ bool FTpsChannelDataProcessor::Merge(const google::protobuf::Message* SrcMsg, go
 		}
 	}
 	
-	for (auto& Pair : Src->actorcomponentstates())
+	for (auto& Pair : Src->scenecomponentstates())
 	{
-		if (Dst->actorcomponentstates().contains(Pair.first))
+		if (Pair.second.removed())
 		{
-			Dst->mutable_actorcomponentstates()->at(Pair.first).MergeFrom(Pair.second);
+			Dst->mutable_scenecomponentstates()->erase(Pair.first);
 		}
 		else
 		{
-			Dst->mutable_actorcomponentstates()->emplace(Pair.first, Pair.second);
+			if (Dst->scenecomponentstates().contains(Pair.first))
+			{
+				Dst->mutable_scenecomponentstates()->at(Pair.first).MergeFrom(Pair.second);
+			}
+			else
+			{
+				Dst->mutable_scenecomponentstates()->emplace(Pair.first, Pair.second);
+			}
 		}
 	}
 	
-	for (auto& Pair : Src->scenecomponentstates())
+	for (auto& Pair : Src->actorcomponentstates())
 	{
-		if (Dst->scenecomponentstates().contains(Pair.first))
+		if (Pair.second.removed())
 		{
-			Dst->mutable_scenecomponentstates()->at(Pair.first).MergeFrom(Pair.second);
+			Dst->mutable_actorcomponentstates()->erase(Pair.first);
 		}
 		else
 		{
-			Dst->mutable_scenecomponentstates()->emplace(Pair.first, Pair.second);
+			if (Dst->actorcomponentstates().contains(Pair.first))
+			{
+				Dst->mutable_actorcomponentstates()->at(Pair.first).MergeFrom(Pair.second);
+			}
+			else
+			{
+				Dst->mutable_actorcomponentstates()->emplace(Pair.first, Pair.second);
+			}
+		}
+	}
+
+	// Remove the actor and the corresponding states at last, in case any 'parent' state (e.g. CharacterState) is added to the dst above.
+	for (auto& Pair : Src->actorstates())
+	{
+		if (Pair.second.removed())
+		{
+			Dst->mutable_actorstates()->erase(Pair.first);
+			Dst->mutable_pawnstates()->erase(Pair.first);
+			Dst->mutable_characterstates()->erase(Pair.first);
+			Dst->mutable_controllerstates()->erase(Pair.first);
+			Dst->mutable_playercontrollerstates()->erase(Pair.first);
+			Dst->mutable_testrepplayercontrollerstates()->erase(Pair.first);
+		}
+		else
+		{
+			if (Dst->actorstates().contains(Pair.first))
+			{
+				Dst->mutable_actorstates()->at(Pair.first).MergeFrom(Pair.second);
+			}
+			else
+			{
+				Dst->mutable_actorstates()->emplace(Pair.first, Pair.second);
+			}
 		}
 	}
 
