@@ -10,8 +10,6 @@
 #include "GameFramework/Actor.h"
 #include "Components/ActorComponent.h"
 
-DEFINE_LOG_CATEGORY(LogChanneld)
-
 FTpsChannelDataProcessor::FTpsChannelDataProcessor()
 {
 	RemovedActorState = MakeUnique<unrealpb::ActorState>();
