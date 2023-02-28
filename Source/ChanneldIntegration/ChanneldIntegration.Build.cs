@@ -17,6 +17,7 @@ public class ChanneldIntegration : ModuleRules
 			"Sockets",
             "PacketHandler",
             "ProtobufUE",
+            "PrometheusUE",
 			"ChanneldUE",
         });
 		bEnableUndefinedIdentifierWarnings = false;
