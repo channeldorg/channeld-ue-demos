@@ -19,7 +19,7 @@ void FChanneldIntegrationModule::StartupModule()
 	*/
 
 	TpsChannelDataProcessor = new FTpsChannelDataProcessor();
-	ChanneldReplication::RegisterChannelDataMerger(TEXT("tpspb.TestRepChannelData"), TpsChannelDataProcessor);
+	ChanneldReplication::RegisterChannelDataProcessor(TEXT("tpspb.TestRepChannelData"), TpsChannelDataProcessor);
 }
 
 void FChanneldIntegrationModule::ShutdownModule()
