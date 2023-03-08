@@ -393,3 +393,51 @@ void FTpsChannelDataProcessor::SetStateToChannelData(const google::protobuf::Mes
 		UE_LOG(LogChanneld, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
 	}
 }
+
+TArray<uint32> FTpsChannelDataProcessor::GetRelevantNetGUIDsFromChannelData(const google::protobuf::Message* ChannelData)
+{
+	auto TestRepChannelData = static_cast<const tpspb::TestRepChannelData*>(ChannelData);
+	TArray<uint32> NetGUIDs;
+	for (auto& Pair : TestRepChannelData->actorstates())
+	{
+		/* Instead of using a blacklist, we should use a whitelist as the data in the blacklist may not exist in the ChannelData.
+		// Ignore GameState
+		if (Pair.first == GameStateNetId)
+		{
+			continue;
+		}
+		// Ignore Controllers
+		if (ChannelData->controllerstates_size() > 0 && ChannelData->controllerstates().contains(Pair.first))
+		{
+			continue;
+		}
+		// Ignore PlayerStates
+		if (ChannelData->playerstates_size() > 0 && ChannelData->playerstates().contains(Pair.first))
+		{
+			continue;
+		}
+		*/
+		
+		if (Pair.second.has_replicatedmovement())
+		{
+			NetGUIDs.Add(Pair.first);
+		}
+		else if (TestRepChannelData->pawnstates_size() > 0 && TestRepChannelData->pawnstates().contains(Pair.first))
+		{
+			NetGUIDs.Add(Pair.first);
+		}
+		else if (TestRepChannelData->characterstates_size() > 0 && TestRepChannelData->characterstates().contains(Pair.first))
+		{
+			NetGUIDs.Add(Pair.first);
+		}
+		else if (TestRepChannelData->scenecomponentstates_size() > 0 && TestRepChannelData->scenecomponentstates().contains(Pair.first))
+		{
+			NetGUIDs.Add(Pair.first);
+		}
+		else if (TestRepChannelData->testnpcstates_size() > 0 && TestRepChannelData->testnpcstates().contains(Pair.first))
+		{
+			NetGUIDs.Add(Pair.first);
+		}
+	}
+	return NetGUIDs;
+}
