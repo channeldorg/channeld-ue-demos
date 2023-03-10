@@ -1,0 +1,14 @@
+
+syntax = "proto3";
+import "ChanneldGlobalStruct.proto";
+import "unreal_common.proto";
+option go_package = "channeld.clewcat.com/channeld/examples/channeld-ue-tps/channeldgenpb";
+package channeldgenpb;
+
+message StaticMeshComponentState {
+bool removed = 1;optional unrealpb.UnrealObjectRef prop_staticmesh = 2;
+
+
+
+}
+
