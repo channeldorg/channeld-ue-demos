@@ -7,9 +7,7 @@
 #include "google/protobuf/util/json_util.h"
 #include "Misc/AutomationTest.h"
 #include "ChanneldIntegration/TpsChannelDataProcessor.h"
-
-
-DECLARE_LOG_CATEGORY_CLASS(LogChanneldTest, Log, All);
+#include "ChanneldUETestType.h"
 
 // #ifndef BENCHMARK
 	#define BENCHMARK(TIMES, EXEC, NAME) \

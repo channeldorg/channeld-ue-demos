@@ -5,9 +5,7 @@
 #include "Containers/UnrealString.h"
 #include "google/protobuf/util/json_util.h"
 #include "Misc/AutomationTest.h"
-
-
-DECLARE_LOG_CATEGORY_CLASS(LogChanneldTest, Log, All);
+#include "ChanneldUETestType.h"
 
 #if WITH_DEV_AUTOMATION_TESTS
 
