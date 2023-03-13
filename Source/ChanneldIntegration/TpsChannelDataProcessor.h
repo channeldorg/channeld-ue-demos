@@ -15,4 +15,5 @@ public:
 protected:
 	TUniquePtr<unrealpb::ActorState> RemovedActorState;
 	TUniquePtr<unrealpb::ActorComponentState> RemovedActorComponentState;
+	TUniquePtr<unrealpb::SceneComponentState> RemovedSceneComponentState;
 };

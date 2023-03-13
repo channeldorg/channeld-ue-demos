@@ -18,6 +18,8 @@ FTpsChannelDataProcessor::FTpsChannelDataProcessor()
 	RemovedActorState->set_removed(true);
 	RemovedActorComponentState = MakeUnique<unrealpb::ActorComponentState>();
 	RemovedActorComponentState->set_removed(true);
+	RemovedSceneComponentState = MakeUnique<unrealpb::SceneComponentState>();
+	RemovedSceneComponentState->set_removed(true);
 }
 
 bool FTpsChannelDataProcessor::Merge(const google::protobuf::Message* SrcMsg, google::protobuf::Message* DstMsg)
@@ -347,7 +349,7 @@ void FTpsChannelDataProcessor::SetStateToChannelData(const google::protobuf::Mes
 	}
 	else if (TargetClass == USceneComponent::StaticClass())
 	{
-		auto SceneCompState = static_cast<const unrealpb::SceneComponentState*>(State);
+		auto SceneCompState = State ? static_cast<const unrealpb::SceneComponentState*>(State) : RemovedSceneComponentState.Get();;
 		if (SceneCompState)
 		{
 			auto States = TestRepChannelData->mutable_scenecomponentstates();
