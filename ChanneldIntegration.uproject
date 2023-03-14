@@ -31,7 +31,7 @@
 		},
 		{
 			"Name": "ReplicationGraph",
-			"Enabled": true
+			"Enabled": false
 		}
 	]
 }
