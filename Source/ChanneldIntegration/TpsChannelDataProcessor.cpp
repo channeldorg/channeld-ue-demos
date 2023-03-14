@@ -247,8 +247,9 @@ const google::protobuf::Message* FTpsChannelDataProcessor::GetStateFromChannelDa
 		auto States = TestRepChannelData->mutable_scenecomponentstates();
 		if (States->contains(NetGUID))
 		{
-			bIsRemoved = false;
-			return &States->at(NetGUID);
+			auto State = &States->at(NetGUID);
+			bIsRemoved = State->removed();
+			return State;
 		}
 	}
 	else if (TargetClass == AGameStateBase::StaticClass())
