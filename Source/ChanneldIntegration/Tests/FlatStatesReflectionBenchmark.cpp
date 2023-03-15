@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "CoreTypes.h"
 #include "FFlatStatesChannelDataProcessor.h"
 #include "ChanneldIntegration/tps.pb.h"
