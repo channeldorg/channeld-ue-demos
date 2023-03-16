@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #include "CoreTypes.h"
 #include "ChanneldIntegration/test.pb.h"
 #include "Containers/UnrealString.h"

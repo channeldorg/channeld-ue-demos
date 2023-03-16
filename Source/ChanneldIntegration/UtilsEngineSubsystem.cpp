@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "UtilsEngineSubsystem.h"
 
 void UUtilsEngineSubsystem::GetNowTimestamp(int64& Now)
