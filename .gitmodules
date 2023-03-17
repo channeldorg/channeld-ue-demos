@@ -1,3 +1,4 @@
 [submodule "Plugins/ChanneldUE"]
-    path = Plugins/ChanneldUE
-    url = https://github.com/metaworking/channeld-ue-plugin.git
+	path = Plugins/ChanneldUE
+	url = https://github.com/metaworking/channeld-ue-plugin.git
+	branch = master

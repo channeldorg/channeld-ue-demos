@@ -76,5 +76,5 @@ DerivedDataCache/*
 /RunServers.bat
 /Packages
 
-# Protoc
-!/Plugins/ChanneldUE/Source/ProtobufUE/ThirdParty/bin/protoc.exe
+# Plugins
+Plugins/ChanneldUE
