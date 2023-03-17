@@ -4,7 +4,14 @@ This repository contains the UE project that demonstrates the features and how-t
 
 本UE项目用于展示[ChanneldUE插件](https://github.com/metaworking/channeld-ue-plugin)的特性和使用方法。
 
-Contained maps and how to use them:
+To clone the repo with all submodules, use the following command:
+
+通过以下命令克隆代码仓库，可以自动克隆所有子模块：
+```bash
+git clone --recurse-submodules https://github.com/metaworking/channeld-ue-demos
+```
+
+## Contained maps and how to use them:
 - TestReplication: single server test map. Used for basic single server replication test and performance benchmark.
   - Press `T` to create a `BP_TestRepActor`. The actor will follow the player across servers (requires `BP_SingleChannelView` as the channel data view)
   - Press `R` to toggle the latest created `BP_TestRepActor`'s movement and rotation
@@ -22,7 +29,7 @@ Contained maps and how to use them:
 - ClientOnlyChatDemo: chat room demo in client-only mode.
 - ServerAuthChatDemo: chat room demo in server-authoritative mode.
 
-包含的地图及操作：
+## 包含的地图及操作：
 - TestReplication: 单服测试场景。用于基本的单服同步测试和性能基准测试。
   - 按`T`键创建一个`BP_TestRepActor`。该Actor会跟随创建的玩家跨服（需要使用`BP_SingleChannelView`作为频道数据视图）
   - 按`R`键开启/停止最近一次创建的`BP_TestRepActor`的位移和旋转
