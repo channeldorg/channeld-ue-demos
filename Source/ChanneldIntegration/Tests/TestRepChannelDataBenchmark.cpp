@@ -3,7 +3,7 @@
 #include "Containers/UnrealString.h"
 #include "google/protobuf/util/json_util.h"
 #include "Misc/AutomationTest.h"
-#include "ChanneldUETestType.h"
+#include "../DemoTypes.h"
 
 #if WITH_DEV_AUTOMATION_TESTS
 

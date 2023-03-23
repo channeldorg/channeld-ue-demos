@@ -1,7 +1,7 @@
 #include "TpsChannelDataProcessor.h"
 #include "tps.pb.h"
 #include "unreal_common.pb.h"
-#include "ChanneldUE/ChanneldTypes.h"
+#include "DemoTypes.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/PlayerState.h"
 #include "GameFramework/Controller.h"
@@ -9,8 +9,6 @@
 #include "GameFramework/GameStateBase.h"
 #include "GameFramework/Actor.h"
 #include "Components/ActorComponent.h"
-
-DEFINE_LOG_CATEGORY(LogChanneld);
 
 FTpsChannelDataProcessor::FTpsChannelDataProcessor()
 {
@@ -282,7 +280,7 @@ const google::protobuf::Message* FTpsChannelDataProcessor::GetStateFromChannelDa
 	}
 	else
 	{
-		UE_LOG(LogChanneld, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
+		UE_LOG(LogChanneldDemo, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
 	}
 	
 	bIsRemoved = false;
@@ -393,7 +391,7 @@ void FTpsChannelDataProcessor::SetStateToChannelData(const google::protobuf::Mes
 	}
 	else
 	{
-		UE_LOG(LogChanneld, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
+		UE_LOG(LogChanneldDemo, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
 	}
 }
 

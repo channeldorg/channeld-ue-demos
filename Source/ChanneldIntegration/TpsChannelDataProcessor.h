@@ -1,7 +1,7 @@
 #pragma once
 #include "ChannelDataInterfaces.h"
 
-class FTpsChannelDataProcessor : public IChannelDataProcessor
+class CHANNELDINTEGRATION_API FTpsChannelDataProcessor : public IChannelDataProcessor
 {
 public:
 	FTpsChannelDataProcessor();

@@ -5,7 +5,7 @@
 #include "google/protobuf/util/json_util.h"
 #include "Misc/AutomationTest.h"
 #include "ChanneldIntegration/TpsChannelDataProcessor.h"
-#include "ChanneldUETestType.h"
+#include "../DemoTypes.h"
 
 // #ifndef BENCHMARK
 	#define BENCHMARK(TIMES, EXEC, NAME) \
