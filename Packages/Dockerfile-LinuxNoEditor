@@ -1,0 +1,19 @@
+FROM ubuntu
+
+RUN useradd -u 8877 ue4
+USER ue4
+
+COPY --chown=ue4:ue4 ./Packages/LinuxNoEditor /LinuxNoEditor/
+COPY ./Saved/Config/Windows/ChanneldUE.ini /LinuxServer/ChanneldUE.ini
+COPY ./Packages/Engine.ini /LinuxServer/Engine.ini
+
+WORKDIR /LinuxNoEditor
+
+ENV CHANNELD_ADDR=127.0.0.1
+ENV SERVER_IP=127.0.0.1
+ARG PROMETHEUS_PORT=8081
+
+EXPOSE ${PROMETHEUS_PORT}
+
+# MUST use the shell form in order to pass the ENV!
+CMD ./ChanneldIntegration.sh ${SERVER_IP} -log -metrics channeldClientAddr=${CHANNELD_ADDR} -nullrhi
