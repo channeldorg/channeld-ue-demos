@@ -21,7 +21,7 @@ services:
       "-cfsm=config/client_authoratative_fsm.json", 
       "-sfsm=config/server_authoratative_fsm.json",
       "-chs=config/channel_settings_ue.json",
-      "-scc=config/spatial_static_6x6.json",
+      "-scc=config/spatial_static_benchmark.json",
       "-loglevel=0",
       "-logfile=/var/log/channeld/{time}.log",
       # "-profile=cpu", 
@@ -56,7 +56,7 @@ services:
       - "8081"
     environment:
       - CHANNELD_ADDR=tps-channeld
-    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestSpatial_6x6 -server -log -metrics channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ViewClass=ChanneldUE.SpatialMasterServerView ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
+    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestSpatial_Benchmark -server -log -metrics channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ViewClass=ChanneldUE.SpatialMasterServerView ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
   tps-spatial:
     image: channeld/tps-server
     depends_on:
@@ -67,9 +67,9 @@ services:
       - "8081"
     environment:
       - CHANNELD_ADDR=tps-channeld
-    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestSpatial_6x6?MaxPlayers=128 -server -log -metrics channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
+    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestSpatial_Benchmark?MaxPlayers=128 -server -log -metrics channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
     deploy:
-      replicas: 4
+      replicas: 9
   tps-client:
     image: channeld/tps-client
     build:
@@ -81,7 +81,7 @@ services:
       - "8081"
     environment:
       - CHANNELD_ADDR=tps-channeld
-    entrypoint: "./ChanneldIntegration.sh -log -metrics channeldClientAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ENGINEINI=/LinuxServer/Engine.ini -nullrhi -FPS=5 -moving"
+    entrypoint: "./ChanneldIntegration.sh -log -metrics channeldClientAddr=tps-channeld EnableSpatialVisualizer=False CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ENGINEINI=/LinuxServer/Engine.ini -nullrhi -FPS=5 -moving"
     deploy:
       resources:
         limits:
