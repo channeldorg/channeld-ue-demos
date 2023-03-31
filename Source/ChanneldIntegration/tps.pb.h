@@ -724,7 +724,6 @@ class EntityChannelData final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kObjRefFieldNumber = 1,
     kActorStateFieldNumber = 2,
     kPawnStateFieldNumber = 3,
     kCharacterStateFieldNumber = 4,
@@ -735,25 +734,8 @@ class EntityChannelData final :
     kSceneComponentStateFieldNumber = 9,
     kTestRepPlayerControllerStateFieldNumber = 11,
     kTestNPCStateFieldNumber = 12,
+    kNetIdFieldNumber = 1,
   };
-  // .unrealpb.UnrealObjectRef objRef = 1;
-  bool has_objref() const;
-  private:
-  bool _internal_has_objref() const;
-  public:
-  void clear_objref();
-  const ::unrealpb::UnrealObjectRef& objref() const;
-  PROTOBUF_NODISCARD ::unrealpb::UnrealObjectRef* release_objref();
-  ::unrealpb::UnrealObjectRef* mutable_objref();
-  void set_allocated_objref(::unrealpb::UnrealObjectRef* objref);
-  private:
-  const ::unrealpb::UnrealObjectRef& _internal_objref() const;
-  ::unrealpb::UnrealObjectRef* _internal_mutable_objref();
-  public:
-  void unsafe_arena_set_allocated_objref(
-      ::unrealpb::UnrealObjectRef* objref);
-  ::unrealpb::UnrealObjectRef* unsafe_arena_release_objref();
-
   // optional .unrealpb.ActorState actorState = 2;
   bool has_actorstate() const;
   private:
@@ -934,6 +916,19 @@ class EntityChannelData final :
       ::tpspb::TestNPCState* testnpcstate);
   ::tpspb::TestNPCState* unsafe_arena_release_testnpcstate();
 
+  // optional uint32 netId = 1;
+  bool has_netid() const;
+  private:
+  bool _internal_has_netid() const;
+  public:
+  void clear_netid();
+  uint32_t netid() const;
+  void set_netid(uint32_t value);
+  private:
+  uint32_t _internal_netid() const;
+  void _internal_set_netid(uint32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tpspb.EntityChannelData)
  private:
   class _Internal;
@@ -944,7 +939,6 @@ class EntityChannelData final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-    ::unrealpb::UnrealObjectRef* objref_;
     ::unrealpb::ActorState* actorstate_;
     ::unrealpb::PawnState* pawnstate_;
     ::unrealpb::CharacterState* characterstate_;
@@ -955,6 +949,7 @@ class EntityChannelData final :
     ::unrealpb::SceneComponentState* scenecomponentstate_;
     ::tpspb::TestRepPlayerControllerState* testrepplayercontrollerstate_;
     ::tpspb::TestNPCState* testnpcstate_;
+    uint32_t netid_;
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_tps_2eproto;
@@ -2013,89 +2008,32 @@ inline void TestNPCState::set_allocated_goallocation(::unrealpb::FVector* goallo
 
 // EntityChannelData
 
-// .unrealpb.UnrealObjectRef objRef = 1;
-inline bool EntityChannelData::_internal_has_objref() const {
-  return this != internal_default_instance() && _impl_.objref_ != nullptr;
+// optional uint32 netId = 1;
+inline bool EntityChannelData::_internal_has_netid() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000400u) != 0;
+  return value;
 }
-inline bool EntityChannelData::has_objref() const {
-  return _internal_has_objref();
+inline bool EntityChannelData::has_netid() const {
+  return _internal_has_netid();
 }
-inline const ::unrealpb::UnrealObjectRef& EntityChannelData::_internal_objref() const {
-  const ::unrealpb::UnrealObjectRef* p = _impl_.objref_;
-  return p != nullptr ? *p : reinterpret_cast<const ::unrealpb::UnrealObjectRef&>(
-      ::unrealpb::_UnrealObjectRef_default_instance_);
+inline void EntityChannelData::clear_netid() {
+  _impl_.netid_ = 0u;
+  _impl_._has_bits_[0] &= ~0x00000400u;
 }
-inline const ::unrealpb::UnrealObjectRef& EntityChannelData::objref() const {
-  // @@protoc_insertion_point(field_get:tpspb.EntityChannelData.objRef)
-  return _internal_objref();
+inline uint32_t EntityChannelData::_internal_netid() const {
+  return _impl_.netid_;
 }
-inline void EntityChannelData::unsafe_arena_set_allocated_objref(
-    ::unrealpb::UnrealObjectRef* objref) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.objref_);
-  }
-  _impl_.objref_ = objref;
-  if (objref) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tpspb.EntityChannelData.objRef)
+inline uint32_t EntityChannelData::netid() const {
+  // @@protoc_insertion_point(field_get:tpspb.EntityChannelData.netId)
+  return _internal_netid();
 }
-inline ::unrealpb::UnrealObjectRef* EntityChannelData::release_objref() {
-  
-  ::unrealpb::UnrealObjectRef* temp = _impl_.objref_;
-  _impl_.objref_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
+inline void EntityChannelData::_internal_set_netid(uint32_t value) {
+  _impl_._has_bits_[0] |= 0x00000400u;
+  _impl_.netid_ = value;
 }
-inline ::unrealpb::UnrealObjectRef* EntityChannelData::unsafe_arena_release_objref() {
-  // @@protoc_insertion_point(field_release:tpspb.EntityChannelData.objRef)
-  
-  ::unrealpb::UnrealObjectRef* temp = _impl_.objref_;
-  _impl_.objref_ = nullptr;
-  return temp;
-}
-inline ::unrealpb::UnrealObjectRef* EntityChannelData::_internal_mutable_objref() {
-  
-  if (_impl_.objref_ == nullptr) {
-    auto* p = CreateMaybeMessage<::unrealpb::UnrealObjectRef>(GetArenaForAllocation());
-    _impl_.objref_ = p;
-  }
-  return _impl_.objref_;
-}
-inline ::unrealpb::UnrealObjectRef* EntityChannelData::mutable_objref() {
-  ::unrealpb::UnrealObjectRef* _msg = _internal_mutable_objref();
-  // @@protoc_insertion_point(field_mutable:tpspb.EntityChannelData.objRef)
-  return _msg;
-}
-inline void EntityChannelData::set_allocated_objref(::unrealpb::UnrealObjectRef* objref) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.objref_);
-  }
-  if (objref) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(objref));
-    if (message_arena != submessage_arena) {
-      objref = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, objref, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.objref_ = objref;
-  // @@protoc_insertion_point(field_set_allocated:tpspb.EntityChannelData.objRef)
+inline void EntityChannelData::set_netid(uint32_t value) {
+  _internal_set_netid(value);
+  // @@protoc_insertion_point(field_set:tpspb.EntityChannelData.netId)
 }
 
 // optional .unrealpb.ActorState actorState = 2;

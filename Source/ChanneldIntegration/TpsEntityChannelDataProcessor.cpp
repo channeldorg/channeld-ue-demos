@@ -17,6 +17,20 @@ bool FTpsEntityChannelDataProcessor::Merge(const google::protobuf::Message* SrcM
 	return true;
 }
 
+bool FTpsEntityChannelDataProcessor::UpdateChannelData(UObject* TargetObj, google::protobuf::Message* ChannelData)
+{
+	auto EntityChannelData = static_cast<tpspb::EntityChannelData*>(ChannelData);
+	if (!EntityChannelData->has_netid())
+	{
+		auto NetId = ChanneldUtils::GetNetId(TargetObj);
+		if (NetId.Value > 0)
+		{
+			EntityChannelData->set_netid(NetId.Value);
+		}
+	}
+	return true;
+}
+
 const google::protobuf::Message* FTpsEntityChannelDataProcessor::GetStateFromChannelData(
 	google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID, bool& bIsRemoved)
 {
