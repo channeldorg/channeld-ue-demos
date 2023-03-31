@@ -484,15 +484,15 @@ const char descriptor_table_protodef_test_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "(\r\032V\n\010Kv1Entry\022\013\n\003key\030\001 \001(\003\0229\n\005value\030\002 \001"
   "(\0132*.testpb.TestFieldMaskMessage.NestedM"
   "essage:\0028\001\032*\n\010Kv2Entry\022\013\n\003key\030\001 \001(\003\022\r\n\005v"
-  "alue\030\002 \001(\t:\0028\001B*Z(channeld.clewcat.com/c"
-  "hanneld/pkg/testpbb\006proto3"
+  "alue\030\002 \001(\t:\0028\001B,Z*github.com/metaworking"
+  "/channeld/pkg/testpbb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_test_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fany_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_test_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_test_2eproto = {
-    false, false, 1426, descriptor_table_protodef_test_2eproto,
+    false, false, 1428, descriptor_table_protodef_test_2eproto,
     "test.proto",
     &descriptor_table_test_2eproto_once, descriptor_table_test_2eproto_deps, 1, 17,
     schemas_test_2eproto, file_default_instances_test_2eproto, TableStruct_test_2eproto::offsets,
