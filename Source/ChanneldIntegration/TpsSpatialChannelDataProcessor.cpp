@@ -63,9 +63,9 @@ TArray<uint32> FTpsSpatialChannelDataProcessor::GetRelevantNetGUIDsFromChannelDa
 	for (auto& Pair : SpatialChannelData->entities())
 	{
 		bool bIgnore = false;
-		for (int i = 0; i < Pair.second.objref().context_size(); i++)
+		// for (int i = 0; i < Pair.second.objref().context_size(); i++)
 		{
-			TCHAR* ClassPath = UTF8_TO_TCHAR(Pair.second.objref().context(0).pathname().c_str());
+			TCHAR* ClassPath = UTF8_TO_TCHAR(Pair.second.objref().classpath().c_str());//Pair.second.objref().context(0).pathname().c_str());
 			UClass* EntityClass = LoadObject<UClass>(nullptr, ClassPath);
 			
 			if (EntityClass == nullptr)
