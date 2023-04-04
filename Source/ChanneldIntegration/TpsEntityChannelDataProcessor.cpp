@@ -19,11 +19,13 @@ bool FTpsEntityChannelDataProcessor::Merge(const google::protobuf::Message* SrcM
 
 bool FTpsEntityChannelDataProcessor::UpdateChannelData(UObject* TargetObj, google::protobuf::Message* ChannelData)
 {
+	/* EntityChannelData.ObjRef should only be set once, from the Spawn message.
 	const auto EntityChannelData = static_cast<tpspb::EntityChannelData*>(ChannelData);
 	if (!EntityChannelData->has_objref())
 	{
-		EntityChannelData->mutable_objref()->CopyFrom(ChanneldUtils::GetRefOfObject(TargetObj));
+		EntityChannelData->mutable_objref()->CopyFrom(*ChanneldUtils::GetRefOfObject(TargetObj));
 	}
+	*/
 	return true;
 }
 

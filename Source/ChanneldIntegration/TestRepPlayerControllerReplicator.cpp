@@ -45,7 +45,7 @@ void FTestRepPlayerControllerReplicator::Tick(float DeltaTime)
 
 	if (*TestRepActorPtr != ChanneldUtils::GetObjectByRef(FullState->mutable_testrepactor(), TargetObject->GetWorld(), false))
 	{
-		DeltaState->mutable_testrepactor()->CopyFrom(ChanneldUtils::GetRefOfObject(*TestRepActorPtr));
+		DeltaState->mutable_testrepactor()->CopyFrom(*ChanneldUtils::GetRefOfObject(*TestRepActorPtr));
 		bStateChanged = true;
 	}
 	
