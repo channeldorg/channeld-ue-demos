@@ -19,14 +19,10 @@ bool FTpsEntityChannelDataProcessor::Merge(const google::protobuf::Message* SrcM
 
 bool FTpsEntityChannelDataProcessor::UpdateChannelData(UObject* TargetObj, google::protobuf::Message* ChannelData)
 {
-	auto EntityChannelData = static_cast<tpspb::EntityChannelData*>(ChannelData);
-	if (!EntityChannelData->has_netid())
+	const auto EntityChannelData = static_cast<tpspb::EntityChannelData*>(ChannelData);
+	if (!EntityChannelData->has_objref())
 	{
-		auto NetId = ChanneldUtils::GetNetId(TargetObj);
-		if (NetId.Value > 0)
-		{
-			EntityChannelData->set_netid(NetId.Value);
-		}
+		EntityChannelData->mutable_objref()->CopyFrom(ChanneldUtils::GetRefOfObject(TargetObj));
 	}
 	return true;
 }
