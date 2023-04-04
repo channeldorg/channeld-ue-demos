@@ -724,6 +724,7 @@ class EntityChannelData final :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kObjRefFieldNumber = 1,
     kActorStateFieldNumber = 2,
     kPawnStateFieldNumber = 3,
     kCharacterStateFieldNumber = 4,
@@ -734,8 +735,25 @@ class EntityChannelData final :
     kSceneComponentStateFieldNumber = 9,
     kTestRepPlayerControllerStateFieldNumber = 11,
     kTestNPCStateFieldNumber = 12,
-    kNetIdFieldNumber = 1,
   };
+  // optional .unrealpb.UnrealObjectRef objRef = 1;
+  bool has_objref() const;
+  private:
+  bool _internal_has_objref() const;
+  public:
+  void clear_objref();
+  const ::unrealpb::UnrealObjectRef& objref() const;
+  PROTOBUF_NODISCARD ::unrealpb::UnrealObjectRef* release_objref();
+  ::unrealpb::UnrealObjectRef* mutable_objref();
+  void set_allocated_objref(::unrealpb::UnrealObjectRef* objref);
+  private:
+  const ::unrealpb::UnrealObjectRef& _internal_objref() const;
+  ::unrealpb::UnrealObjectRef* _internal_mutable_objref();
+  public:
+  void unsafe_arena_set_allocated_objref(
+      ::unrealpb::UnrealObjectRef* objref);
+  ::unrealpb::UnrealObjectRef* unsafe_arena_release_objref();
+
   // optional .unrealpb.ActorState actorState = 2;
   bool has_actorstate() const;
   private:
@@ -916,19 +934,6 @@ class EntityChannelData final :
       ::tpspb::TestNPCState* testnpcstate);
   ::tpspb::TestNPCState* unsafe_arena_release_testnpcstate();
 
-  // optional uint32 netId = 1;
-  bool has_netid() const;
-  private:
-  bool _internal_has_netid() const;
-  public:
-  void clear_netid();
-  uint32_t netid() const;
-  void set_netid(uint32_t value);
-  private:
-  uint32_t _internal_netid() const;
-  void _internal_set_netid(uint32_t value);
-  public:
-
   // @@protoc_insertion_point(class_scope:tpspb.EntityChannelData)
  private:
   class _Internal;
@@ -939,6 +944,7 @@ class EntityChannelData final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::unrealpb::UnrealObjectRef* objref_;
     ::unrealpb::ActorState* actorstate_;
     ::unrealpb::PawnState* pawnstate_;
     ::unrealpb::CharacterState* characterstate_;
@@ -949,7 +955,6 @@ class EntityChannelData final :
     ::unrealpb::SceneComponentState* scenecomponentstate_;
     ::tpspb::TestRepPlayerControllerState* testrepplayercontrollerstate_;
     ::tpspb::TestNPCState* testnpcstate_;
-    uint32_t netid_;
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_tps_2eproto;
@@ -2008,37 +2013,96 @@ inline void TestNPCState::set_allocated_goallocation(::unrealpb::FVector* goallo
 
 // EntityChannelData
 
-// optional uint32 netId = 1;
-inline bool EntityChannelData::_internal_has_netid() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000400u) != 0;
+// optional .unrealpb.UnrealObjectRef objRef = 1;
+inline bool EntityChannelData::_internal_has_objref() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.objref_ != nullptr);
   return value;
 }
-inline bool EntityChannelData::has_netid() const {
-  return _internal_has_netid();
+inline bool EntityChannelData::has_objref() const {
+  return _internal_has_objref();
 }
-inline void EntityChannelData::clear_netid() {
-  _impl_.netid_ = 0u;
-  _impl_._has_bits_[0] &= ~0x00000400u;
+inline const ::unrealpb::UnrealObjectRef& EntityChannelData::_internal_objref() const {
+  const ::unrealpb::UnrealObjectRef* p = _impl_.objref_;
+  return p != nullptr ? *p : reinterpret_cast<const ::unrealpb::UnrealObjectRef&>(
+      ::unrealpb::_UnrealObjectRef_default_instance_);
 }
-inline uint32_t EntityChannelData::_internal_netid() const {
-  return _impl_.netid_;
+inline const ::unrealpb::UnrealObjectRef& EntityChannelData::objref() const {
+  // @@protoc_insertion_point(field_get:tpspb.EntityChannelData.objRef)
+  return _internal_objref();
 }
-inline uint32_t EntityChannelData::netid() const {
-  // @@protoc_insertion_point(field_get:tpspb.EntityChannelData.netId)
-  return _internal_netid();
+inline void EntityChannelData::unsafe_arena_set_allocated_objref(
+    ::unrealpb::UnrealObjectRef* objref) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.objref_);
+  }
+  _impl_.objref_ = objref;
+  if (objref) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tpspb.EntityChannelData.objRef)
 }
-inline void EntityChannelData::_internal_set_netid(uint32_t value) {
-  _impl_._has_bits_[0] |= 0x00000400u;
-  _impl_.netid_ = value;
+inline ::unrealpb::UnrealObjectRef* EntityChannelData::release_objref() {
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::unrealpb::UnrealObjectRef* temp = _impl_.objref_;
+  _impl_.objref_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
 }
-inline void EntityChannelData::set_netid(uint32_t value) {
-  _internal_set_netid(value);
-  // @@protoc_insertion_point(field_set:tpspb.EntityChannelData.netId)
+inline ::unrealpb::UnrealObjectRef* EntityChannelData::unsafe_arena_release_objref() {
+  // @@protoc_insertion_point(field_release:tpspb.EntityChannelData.objRef)
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::unrealpb::UnrealObjectRef* temp = _impl_.objref_;
+  _impl_.objref_ = nullptr;
+  return temp;
+}
+inline ::unrealpb::UnrealObjectRef* EntityChannelData::_internal_mutable_objref() {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  if (_impl_.objref_ == nullptr) {
+    auto* p = CreateMaybeMessage<::unrealpb::UnrealObjectRef>(GetArenaForAllocation());
+    _impl_.objref_ = p;
+  }
+  return _impl_.objref_;
+}
+inline ::unrealpb::UnrealObjectRef* EntityChannelData::mutable_objref() {
+  ::unrealpb::UnrealObjectRef* _msg = _internal_mutable_objref();
+  // @@protoc_insertion_point(field_mutable:tpspb.EntityChannelData.objRef)
+  return _msg;
+}
+inline void EntityChannelData::set_allocated_objref(::unrealpb::UnrealObjectRef* objref) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.objref_);
+  }
+  if (objref) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(objref));
+    if (message_arena != submessage_arena) {
+      objref = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, objref, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.objref_ = objref;
+  // @@protoc_insertion_point(field_set_allocated:tpspb.EntityChannelData.objRef)
 }
 
 // optional .unrealpb.ActorState actorState = 2;
 inline bool EntityChannelData::_internal_has_actorstate() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.actorstate_ != nullptr);
   return value;
 }
@@ -2061,14 +2125,14 @@ inline void EntityChannelData::unsafe_arena_set_allocated_actorstate(
   }
   _impl_.actorstate_ = actorstate;
   if (actorstate) {
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tpspb.EntityChannelData.actorState)
 }
 inline ::unrealpb::ActorState* EntityChannelData::release_actorstate() {
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::unrealpb::ActorState* temp = _impl_.actorstate_;
   _impl_.actorstate_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -2084,13 +2148,13 @@ inline ::unrealpb::ActorState* EntityChannelData::release_actorstate() {
 }
 inline ::unrealpb::ActorState* EntityChannelData::unsafe_arena_release_actorstate() {
   // @@protoc_insertion_point(field_release:tpspb.EntityChannelData.actorState)
-  _impl_._has_bits_[0] &= ~0x00000001u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
   ::unrealpb::ActorState* temp = _impl_.actorstate_;
   _impl_.actorstate_ = nullptr;
   return temp;
 }
 inline ::unrealpb::ActorState* EntityChannelData::_internal_mutable_actorstate() {
-  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_._has_bits_[0] |= 0x00000002u;
   if (_impl_.actorstate_ == nullptr) {
     auto* p = CreateMaybeMessage<::unrealpb::ActorState>(GetArenaForAllocation());
     _impl_.actorstate_ = p;
@@ -2115,9 +2179,9 @@ inline void EntityChannelData::set_allocated_actorstate(::unrealpb::ActorState* 
       actorstate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, actorstate, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000001u;
+    _impl_._has_bits_[0] |= 0x00000002u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000001u;
+    _impl_._has_bits_[0] &= ~0x00000002u;
   }
   _impl_.actorstate_ = actorstate;
   // @@protoc_insertion_point(field_set_allocated:tpspb.EntityChannelData.actorState)
@@ -2125,7 +2189,7 @@ inline void EntityChannelData::set_allocated_actorstate(::unrealpb::ActorState* 
 
 // optional .unrealpb.PawnState pawnState = 3;
 inline bool EntityChannelData::_internal_has_pawnstate() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.pawnstate_ != nullptr);
   return value;
 }
@@ -2148,14 +2212,14 @@ inline void EntityChannelData::unsafe_arena_set_allocated_pawnstate(
   }
   _impl_.pawnstate_ = pawnstate;
   if (pawnstate) {
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000004u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000004u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tpspb.EntityChannelData.pawnState)
 }
 inline ::unrealpb::PawnState* EntityChannelData::release_pawnstate() {
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
   ::unrealpb::PawnState* temp = _impl_.pawnstate_;
   _impl_.pawnstate_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -2171,13 +2235,13 @@ inline ::unrealpb::PawnState* EntityChannelData::release_pawnstate() {
 }
 inline ::unrealpb::PawnState* EntityChannelData::unsafe_arena_release_pawnstate() {
   // @@protoc_insertion_point(field_release:tpspb.EntityChannelData.pawnState)
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000004u;
   ::unrealpb::PawnState* temp = _impl_.pawnstate_;
   _impl_.pawnstate_ = nullptr;
   return temp;
 }
 inline ::unrealpb::PawnState* EntityChannelData::_internal_mutable_pawnstate() {
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000004u;
   if (_impl_.pawnstate_ == nullptr) {
     auto* p = CreateMaybeMessage<::unrealpb::PawnState>(GetArenaForAllocation());
     _impl_.pawnstate_ = p;
@@ -2202,9 +2266,9 @@ inline void EntityChannelData::set_allocated_pawnstate(::unrealpb::PawnState* pa
       pawnstate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, pawnstate, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000004u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000004u;
   }
   _impl_.pawnstate_ = pawnstate;
   // @@protoc_insertion_point(field_set_allocated:tpspb.EntityChannelData.pawnState)
@@ -2212,7 +2276,7 @@ inline void EntityChannelData::set_allocated_pawnstate(::unrealpb::PawnState* pa
 
 // optional .unrealpb.CharacterState characterState = 4;
 inline bool EntityChannelData::_internal_has_characterstate() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.characterstate_ != nullptr);
   return value;
 }
@@ -2235,14 +2299,14 @@ inline void EntityChannelData::unsafe_arena_set_allocated_characterstate(
   }
   _impl_.characterstate_ = characterstate;
   if (characterstate) {
-    _impl_._has_bits_[0] |= 0x00000004u;
+    _impl_._has_bits_[0] |= 0x00000008u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
+    _impl_._has_bits_[0] &= ~0x00000008u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tpspb.EntityChannelData.characterState)
 }
 inline ::unrealpb::CharacterState* EntityChannelData::release_characterstate() {
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
   ::unrealpb::CharacterState* temp = _impl_.characterstate_;
   _impl_.characterstate_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -2258,13 +2322,13 @@ inline ::unrealpb::CharacterState* EntityChannelData::release_characterstate() {
 }
 inline ::unrealpb::CharacterState* EntityChannelData::unsafe_arena_release_characterstate() {
   // @@protoc_insertion_point(field_release:tpspb.EntityChannelData.characterState)
-  _impl_._has_bits_[0] &= ~0x00000004u;
+  _impl_._has_bits_[0] &= ~0x00000008u;
   ::unrealpb::CharacterState* temp = _impl_.characterstate_;
   _impl_.characterstate_ = nullptr;
   return temp;
 }
 inline ::unrealpb::CharacterState* EntityChannelData::_internal_mutable_characterstate() {
-  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_._has_bits_[0] |= 0x00000008u;
   if (_impl_.characterstate_ == nullptr) {
     auto* p = CreateMaybeMessage<::unrealpb::CharacterState>(GetArenaForAllocation());
     _impl_.characterstate_ = p;
@@ -2289,9 +2353,9 @@ inline void EntityChannelData::set_allocated_characterstate(::unrealpb::Characte
       characterstate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, characterstate, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000004u;
+    _impl_._has_bits_[0] |= 0x00000008u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000004u;
+    _impl_._has_bits_[0] &= ~0x00000008u;
   }
   _impl_.characterstate_ = characterstate;
   // @@protoc_insertion_point(field_set_allocated:tpspb.EntityChannelData.characterState)
@@ -2299,7 +2363,7 @@ inline void EntityChannelData::set_allocated_characterstate(::unrealpb::Characte
 
 // optional .unrealpb.PlayerState playerState = 5;
 inline bool EntityChannelData::_internal_has_playerstate() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.playerstate_ != nullptr);
   return value;
 }
@@ -2322,14 +2386,14 @@ inline void EntityChannelData::unsafe_arena_set_allocated_playerstate(
   }
   _impl_.playerstate_ = playerstate;
   if (playerstate) {
-    _impl_._has_bits_[0] |= 0x00000008u;
+    _impl_._has_bits_[0] |= 0x00000010u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
+    _impl_._has_bits_[0] &= ~0x00000010u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tpspb.EntityChannelData.playerState)
 }
 inline ::unrealpb::PlayerState* EntityChannelData::release_playerstate() {
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
   ::unrealpb::PlayerState* temp = _impl_.playerstate_;
   _impl_.playerstate_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -2345,13 +2409,13 @@ inline ::unrealpb::PlayerState* EntityChannelData::release_playerstate() {
 }
 inline ::unrealpb::PlayerState* EntityChannelData::unsafe_arena_release_playerstate() {
   // @@protoc_insertion_point(field_release:tpspb.EntityChannelData.playerState)
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
   ::unrealpb::PlayerState* temp = _impl_.playerstate_;
   _impl_.playerstate_ = nullptr;
   return temp;
 }
 inline ::unrealpb::PlayerState* EntityChannelData::_internal_mutable_playerstate() {
-  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_._has_bits_[0] |= 0x00000010u;
   if (_impl_.playerstate_ == nullptr) {
     auto* p = CreateMaybeMessage<::unrealpb::PlayerState>(GetArenaForAllocation());
     _impl_.playerstate_ = p;
@@ -2376,9 +2440,9 @@ inline void EntityChannelData::set_allocated_playerstate(::unrealpb::PlayerState
       playerstate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, playerstate, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000008u;
+    _impl_._has_bits_[0] |= 0x00000010u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
+    _impl_._has_bits_[0] &= ~0x00000010u;
   }
   _impl_.playerstate_ = playerstate;
   // @@protoc_insertion_point(field_set_allocated:tpspb.EntityChannelData.playerState)
@@ -2386,7 +2450,7 @@ inline void EntityChannelData::set_allocated_playerstate(::unrealpb::PlayerState
 
 // optional .unrealpb.ControllerState controllerState = 6;
 inline bool EntityChannelData::_internal_has_controllerstate() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.controllerstate_ != nullptr);
   return value;
 }
@@ -2409,14 +2473,14 @@ inline void EntityChannelData::unsafe_arena_set_allocated_controllerstate(
   }
   _impl_.controllerstate_ = controllerstate;
   if (controllerstate) {
-    _impl_._has_bits_[0] |= 0x00000010u;
+    _impl_._has_bits_[0] |= 0x00000020u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000010u;
+    _impl_._has_bits_[0] &= ~0x00000020u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tpspb.EntityChannelData.controllerState)
 }
 inline ::unrealpb::ControllerState* EntityChannelData::release_controllerstate() {
-  _impl_._has_bits_[0] &= ~0x00000010u;
+  _impl_._has_bits_[0] &= ~0x00000020u;
   ::unrealpb::ControllerState* temp = _impl_.controllerstate_;
   _impl_.controllerstate_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -2432,13 +2496,13 @@ inline ::unrealpb::ControllerState* EntityChannelData::release_controllerstate()
 }
 inline ::unrealpb::ControllerState* EntityChannelData::unsafe_arena_release_controllerstate() {
   // @@protoc_insertion_point(field_release:tpspb.EntityChannelData.controllerState)
-  _impl_._has_bits_[0] &= ~0x00000010u;
+  _impl_._has_bits_[0] &= ~0x00000020u;
   ::unrealpb::ControllerState* temp = _impl_.controllerstate_;
   _impl_.controllerstate_ = nullptr;
   return temp;
 }
 inline ::unrealpb::ControllerState* EntityChannelData::_internal_mutable_controllerstate() {
-  _impl_._has_bits_[0] |= 0x00000010u;
+  _impl_._has_bits_[0] |= 0x00000020u;
   if (_impl_.controllerstate_ == nullptr) {
     auto* p = CreateMaybeMessage<::unrealpb::ControllerState>(GetArenaForAllocation());
     _impl_.controllerstate_ = p;
@@ -2463,9 +2527,9 @@ inline void EntityChannelData::set_allocated_controllerstate(::unrealpb::Control
       controllerstate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, controllerstate, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000010u;
+    _impl_._has_bits_[0] |= 0x00000020u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000010u;
+    _impl_._has_bits_[0] &= ~0x00000020u;
   }
   _impl_.controllerstate_ = controllerstate;
   // @@protoc_insertion_point(field_set_allocated:tpspb.EntityChannelData.controllerState)
@@ -2473,7 +2537,7 @@ inline void EntityChannelData::set_allocated_controllerstate(::unrealpb::Control
 
 // optional .unrealpb.PlayerControllerState playerControllerState = 7;
 inline bool EntityChannelData::_internal_has_playercontrollerstate() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000040u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.playercontrollerstate_ != nullptr);
   return value;
 }
@@ -2496,14 +2560,14 @@ inline void EntityChannelData::unsafe_arena_set_allocated_playercontrollerstate(
   }
   _impl_.playercontrollerstate_ = playercontrollerstate;
   if (playercontrollerstate) {
-    _impl_._has_bits_[0] |= 0x00000020u;
+    _impl_._has_bits_[0] |= 0x00000040u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000020u;
+    _impl_._has_bits_[0] &= ~0x00000040u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tpspb.EntityChannelData.playerControllerState)
 }
 inline ::unrealpb::PlayerControllerState* EntityChannelData::release_playercontrollerstate() {
-  _impl_._has_bits_[0] &= ~0x00000020u;
+  _impl_._has_bits_[0] &= ~0x00000040u;
   ::unrealpb::PlayerControllerState* temp = _impl_.playercontrollerstate_;
   _impl_.playercontrollerstate_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -2519,13 +2583,13 @@ inline ::unrealpb::PlayerControllerState* EntityChannelData::release_playercontr
 }
 inline ::unrealpb::PlayerControllerState* EntityChannelData::unsafe_arena_release_playercontrollerstate() {
   // @@protoc_insertion_point(field_release:tpspb.EntityChannelData.playerControllerState)
-  _impl_._has_bits_[0] &= ~0x00000020u;
+  _impl_._has_bits_[0] &= ~0x00000040u;
   ::unrealpb::PlayerControllerState* temp = _impl_.playercontrollerstate_;
   _impl_.playercontrollerstate_ = nullptr;
   return temp;
 }
 inline ::unrealpb::PlayerControllerState* EntityChannelData::_internal_mutable_playercontrollerstate() {
-  _impl_._has_bits_[0] |= 0x00000020u;
+  _impl_._has_bits_[0] |= 0x00000040u;
   if (_impl_.playercontrollerstate_ == nullptr) {
     auto* p = CreateMaybeMessage<::unrealpb::PlayerControllerState>(GetArenaForAllocation());
     _impl_.playercontrollerstate_ = p;
@@ -2550,9 +2614,9 @@ inline void EntityChannelData::set_allocated_playercontrollerstate(::unrealpb::P
       playercontrollerstate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, playercontrollerstate, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000020u;
+    _impl_._has_bits_[0] |= 0x00000040u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000020u;
+    _impl_._has_bits_[0] &= ~0x00000040u;
   }
   _impl_.playercontrollerstate_ = playercontrollerstate;
   // @@protoc_insertion_point(field_set_allocated:tpspb.EntityChannelData.playerControllerState)
@@ -2560,7 +2624,7 @@ inline void EntityChannelData::set_allocated_playercontrollerstate(::unrealpb::P
 
 // optional .unrealpb.ActorComponentState actorComponentState = 8;
 inline bool EntityChannelData::_internal_has_actorcomponentstate() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000040u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000080u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.actorcomponentstate_ != nullptr);
   return value;
 }
@@ -2583,14 +2647,14 @@ inline void EntityChannelData::unsafe_arena_set_allocated_actorcomponentstate(
   }
   _impl_.actorcomponentstate_ = actorcomponentstate;
   if (actorcomponentstate) {
-    _impl_._has_bits_[0] |= 0x00000040u;
+    _impl_._has_bits_[0] |= 0x00000080u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000040u;
+    _impl_._has_bits_[0] &= ~0x00000080u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tpspb.EntityChannelData.actorComponentState)
 }
 inline ::unrealpb::ActorComponentState* EntityChannelData::release_actorcomponentstate() {
-  _impl_._has_bits_[0] &= ~0x00000040u;
+  _impl_._has_bits_[0] &= ~0x00000080u;
   ::unrealpb::ActorComponentState* temp = _impl_.actorcomponentstate_;
   _impl_.actorcomponentstate_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -2606,13 +2670,13 @@ inline ::unrealpb::ActorComponentState* EntityChannelData::release_actorcomponen
 }
 inline ::unrealpb::ActorComponentState* EntityChannelData::unsafe_arena_release_actorcomponentstate() {
   // @@protoc_insertion_point(field_release:tpspb.EntityChannelData.actorComponentState)
-  _impl_._has_bits_[0] &= ~0x00000040u;
+  _impl_._has_bits_[0] &= ~0x00000080u;
   ::unrealpb::ActorComponentState* temp = _impl_.actorcomponentstate_;
   _impl_.actorcomponentstate_ = nullptr;
   return temp;
 }
 inline ::unrealpb::ActorComponentState* EntityChannelData::_internal_mutable_actorcomponentstate() {
-  _impl_._has_bits_[0] |= 0x00000040u;
+  _impl_._has_bits_[0] |= 0x00000080u;
   if (_impl_.actorcomponentstate_ == nullptr) {
     auto* p = CreateMaybeMessage<::unrealpb::ActorComponentState>(GetArenaForAllocation());
     _impl_.actorcomponentstate_ = p;
@@ -2637,9 +2701,9 @@ inline void EntityChannelData::set_allocated_actorcomponentstate(::unrealpb::Act
       actorcomponentstate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, actorcomponentstate, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000040u;
+    _impl_._has_bits_[0] |= 0x00000080u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000040u;
+    _impl_._has_bits_[0] &= ~0x00000080u;
   }
   _impl_.actorcomponentstate_ = actorcomponentstate;
   // @@protoc_insertion_point(field_set_allocated:tpspb.EntityChannelData.actorComponentState)
@@ -2647,7 +2711,7 @@ inline void EntityChannelData::set_allocated_actorcomponentstate(::unrealpb::Act
 
 // optional .unrealpb.SceneComponentState sceneComponentState = 9;
 inline bool EntityChannelData::_internal_has_scenecomponentstate() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000080u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000100u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.scenecomponentstate_ != nullptr);
   return value;
 }
@@ -2670,14 +2734,14 @@ inline void EntityChannelData::unsafe_arena_set_allocated_scenecomponentstate(
   }
   _impl_.scenecomponentstate_ = scenecomponentstate;
   if (scenecomponentstate) {
-    _impl_._has_bits_[0] |= 0x00000080u;
+    _impl_._has_bits_[0] |= 0x00000100u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000080u;
+    _impl_._has_bits_[0] &= ~0x00000100u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tpspb.EntityChannelData.sceneComponentState)
 }
 inline ::unrealpb::SceneComponentState* EntityChannelData::release_scenecomponentstate() {
-  _impl_._has_bits_[0] &= ~0x00000080u;
+  _impl_._has_bits_[0] &= ~0x00000100u;
   ::unrealpb::SceneComponentState* temp = _impl_.scenecomponentstate_;
   _impl_.scenecomponentstate_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -2693,13 +2757,13 @@ inline ::unrealpb::SceneComponentState* EntityChannelData::release_scenecomponen
 }
 inline ::unrealpb::SceneComponentState* EntityChannelData::unsafe_arena_release_scenecomponentstate() {
   // @@protoc_insertion_point(field_release:tpspb.EntityChannelData.sceneComponentState)
-  _impl_._has_bits_[0] &= ~0x00000080u;
+  _impl_._has_bits_[0] &= ~0x00000100u;
   ::unrealpb::SceneComponentState* temp = _impl_.scenecomponentstate_;
   _impl_.scenecomponentstate_ = nullptr;
   return temp;
 }
 inline ::unrealpb::SceneComponentState* EntityChannelData::_internal_mutable_scenecomponentstate() {
-  _impl_._has_bits_[0] |= 0x00000080u;
+  _impl_._has_bits_[0] |= 0x00000100u;
   if (_impl_.scenecomponentstate_ == nullptr) {
     auto* p = CreateMaybeMessage<::unrealpb::SceneComponentState>(GetArenaForAllocation());
     _impl_.scenecomponentstate_ = p;
@@ -2724,9 +2788,9 @@ inline void EntityChannelData::set_allocated_scenecomponentstate(::unrealpb::Sce
       scenecomponentstate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, scenecomponentstate, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000080u;
+    _impl_._has_bits_[0] |= 0x00000100u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000080u;
+    _impl_._has_bits_[0] &= ~0x00000100u;
   }
   _impl_.scenecomponentstate_ = scenecomponentstate;
   // @@protoc_insertion_point(field_set_allocated:tpspb.EntityChannelData.sceneComponentState)
@@ -2734,7 +2798,7 @@ inline void EntityChannelData::set_allocated_scenecomponentstate(::unrealpb::Sce
 
 // optional .tpspb.TestRepPlayerControllerState testRepPlayerControllerState = 11;
 inline bool EntityChannelData::_internal_has_testrepplayercontrollerstate() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000100u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000200u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.testrepplayercontrollerstate_ != nullptr);
   return value;
 }
@@ -2743,7 +2807,7 @@ inline bool EntityChannelData::has_testrepplayercontrollerstate() const {
 }
 inline void EntityChannelData::clear_testrepplayercontrollerstate() {
   if (_impl_.testrepplayercontrollerstate_ != nullptr) _impl_.testrepplayercontrollerstate_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000100u;
+  _impl_._has_bits_[0] &= ~0x00000200u;
 }
 inline const ::tpspb::TestRepPlayerControllerState& EntityChannelData::_internal_testrepplayercontrollerstate() const {
   const ::tpspb::TestRepPlayerControllerState* p = _impl_.testrepplayercontrollerstate_;
@@ -2761,14 +2825,14 @@ inline void EntityChannelData::unsafe_arena_set_allocated_testrepplayercontrolle
   }
   _impl_.testrepplayercontrollerstate_ = testrepplayercontrollerstate;
   if (testrepplayercontrollerstate) {
-    _impl_._has_bits_[0] |= 0x00000100u;
+    _impl_._has_bits_[0] |= 0x00000200u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000100u;
+    _impl_._has_bits_[0] &= ~0x00000200u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tpspb.EntityChannelData.testRepPlayerControllerState)
 }
 inline ::tpspb::TestRepPlayerControllerState* EntityChannelData::release_testrepplayercontrollerstate() {
-  _impl_._has_bits_[0] &= ~0x00000100u;
+  _impl_._has_bits_[0] &= ~0x00000200u;
   ::tpspb::TestRepPlayerControllerState* temp = _impl_.testrepplayercontrollerstate_;
   _impl_.testrepplayercontrollerstate_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -2784,13 +2848,13 @@ inline ::tpspb::TestRepPlayerControllerState* EntityChannelData::release_testrep
 }
 inline ::tpspb::TestRepPlayerControllerState* EntityChannelData::unsafe_arena_release_testrepplayercontrollerstate() {
   // @@protoc_insertion_point(field_release:tpspb.EntityChannelData.testRepPlayerControllerState)
-  _impl_._has_bits_[0] &= ~0x00000100u;
+  _impl_._has_bits_[0] &= ~0x00000200u;
   ::tpspb::TestRepPlayerControllerState* temp = _impl_.testrepplayercontrollerstate_;
   _impl_.testrepplayercontrollerstate_ = nullptr;
   return temp;
 }
 inline ::tpspb::TestRepPlayerControllerState* EntityChannelData::_internal_mutable_testrepplayercontrollerstate() {
-  _impl_._has_bits_[0] |= 0x00000100u;
+  _impl_._has_bits_[0] |= 0x00000200u;
   if (_impl_.testrepplayercontrollerstate_ == nullptr) {
     auto* p = CreateMaybeMessage<::tpspb::TestRepPlayerControllerState>(GetArenaForAllocation());
     _impl_.testrepplayercontrollerstate_ = p;
@@ -2814,9 +2878,9 @@ inline void EntityChannelData::set_allocated_testrepplayercontrollerstate(::tpsp
       testrepplayercontrollerstate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, testrepplayercontrollerstate, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000100u;
+    _impl_._has_bits_[0] |= 0x00000200u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000100u;
+    _impl_._has_bits_[0] &= ~0x00000200u;
   }
   _impl_.testrepplayercontrollerstate_ = testrepplayercontrollerstate;
   // @@protoc_insertion_point(field_set_allocated:tpspb.EntityChannelData.testRepPlayerControllerState)
@@ -2824,7 +2888,7 @@ inline void EntityChannelData::set_allocated_testrepplayercontrollerstate(::tpsp
 
 // optional .tpspb.TestNPCState testNPCState = 12;
 inline bool EntityChannelData::_internal_has_testnpcstate() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000200u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000400u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.testnpcstate_ != nullptr);
   return value;
 }
@@ -2833,7 +2897,7 @@ inline bool EntityChannelData::has_testnpcstate() const {
 }
 inline void EntityChannelData::clear_testnpcstate() {
   if (_impl_.testnpcstate_ != nullptr) _impl_.testnpcstate_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000200u;
+  _impl_._has_bits_[0] &= ~0x00000400u;
 }
 inline const ::tpspb::TestNPCState& EntityChannelData::_internal_testnpcstate() const {
   const ::tpspb::TestNPCState* p = _impl_.testnpcstate_;
@@ -2851,14 +2915,14 @@ inline void EntityChannelData::unsafe_arena_set_allocated_testnpcstate(
   }
   _impl_.testnpcstate_ = testnpcstate;
   if (testnpcstate) {
-    _impl_._has_bits_[0] |= 0x00000200u;
+    _impl_._has_bits_[0] |= 0x00000400u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000200u;
+    _impl_._has_bits_[0] &= ~0x00000400u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:tpspb.EntityChannelData.testNPCState)
 }
 inline ::tpspb::TestNPCState* EntityChannelData::release_testnpcstate() {
-  _impl_._has_bits_[0] &= ~0x00000200u;
+  _impl_._has_bits_[0] &= ~0x00000400u;
   ::tpspb::TestNPCState* temp = _impl_.testnpcstate_;
   _impl_.testnpcstate_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
@@ -2874,13 +2938,13 @@ inline ::tpspb::TestNPCState* EntityChannelData::release_testnpcstate() {
 }
 inline ::tpspb::TestNPCState* EntityChannelData::unsafe_arena_release_testnpcstate() {
   // @@protoc_insertion_point(field_release:tpspb.EntityChannelData.testNPCState)
-  _impl_._has_bits_[0] &= ~0x00000200u;
+  _impl_._has_bits_[0] &= ~0x00000400u;
   ::tpspb::TestNPCState* temp = _impl_.testnpcstate_;
   _impl_.testnpcstate_ = nullptr;
   return temp;
 }
 inline ::tpspb::TestNPCState* EntityChannelData::_internal_mutable_testnpcstate() {
-  _impl_._has_bits_[0] |= 0x00000200u;
+  _impl_._has_bits_[0] |= 0x00000400u;
   if (_impl_.testnpcstate_ == nullptr) {
     auto* p = CreateMaybeMessage<::tpspb::TestNPCState>(GetArenaForAllocation());
     _impl_.testnpcstate_ = p;
@@ -2904,9 +2968,9 @@ inline void EntityChannelData::set_allocated_testnpcstate(::tpspb::TestNPCState*
       testnpcstate = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, testnpcstate, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000200u;
+    _impl_._has_bits_[0] |= 0x00000400u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000200u;
+    _impl_._has_bits_[0] &= ~0x00000400u;
   }
   _impl_.testnpcstate_ = testnpcstate;
   // @@protoc_insertion_point(field_set_allocated:tpspb.EntityChannelData.testNPCState)
