@@ -136,13 +136,3 @@ void FTpsEntityChannelDataProcessor::SetStateToChannelData(const google::protobu
 		UE_LOG(LogChanneldDemo, Warning, TEXT("State of '%s' is not supported in the ChannelData, NetGUID: %d"), *TargetClass->GetName(), NetGUID);
 	}
 }
-
-TArray<uint32> FTpsEntityChannelDataProcessor::GetRelevantNetGUIDsFromChannelData(
-	const google::protobuf::Message* ChannelData)
-{
-	// Entity channels are subscribed after spawn, so the NetId should already been resolved. 
-	// auto EntityChannelData = static_cast<const tpspb::EntityChannelData*>(ChannelData);
-
-	static const TArray<uint32> EmptyArray;
-	return EmptyArray;
-}
