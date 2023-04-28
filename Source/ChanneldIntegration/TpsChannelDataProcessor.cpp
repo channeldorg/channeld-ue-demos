@@ -175,7 +175,11 @@ bool FTpsChannelDataProcessor::Merge(const google::protobuf::Message* SrcMsg, go
 const google::protobuf::Message* FTpsChannelDataProcessor::GetStateFromChannelData(google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID, bool& bIsRemoved)
 {
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
-	if (TargetClass == AActor::StaticClass())
+	if (TargetClass == UObject::StaticClass())
+	{
+		// Do nothing - just suppress the warning
+	}
+	else if (TargetClass == AActor::StaticClass())
 	{
 		auto States = TestRepChannelData->mutable_actorstates();
 		if (States->contains(NetGUID))
@@ -290,7 +294,11 @@ const google::protobuf::Message* FTpsChannelDataProcessor::GetStateFromChannelDa
 void FTpsChannelDataProcessor::SetStateToChannelData(const google::protobuf::Message* State, google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID)
 {
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
-	if (TargetClass == AActor::StaticClass())
+	if (TargetClass == UObject::StaticClass())
+	{
+		// Do nothing - just suppress the warning
+	}
+	else if (TargetClass == AActor::StaticClass())
 	{
 		auto ActorState = State ? static_cast<const unrealpb::ActorState*>(State) : RemovedActorState.Get();
 		auto States = TestRepChannelData->mutable_actorstates();
