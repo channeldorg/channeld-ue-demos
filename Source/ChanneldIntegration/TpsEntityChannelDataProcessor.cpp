@@ -19,11 +19,16 @@ bool FTpsEntityChannelDataProcessor::Merge(const google::protobuf::Message* SrcM
 
 bool FTpsEntityChannelDataProcessor::UpdateChannelData(UObject* TargetObj, google::protobuf::Message* ChannelData)
 {
-	/* EntityChannelData.ObjRef should only be set once, from the Spawn message.
-	const auto EntityChannelData = static_cast<tpspb::EntityChannelData*>(ChannelData);
-	if (!EntityChannelData->has_objref())
+	/* By now, the NetId should has already been assigned (in UChanneldNetDriver::OnServerSpawnedActor), so the 
+	 * condition below would never match.
+	// EntityChannelData.ObjRef should only be set once, from the Spawn message.
+	if (!ChanneldUtils::GetNetId(TargetObj, false).IsValid())
 	{
-		EntityChannelData->mutable_objref()->CopyFrom(*ChanneldUtils::GetRefOfObject(TargetObj));
+		const auto EntityChannelData = static_cast<tpspb::EntityChannelData*>(ChannelData);
+		if (!EntityChannelData->has_objref())
+		{
+			EntityChannelData->mutable_objref()->CopyFrom(*ChanneldUtils::GetRefOfObject(TargetObj, nullptr, true));
+		}
 	}
 	*/
 	return true;
@@ -34,45 +39,49 @@ const google::protobuf::Message* FTpsEntityChannelDataProcessor::GetStateFromCha
 {
 	bIsRemoved = false;
 	auto EntityChannelData = static_cast<tpspb::EntityChannelData*>(ChannelData);
-	if (TargetClass == AActor::StaticClass())
+	if (TargetClass == UObject::StaticClass())
 	{
-		return EntityChannelData->mutable_actorstate();
+		return EntityChannelData->has_objref() ? &EntityChannelData->objref() : nullptr;
+	}
+	else if (TargetClass == AActor::StaticClass())
+	{
+		return EntityChannelData->has_actorstate() ? &EntityChannelData->actorstate() : nullptr;
 	}
 	else if (TargetClass == APawn::StaticClass())
 	{
-		return EntityChannelData->mutable_pawnstate();
+		return EntityChannelData->has_pawnstate() ? &EntityChannelData->pawnstate() : nullptr;
 	}
 	else if (TargetClass == ACharacter::StaticClass())
 	{
-		return EntityChannelData->mutable_characterstate();
+		return EntityChannelData->has_characterstate() ? &EntityChannelData->characterstate() : nullptr;
 	}
 	else if (TargetClass == APlayerState::StaticClass())
 	{
-		return EntityChannelData->mutable_playerstate();
+		return EntityChannelData->has_playerstate() ? &EntityChannelData->playerstate() : nullptr;
 	}
 	else if (TargetClass == AController::StaticClass())
 	{
-		return EntityChannelData->mutable_controllerstate();
+		return EntityChannelData->has_controllerstate() ? &EntityChannelData->controllerstate() : nullptr;
 	}
 	else if (TargetClass == APlayerController::StaticClass())
 	{
-		return EntityChannelData->mutable_playercontrollerstate();
+		return EntityChannelData->has_playercontrollerstate() ? &EntityChannelData->playercontrollerstate() : nullptr;
 	}
 	else if (TargetClass == UActorComponent::StaticClass())
 	{
-		return EntityChannelData->mutable_actorcomponentstate();
+		return EntityChannelData->has_actorcomponentstate() ? &EntityChannelData->actorcomponentstate() : nullptr;
 	}
 	else if (TargetClass == USceneComponent::StaticClass())
 	{
-		return EntityChannelData->mutable_scenecomponentstate();
+		return EntityChannelData->has_scenecomponentstate() ? &EntityChannelData->scenecomponentstate() : nullptr;
 	}
 	else if (TargetClass->GetFName() == FName("BP_TestRepPlayerController_C"))
 	{
-		return EntityChannelData->mutable_testrepplayercontrollerstate();
+		return EntityChannelData->has_testrepplayercontrollerstate() ? &EntityChannelData->testrepplayercontrollerstate() : nullptr;
 	}
 	else if (TargetClass->GetFName() == FName("BP_TestNPC_C"))
 	{
-		return EntityChannelData->mutable_testnpcstate();
+		return EntityChannelData->has_testnpcstate() ? &EntityChannelData->testnpcstate() : nullptr;
 	}
 	else
 	{
@@ -91,7 +100,11 @@ void FTpsEntityChannelDataProcessor::SetStateToChannelData(const google::protobu
 	}
 	
 	auto EntityChannelData = static_cast<tpspb::EntityChannelData*>(ChannelData);
-	if (TargetClass == AActor::StaticClass())
+	if (TargetClass == UObject::StaticClass())
+	{
+		EntityChannelData->mutable_objref()->CopyFrom(*State);
+	}
+	else if (TargetClass == AActor::StaticClass())
 	{
 		EntityChannelData->mutable_actorstate()->CopyFrom(*State);
 	}
