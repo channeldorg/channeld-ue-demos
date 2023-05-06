@@ -4,7 +4,30 @@
 
 bool FTpsSpatialChannelDataProcessor::Merge(const google::protobuf::Message* SrcMsg, google::protobuf::Message* DstMsg)
 {
-	DstMsg->MergeFrom(*SrcMsg);
+	// DstMsg->MergeFrom(*SrcMsg);
+	
+	auto Src = static_cast<const unrealpb::SpatialChannelData*>(SrcMsg);
+	auto Dst = static_cast<unrealpb::SpatialChannelData*>(DstMsg);
+
+	for (auto& Pair : Src->entities())
+	{
+		if (Pair.second.removed())
+		{
+			Dst->mutable_entities()->erase(Pair.first);
+		}
+		else
+		{
+			if (Dst->entities().contains(Pair.first))
+			{
+				Dst->mutable_entities()->at(Pair.first).MergeFrom(Pair.second);
+			}
+			else
+			{
+				Dst->mutable_entities()->emplace(Pair.first, Pair.second);
+			}
+		}
+	}
+	
 	return true;
 }
 
@@ -26,7 +49,7 @@ const google::protobuf::Message* FTpsSpatialChannelDataProcessor::GetStateFromCh
 	auto Entry = SpatialChannelData->mutable_entities()->find(NetGUID);
 	if (Entry != SpatialChannelData->mutable_entities()->end())
 	{
-		bIsRemoved = false;
+		bIsRemoved = Entry->second.removed();
 		return &Entry->second;
 	}
 	else
@@ -43,16 +66,19 @@ void FTpsSpatialChannelDataProcessor::SetStateToChannelData(const google::protob
 	{
 		return;
 	}
-	
+
+	static unrealpb::SpatialEntityState RemovedEntityState;
+	RemovedEntityState.set_removed(true);
+	auto EntityState = State ? static_cast<const unrealpb::SpatialEntityState*>(State) : &RemovedEntityState;
 	auto SpatialChannelData = static_cast<unrealpb::SpatialChannelData*>(ChannelData);
 	auto Entry = SpatialChannelData->mutable_entities()->find(NetGUID);
 	if (Entry != SpatialChannelData->mutable_entities()->end())
 	{
-		Entry->second.MergeFrom(*State);
+		Entry->second.MergeFrom(*EntityState);
 	}
 	else
 	{
-		SpatialChannelData->mutable_entities()->insert({ NetGUID, *static_cast<const unrealpb::SpatialEntityState*>(State) });
+		SpatialChannelData->mutable_entities()->insert({ NetGUID, *EntityState });
 	}
 }
 
