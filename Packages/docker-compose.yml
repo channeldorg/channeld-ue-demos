@@ -20,7 +20,7 @@ services:
       "-mcb=13",
       "-cfsm=config/client_authoratative_fsm.json", 
       "-sfsm=config/server_authoratative_fsm.json",
-      "-chs=config/channel_settings_ue.json",
+      "-chs=config/channel_settings_tps.json",
       "-scc=config/spatial_static_benchmark.json",
       "-loglevel=0",
       "-logfile=/var/log/channeld/{time}.log",
@@ -69,6 +69,10 @@ services:
       - CHANNELD_ADDR=tps-channeld
     entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestSpatial_Benchmark?MaxPlayers=128 -server -log -metrics channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
     deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1024M
       replicas: 9
   tps-client:
     image: channeld/tps-client
@@ -109,7 +113,7 @@ services:
       scrape_configs:
         - job_name: channeld
           static_configs:
-          - targets: ['tps-channeld:8080', 'tps-server:8081', 'tps-client:8081']
+          - targets: ['tps-channeld:8080', 'tps-server:8081', 'tps-master:8081', 'tps-spatial:8081', 'tps-client:8081']
       EON
       prometheus --config.file=./prometheus.yml
       EOF'
