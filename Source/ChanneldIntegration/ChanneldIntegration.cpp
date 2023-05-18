@@ -20,9 +20,6 @@ void FChanneldIntegrationModule::StartupModule()
 
 	TpsChannelDataProcessor = new FTpsChannelDataProcessor();
 	ChanneldReplication::RegisterChannelDataProcessor(TEXT("tpspb.TestRepChannelData"), TpsChannelDataProcessor);
-
-	SpatialChannelDataProcessor = new FTpsSpatialChannelDataProcessor();
-	ChanneldReplication::RegisterChannelDataProcessor(TEXT("unrealpb.SpatialChannelData"), SpatialChannelDataProcessor);
 	
 	EntityChannelDataProcessor = new FTpsEntityChannelDataProcessor();
 	ChanneldReplication::RegisterChannelDataProcessor(TEXT("tpspb.EntityChannelData"), EntityChannelDataProcessor);
