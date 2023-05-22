@@ -20,7 +20,7 @@ services:
       "-mcb=13",
       "-cfsm=config/client_authoratative_fsm.json", 
       "-sfsm=config/server_authoratative_fsm.json",
-      "-chs=config/channel_settings_tps.json",
+      "-chs=config/channel_settings_ue.json",
       "-scc=config/spatial_static_benchmark.json",
       "-loglevel=0",
       "-logfile=/var/log/channeld/{time}.log",
