@@ -4,32 +4,74 @@
 	"channelTypeOrder": 1,
 	"stateSchemata": [
 		{
-			"replicationClassPath": "/Script/Engine.GameStateBase",
-			"stateOrder": 2,
+			"replicationClassPath": "/Script/Engine.Actor",
+			"stateOrder": 1,
 			"bSkip": false,
-			"bSingleton": true
+			"bSingleton": false
 		},
 		{
-			"replicationClassPath": "/Script/Engine.SceneComponent",
+			"replicationClassPath": "/Script/Engine.Character",
+			"stateOrder": 2,
+			"bSkip": false,
+			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Script/Engine.Controller",
 			"stateOrder": 3,
 			"bSkip": false,
 			"bSingleton": false
 		},
 		{
-			"replicationClassPath": "/Game/Blueprints/BP_RepGameState.BP_RepGameState_C",
-			"stateOrder": 3,
-			"bSkip": false,
-			"bSingleton": true
-		},
-		{
-			"replicationClassPath": "/Script/Engine.ActorComponent",
+			"replicationClassPath": "/Script/Engine.Pawn",
 			"stateOrder": 4,
 			"bSkip": false,
 			"bSingleton": false
 		},
 		{
-			"replicationClassPath": "/Script/Engine.Actor",
+			"replicationClassPath": "/Script/Engine.PlayerController",
 			"stateOrder": 5,
+			"bSkip": false,
+			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Script/Engine.PlayerState",
+			"stateOrder": 6,
+			"bSkip": false,
+			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Script/Engine.ActorComponent",
+			"stateOrder": 7,
+			"bSkip": false,
+			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Script/Engine.SceneComponent",
+			"stateOrder": 8,
+			"bSkip": false,
+			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Script/Engine.GameStateBase",
+			"stateOrder": 9,
+			"bSkip": false,
+			"bSingleton": true
+		},
+		{
+			"replicationClassPath": "/Game/Blueprints/BP_RepGameState.BP_RepGameState_C",
+			"stateOrder": 10,
+			"bSkip": false,
+			"bSingleton": true
+		},
+		{
+			"replicationClassPath": "/Game/Blueprints/BP_TestRepPlayerController.BP_TestRepPlayerController_C",
+			"stateOrder": 12,
+			"bSkip": false,
+			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Game/Blueprints/BP_TestRPCPlayerController.BP_TestRPCPlayerController_C",
+			"stateOrder": 13,
 			"bSkip": false,
 			"bSingleton": false
 		}
