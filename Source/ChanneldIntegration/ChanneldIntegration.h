@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "TpsChannelDataProcessor.h"
+#include "TpsEntityChannelDataProcessor.h"
 #include "Modules/ModuleManager.h"
 
 class FChanneldIntegrationModule : public IModuleInterface
@@ -17,5 +18,6 @@ public:
 	}
 
 	FTpsChannelDataProcessor* TpsChannelDataProcessor;
+	FTpsEntityChannelDataProcessor* EntityChannelDataProcessor;
 };
 

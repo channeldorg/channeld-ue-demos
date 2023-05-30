@@ -45,7 +45,7 @@ void FTestRepPlayerControllerReplicator::Tick(float DeltaTime)
 
 	if (*TestRepActorPtr != ChanneldUtils::GetObjectByRef(FullState->mutable_testrepactor(), TargetObject->GetWorld(), false))
 	{
-		DeltaState->mutable_testrepactor()->CopyFrom(ChanneldUtils::GetRefOfObject(*TestRepActorPtr));
+		DeltaState->mutable_testrepactor()->CopyFrom(*ChanneldUtils::GetRefOfObject(*TestRepActorPtr));
 		bStateChanged = true;
 	}
 	
@@ -79,6 +79,10 @@ TSharedPtr<google::protobuf::Message> FTestRepPlayerControllerReplicator::Serial
 	{
 		return nullptr;
 	}
+	else if (Func->GetFName() == FName("ServerDeleteTestRepActor"))
+	{
+		return nullptr;
+	}
 	else if (Func->GetFName() == FName("ServerSpawnCube"))
 	{
 		return nullptr;
@@ -92,6 +96,14 @@ TSharedPtr<google::protobuf::Message> FTestRepPlayerControllerReplicator::Serial
 		return nullptr;
 	}
 	else if (Func->GetFName() == FName("ServerTestMulticast"))
+	{
+		return nullptr;
+	}
+	else if (Func->GetFName() == FName("ServerToggleInspector"))
+	{
+		return nullptr;
+	}
+	else if (Func->GetFName() == FName("ServerToggleHandoverLock"))
 	{
 		return nullptr;
 	}
@@ -107,6 +119,10 @@ TSharedPtr<void> FTestRepPlayerControllerReplicator::DeserializeFunctionParams(U
 	{
 		return nullptr;
 	}
+	else if (Func->GetFName() == FName("ServerDeleteTestRepActor"))
+	{
+		return nullptr;
+	}
 	else if (Func->GetFName() == FName("ServerSpawnCube"))
 	{
 		return nullptr;
@@ -120,6 +136,14 @@ TSharedPtr<void> FTestRepPlayerControllerReplicator::DeserializeFunctionParams(U
 		return nullptr;
 	}
 	else if (Func->GetFName() == FName("ServerTestMulticast"))
+	{
+		return nullptr;
+	}
+	else if (Func->GetFName() == FName("ServerToggleInspector"))
+	{
+		return nullptr;
+	}
+	else if (Func->GetFName() == FName("ServerToggleHandoverLock"))
 	{
 		return nullptr;
 	}

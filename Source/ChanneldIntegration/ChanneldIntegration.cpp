@@ -20,11 +20,15 @@ void FChanneldIntegrationModule::StartupModule()
 
 	TpsChannelDataProcessor = new FTpsChannelDataProcessor();
 	ChanneldReplication::RegisterChannelDataProcessor(TEXT("tpspb.TestRepChannelData"), TpsChannelDataProcessor);
+	
+	EntityChannelDataProcessor = new FTpsEntityChannelDataProcessor();
+	ChanneldReplication::RegisterChannelDataProcessor(TEXT("tpspb.EntityChannelData"), EntityChannelDataProcessor);
 }
 
 void FChanneldIntegrationModule::ShutdownModule()
 {
 	delete TpsChannelDataProcessor;
+	delete EntityChannelDataProcessor;
 }
 
 IMPLEMENT_PRIMARY_GAME_MODULE(FChanneldIntegrationModule, ChanneldIntegration, "ChanneldIntegration");

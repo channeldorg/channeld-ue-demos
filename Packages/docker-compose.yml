@@ -27,6 +27,11 @@ services:
       # "-profile=cpu", 
       # "-profilepath=/var/log/channeld", 
     ]
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: 1024M
   tps-server:
     image: channeld/tps-server
     build:
@@ -56,7 +61,7 @@ services:
       - "8081"
     environment:
       - CHANNELD_ADDR=tps-channeld
-    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestSpatial_Benchmark -server -log -metrics channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ViewClass=ChanneldUE.SpatialMasterServerView ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
+    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestSpatial_Benchmark -server -log -metrics MetricsName=MASTER channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ViewClass=ChanneldUE.SpatialMasterServerView ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
   tps-spatial:
     image: channeld/tps-server
     depends_on:
@@ -67,8 +72,12 @@ services:
       - "8081"
     environment:
       - CHANNELD_ADDR=tps-channeld
-    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestSpatial_Benchmark?MaxPlayers=128 -server -log -metrics channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
+    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestSpatial_Benchmark?MaxPlayers=128 -server -log -metrics MetricsName=SPATIAL channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
     deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1024M
       replicas: 9
   tps-client:
     image: channeld/tps-client
@@ -109,7 +118,7 @@ services:
       scrape_configs:
         - job_name: channeld
           static_configs:
-          - targets: ['tps-channeld:8080', 'tps-server:8081', 'tps-client:8081']
+          - targets: ['tps-channeld:8080', 'tps-server:8081', 'tps-master:8081', 'tps-spatial:8081', 'tps-client:8081']
       EON
       prometheus --config.file=./prometheus.yml
       EOF'
