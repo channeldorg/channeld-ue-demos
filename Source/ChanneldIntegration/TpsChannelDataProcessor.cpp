@@ -234,9 +234,9 @@ const google::protobuf::Message* FTpsChannelDataProcessor::GetStateFromChannelDa
 			return &States->at(NetGUID);
 		}
 	}
-	else if (TargetClass == UActorComponent::StaticClass())
+	else if (TargetClass == UStaticMeshComponent::StaticClass())
 	{
-		auto States = TestRepChannelData->mutable_actorcomponentstates();
+		auto States = TestRepChannelData->mutable_staticmeshcomponentstates();
 		if (States->contains(NetGUID))
 		{
 			auto State = &States->at(NetGUID);
@@ -247,6 +247,16 @@ const google::protobuf::Message* FTpsChannelDataProcessor::GetStateFromChannelDa
 	else if (TargetClass == USceneComponent::StaticClass())
 	{
 		auto States = TestRepChannelData->mutable_scenecomponentstates();
+		if (States->contains(NetGUID))
+		{
+			auto State = &States->at(NetGUID);
+			bIsRemoved = State->removed();
+			return State;
+		}
+	}
+	else if (TargetClass == UActorComponent::StaticClass())
+	{
+		auto States = TestRepChannelData->mutable_actorcomponentstates();
 		if (States->contains(NetGUID))
 		{
 			auto State = &States->at(NetGUID);
@@ -348,11 +358,14 @@ void FTpsChannelDataProcessor::SetStateToChannelData(const google::protobuf::Mes
 			(*States)[NetGUID] = *PlayerControllerState;
 		}
 	}
-	else if (TargetClass == UActorComponent::StaticClass())
+	else if (TargetClass == UStaticMeshComponent::StaticClass())
 	{
-		auto ActorCompState = State ? static_cast<const unrealpb::ActorComponentState*>(State) : RemovedActorComponentState.Get();
-		auto States = TestRepChannelData->mutable_actorcomponentstates();
-		(*States)[NetGUID] = *ActorCompState;
+		auto StaticMeshState = static_cast<const unrealpb::StaticMeshComponentState*>(State);
+		if (StaticMeshState)
+		{
+			auto States = TestRepChannelData->mutable_staticmeshcomponentstates();
+			(*States)[NetGUID] = *StaticMeshState;
+		}
 	}
 	else if (TargetClass == USceneComponent::StaticClass())
 	{
@@ -362,6 +375,12 @@ void FTpsChannelDataProcessor::SetStateToChannelData(const google::protobuf::Mes
 			auto States = TestRepChannelData->mutable_scenecomponentstates();
 			(*States)[NetGUID] = *SceneCompState;
 		}
+	}
+	else if (TargetClass == UActorComponent::StaticClass())
+	{
+		auto ActorCompState = State ? static_cast<const unrealpb::ActorComponentState*>(State) : RemovedActorComponentState.Get();
+		auto States = TestRepChannelData->mutable_actorcomponentstates();
+		(*States)[NetGUID] = *ActorCompState;
 	}
 	else if (TargetClass == AGameStateBase::StaticClass())
 	{

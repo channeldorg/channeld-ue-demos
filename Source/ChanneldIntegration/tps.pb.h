@@ -82,6 +82,9 @@ extern TestRepChannelData_PlayerStatesEntry_DoNotUseDefaultTypeInternal _TestRep
 class TestRepChannelData_SceneComponentStatesEntry_DoNotUse;
 struct TestRepChannelData_SceneComponentStatesEntry_DoNotUseDefaultTypeInternal;
 extern TestRepChannelData_SceneComponentStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_SceneComponentStatesEntry_DoNotUse_default_instance_;
+class TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse;
+struct TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUseDefaultTypeInternal;
+extern TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse_default_instance_;
 class TestRepChannelData_TestNPCStatesEntry_DoNotUse;
 struct TestRepChannelData_TestNPCStatesEntry_DoNotUseDefaultTypeInternal;
 extern TestRepChannelData_TestNPCStatesEntry_DoNotUseDefaultTypeInternal _TestRepChannelData_TestNPCStatesEntry_DoNotUse_default_instance_;
@@ -110,6 +113,7 @@ template<> ::tpspb::TestRepChannelData_PawnStatesEntry_DoNotUse* Arena::CreateMa
 template<> ::tpspb::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_PlayerControllerStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_PlayerStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_PlayerStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_SceneComponentStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_SceneComponentStatesEntry_DoNotUse>(Arena*);
+template<> ::tpspb::TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_TestNPCStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_TestNPCStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepChannelData_TestRepPlayerControllerStatesEntry_DoNotUse* Arena::CreateMaybeMessage<::tpspb::TestRepChannelData_TestRepPlayerControllerStatesEntry_DoNotUse>(Arena*);
 template<> ::tpspb::TestRepGameState* Arena::CreateMaybeMessage<::tpspb::TestRepGameState>(Arena*);
@@ -1153,6 +1157,30 @@ public:
 
 // -------------------------------------------------------------------
 
+class TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse, 
+    uint32_t, ::unrealpb::StaticMeshComponentState,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse, 
+    uint32_t, ::unrealpb::StaticMeshComponentState,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> SuperType;
+  TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse();
+  explicit PROTOBUF_CONSTEXPR TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse(
+      ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  explicit TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse& other);
+  static const TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse*>(&_TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(void*) { return true; }
+  static bool ValidateValue(void*) { return true; }
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  friend struct ::TableStruct_tps_2eproto;
+};
+
+// -------------------------------------------------------------------
+
 class TestRepChannelData_TestRepPlayerControllerStatesEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<TestRepChannelData_TestRepPlayerControllerStatesEntry_DoNotUse, 
     uint32_t, ::tpspb::TestRepPlayerControllerState,
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
@@ -1249,7 +1277,7 @@ class TestRepChannelData final :
                &_TestRepChannelData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    15;
 
   friend void swap(TestRepChannelData& a, TestRepChannelData& b) {
     a.Swap(&b);
@@ -1333,10 +1361,11 @@ class TestRepChannelData final :
     kPlayerControllerStatesFieldNumber = 7,
     kActorComponentStatesFieldNumber = 8,
     kSceneComponentStatesFieldNumber = 9,
-    kTestRepPlayerControllerStatesFieldNumber = 11,
-    kTestNPCStatesFieldNumber = 12,
+    kStaticMeshComponentStatesFieldNumber = 10,
+    kTestRepPlayerControllerStatesFieldNumber = 21,
+    kTestNPCStatesFieldNumber = 22,
     kGameStateFieldNumber = 1,
-    kTestGameStateFieldNumber = 10,
+    kTestGameStateFieldNumber = 20,
   };
   // map<uint32, .unrealpb.ActorState> actorStates = 2;
   int actorstates_size() const;
@@ -1474,7 +1503,24 @@ class TestRepChannelData final :
   ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::SceneComponentState >*
       mutable_scenecomponentstates();
 
-  // map<uint32, .tpspb.TestRepPlayerControllerState> testRepPlayerControllerStates = 11;
+  // map<uint32, .unrealpb.StaticMeshComponentState> staticMeshComponentStates = 10;
+  int staticmeshcomponentstates_size() const;
+  private:
+  int _internal_staticmeshcomponentstates_size() const;
+  public:
+  void clear_staticmeshcomponentstates();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::StaticMeshComponentState >&
+      _internal_staticmeshcomponentstates() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::StaticMeshComponentState >*
+      _internal_mutable_staticmeshcomponentstates();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::StaticMeshComponentState >&
+      staticmeshcomponentstates() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::StaticMeshComponentState >*
+      mutable_staticmeshcomponentstates();
+
+  // map<uint32, .tpspb.TestRepPlayerControllerState> testRepPlayerControllerStates = 21;
   int testrepplayercontrollerstates_size() const;
   private:
   int _internal_testrepplayercontrollerstates_size() const;
@@ -1491,7 +1537,7 @@ class TestRepChannelData final :
   ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::tpspb::TestRepPlayerControllerState >*
       mutable_testrepplayercontrollerstates();
 
-  // map<uint32, .tpspb.TestNPCState> testNPCStates = 12;
+  // map<uint32, .tpspb.TestNPCState> testNPCStates = 22;
   int testnpcstates_size() const;
   private:
   int _internal_testnpcstates_size() const;
@@ -1526,7 +1572,7 @@ class TestRepChannelData final :
       ::unrealpb::GameStateBase* gamestate);
   ::unrealpb::GameStateBase* unsafe_arena_release_gamestate();
 
-  // .tpspb.TestRepGameState testGameState = 10;
+  // .tpspb.TestRepGameState testGameState = 20;
   bool has_testgamestate() const;
   private:
   bool _internal_has_testgamestate() const;
@@ -1592,6 +1638,11 @@ class TestRepChannelData final :
         uint32_t, ::unrealpb::SceneComponentState,
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
         ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> scenecomponentstates_;
+    ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+        TestRepChannelData_StaticMeshComponentStatesEntry_DoNotUse,
+        uint32_t, ::unrealpb::StaticMeshComponentState,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_UINT32,
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE> staticmeshcomponentstates_;
     ::PROTOBUF_NAMESPACE_ID::internal::MapField<
         TestRepChannelData_TestRepPlayerControllerStatesEntry_DoNotUse,
         uint32_t, ::tpspb::TestRepPlayerControllerState,
@@ -1659,7 +1710,7 @@ class TestRepGameState_MulticastNumber_Params final :
                &_TestRepGameState_MulticastNumber_Params_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(TestRepGameState_MulticastNumber_Params& a, TestRepGameState_MulticastNumber_Params& b) {
     a.Swap(&b);
@@ -2998,6 +3049,8 @@ inline void EntityChannelData::set_allocated_testnpcstate(::tpspb::TestNPCState*
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
 // TestRepChannelData
 
 // .unrealpb.GameStateBase gameState = 1;
@@ -3293,7 +3346,33 @@ TestRepChannelData::mutable_scenecomponentstates() {
   return _internal_mutable_scenecomponentstates();
 }
 
-// .tpspb.TestRepGameState testGameState = 10;
+// map<uint32, .unrealpb.StaticMeshComponentState> staticMeshComponentStates = 10;
+inline int TestRepChannelData::_internal_staticmeshcomponentstates_size() const {
+  return _impl_.staticmeshcomponentstates_.size();
+}
+inline int TestRepChannelData::staticmeshcomponentstates_size() const {
+  return _internal_staticmeshcomponentstates_size();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::StaticMeshComponentState >&
+TestRepChannelData::_internal_staticmeshcomponentstates() const {
+  return _impl_.staticmeshcomponentstates_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::StaticMeshComponentState >&
+TestRepChannelData::staticmeshcomponentstates() const {
+  // @@protoc_insertion_point(field_map:tpspb.TestRepChannelData.staticMeshComponentStates)
+  return _internal_staticmeshcomponentstates();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::StaticMeshComponentState >*
+TestRepChannelData::_internal_mutable_staticmeshcomponentstates() {
+  return _impl_.staticmeshcomponentstates_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< uint32_t, ::unrealpb::StaticMeshComponentState >*
+TestRepChannelData::mutable_staticmeshcomponentstates() {
+  // @@protoc_insertion_point(field_mutable_map:tpspb.TestRepChannelData.staticMeshComponentStates)
+  return _internal_mutable_staticmeshcomponentstates();
+}
+
+// .tpspb.TestRepGameState testGameState = 20;
 inline bool TestRepChannelData::_internal_has_testgamestate() const {
   return this != internal_default_instance() && _impl_.testgamestate_ != nullptr;
 }
@@ -3383,7 +3462,7 @@ inline void TestRepChannelData::set_allocated_testgamestate(::tpspb::TestRepGame
   // @@protoc_insertion_point(field_set_allocated:tpspb.TestRepChannelData.testGameState)
 }
 
-// map<uint32, .tpspb.TestRepPlayerControllerState> testRepPlayerControllerStates = 11;
+// map<uint32, .tpspb.TestRepPlayerControllerState> testRepPlayerControllerStates = 21;
 inline int TestRepChannelData::_internal_testrepplayercontrollerstates_size() const {
   return _impl_.testrepplayercontrollerstates_.size();
 }
@@ -3412,7 +3491,7 @@ TestRepChannelData::mutable_testrepplayercontrollerstates() {
   return _internal_mutable_testrepplayercontrollerstates();
 }
 
-// map<uint32, .tpspb.TestNPCState> testNPCStates = 12;
+// map<uint32, .tpspb.TestNPCState> testNPCStates = 22;
 inline int TestRepChannelData::_internal_testnpcstates_size() const {
   return _impl_.testnpcstates_.size();
 }
@@ -3476,6 +3555,8 @@ inline void TestRepGameState_MulticastNumber_Params::set_num(int32_t value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
