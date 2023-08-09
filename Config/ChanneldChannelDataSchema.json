@@ -80,6 +80,12 @@
 			"stateOrder": 13,
 			"bSkip": false,
 			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Script/Engine.SkeletalMeshActor",
+			"stateOrder": 14,
+			"bSkip": false,
+			"bSingleton": false
 		}
 	]
 },
