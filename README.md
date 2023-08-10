@@ -21,6 +21,9 @@ git clone --recurse-submodules https://github.com/metaworking/channeld-ue-demos
   - Use `Mouse Wheel` to zoom in/out the camera
 - TestPhysics: physics replication test map.
   - Have the same controls as TestReplication
+- TestAssetReplication: physics replication test map.
+  - Have the same controls as TestReplication
+  - Move onto the texts to trigger events
 - TestMultiServer: multi server test map. Used for testing player switching and replication between offline level (TestMultiServer_SinglePlayer) and multiple online levels.
   - Press `Enter` to display the available online levels
   - Press `1-3` to enter the corresponding online level. If already in the coresspoding online levels, press again to return to offline level.
@@ -37,6 +40,7 @@ git clone --recurse-submodules https://github.com/metaworking/channeld-ue-demos
 | ------ | ------ | ------ | ------ |
 | TestReplication | SingleChannelDataView | Group 0: Server View Class = SingleChannelDataView, Num = 1 | (no change) |
 | TestPhysics | SingleChannelDataView | Group 0: Server View Class = SingleChannelDataView, Num = 1 | (no change) |
+| TestAssetReplication | SingleChannelDataView | Group 0: Server View Class = SingleChannelDataView, Num = 1 | (no change) |
 | TestMultiServer | BP_MultiSubworldsView | Group 0: Server View Class = BP_MultiSubworldsView, Num = 3 | (no change) |
 | TestSpatial_2x2 | BP_SpatialChannelView | Group 0: Server View Class = SpatialMasterServerView, Num = 1; Group 1: Server View Class = BP_SpatialChannelView, Num = 2 | -scc=config/spatial_static_2x2.json |
 | TestSpatial_4x1 | BP_SpatialChannelView | Group 0: Server View Class = SpatialMasterServerView, Num = 1; Group 1: Server View Class = BP_SpatialChannelView, Num = 2 | -scc=config/spatial_static_4x1.json |
@@ -55,6 +59,9 @@ git clone --recurse-submodules https://github.com/metaworking/channeld-ue-demos
   - 按`1-3`键进入对应的房间。如果已经在对应的房间中，则退回到离线房间
 - TestPhysics：测试物理同步
   - 操作同TestReplication
+- TestAssetReplication：测试资产同步
+  - 操作同TestReplication
+  - 移动到对应的文字上触发事件
 - TestSpatial_MxN：测试MxN空间频道。在`TestReplication`场景的基础上，增加了以下操作：
   - 按`I`键切换默认第三人称兴趣范围和全地图兴趣范围
   - 按`L`锁定/解锁玩家角色的空间频道迁移
@@ -67,6 +74,7 @@ git clone --recurse-submodules https://github.com/metaworking/channeld-ue-demos
 | ------ | ------ | ------ | ------ |
 | TestReplication | SingleChannelDataView | Group 0: Server View Class = SingleChannelDataView, Num = 1 | (无变化) |
 | TestPhysics | SingleChannelDataView | Group 0: Server View Class = SingleChannelDataView, Num = 1 | (无变化) |
+| TestAssetReplication | SingleChannelDataView | Group 0: Server View Class = SingleChannelDataView, Num = 1 | (无变化) |
 | TestMultiServer | BP_MultiSubworldsView | Group 0: Server View Class = BP_MultiSubworldsView, Num = 3 | (无变化) |
 | TestSpatial_2x2 | BP_SpatialChannelView | Group 0: Server View Class = SpatialMasterServerView, Num = 1; Group 1: Server View Class = BP_SpatialChannelView, Num = 2 | -scc=config/spatial_static_2x2.json |
 | TestSpatial_4x1 | BP_SpatialChannelView | Group 0: Server View Class = SpatialMasterServerView, Num = 1; Group 1: Server View Class = BP_SpatialChannelView, Num = 2 | -scc=config/spatial_static_4x1.json |
