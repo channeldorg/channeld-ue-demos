@@ -65,12 +65,18 @@
 		},
 		{
 			"replicationClassPath": "/Game/Blueprints/BP_TestRepPlayerController.BP_TestRepPlayerController_C",
-			"stateOrder": 12,
+			"stateOrder": 11,
 			"bSkip": false,
 			"bSingleton": false
 		},
 		{
 			"replicationClassPath": "/Game/Blueprints/BP_TestRPCPlayerController.BP_TestRPCPlayerController_C",
+			"stateOrder": 12,
+			"bSkip": false,
+			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Script/ChanneldIntegration.TestRepNotifyActor",
 			"stateOrder": 13,
 			"bSkip": false,
 			"bSingleton": false
@@ -137,66 +143,66 @@
 	"stateSchemata": [
 		{
 			"replicationClassPath": "/Script/Engine.Actor",
-			"stateOrder": 2,
+			"stateOrder": 1,
 			"bSkip": false,
 			"bSingleton": true
 		},
 		{
 			"replicationClassPath": "/Script/Engine.Controller",
-			"stateOrder": 3,
+			"stateOrder": 2,
 			"bSkip": false,
 			"bSingleton": true
 		},
 		{
 			"replicationClassPath": "/Script/Engine.Character",
-			"stateOrder": 4,
+			"stateOrder": 3,
 			"bSkip": false,
 			"bSingleton": true
 		},
 		{
 			"replicationClassPath": "/Script/Engine.Pawn",
-			"stateOrder": 5,
+			"stateOrder": 4,
 			"bSkip": false,
 			"bSingleton": true
 		},
 		{
 			"replicationClassPath": "/Script/Engine.PlayerController",
-			"stateOrder": 6,
+			"stateOrder": 5,
 			"bSkip": false,
 			"bSingleton": true
 		},
 		{
 			"replicationClassPath": "/Script/Engine.PlayerState",
-			"stateOrder": 7,
+			"stateOrder": 6,
 			"bSkip": false,
 			"bSingleton": true
 		},
 		{
 			"replicationClassPath": "/Script/Engine.ActorComponent",
-			"stateOrder": 8,
+			"stateOrder": 7,
 			"bSkip": false,
 			"bSingleton": true
 		},
 		{
 			"replicationClassPath": "/Script/Engine.SceneComponent",
-			"stateOrder": 9,
+			"stateOrder": 8,
 			"bSkip": false,
 			"bSingleton": true
 		},
 		{
 			"replicationClassPath": "/Game/Blueprints/BP_TestRepPlayerController.BP_TestRepPlayerController_C",
+			"stateOrder": 9,
+			"bSkip": false,
+			"bSingleton": true
+		},
+		{
+			"replicationClassPath": "/Game/Blueprints/BP_TestRPCPlayerController.BP_TestRPCPlayerController_C",
 			"stateOrder": 10,
 			"bSkip": false,
 			"bSingleton": true
 		},
 		{
 			"replicationClassPath": "/Game/Blueprints/BP_TestSpatialPC.BP_TestSpatialPC_C",
-			"stateOrder": 11,
-			"bSkip": false,
-			"bSingleton": true
-		},
-		{
-			"replicationClassPath": "/Game/Blueprints/BP_TestRPCPlayerController.BP_TestRPCPlayerController_C",
 			"stateOrder": 11,
 			"bSkip": false,
 			"bSingleton": true
