@@ -44,24 +44,24 @@ bool FFlatStatesReflectionBenchmark::RunTest(const FString& Parameters)
 
 	auto FlatProcessor = MakeUnique<FFlatStatesChannelDataProcessor>();
 	bool bIsRemoved = false;
-	auto ActorState = FlatProcessor->GetStateFromChannelData(FullChannelData, AActor::StaticClass(), 1048580, bIsRemoved);
+	auto ActorState = FlatProcessor->GetStateFromChannelData(FullChannelData, AActor::StaticClass(), nullptr, 1048580, bIsRemoved);
 	TestNotNull(TEXT("GetStateFromChannelData failed for actor state 1048580"), ActorState);
 	TestFalse(TEXT("Actor state 1048580 is not removed"), bIsRemoved);
 
 	auto TpsProcessor = MakeUnique<FTpsChannelDataProcessor>();
 	
 	constexpr int TIMES = 1000000;
-	BENCHMARK(TIMES, TpsProcessor->GetStateFromChannelData(FullChannelData, AActor::StaticClass(), 1048580, bIsRemoved), FTpsChannelDataProcessor::GetStateFromChannelData(Full));
-	BENCHMARK(TIMES, TpsProcessor->SetStateToChannelData(ActorState, FullChannelData, AActor::StaticClass(), 1048580), FTpsChannelDataProcessor::SetStateToChannelData(Full));
-	BENCHMARK(TIMES, FlatProcessor->GetStateFromChannelData(FullChannelData, AActor::StaticClass(), 1048580, bIsRemoved), FFlatStatesChannelDataProcessor::GetStateFromChannelData(Full));
-	BENCHMARK(TIMES, FlatProcessor->SetStateToChannelData(ActorState, FullChannelData, AActor::StaticClass(), 1048580), FFlatStatesChannelDataProcessor::SetStateToChannelData(Full));
+	BENCHMARK(TIMES, TpsProcessor->GetStateFromChannelData(FullChannelData, AActor::StaticClass(),nullptr, 1048580, bIsRemoved), FTpsChannelDataProcessor::GetStateFromChannelData(Full));
+	BENCHMARK(TIMES, TpsProcessor->SetStateToChannelData(ActorState, FullChannelData, AActor::StaticClass(),nullptr, 1048580), FTpsChannelDataProcessor::SetStateToChannelData(Full));
+	BENCHMARK(TIMES, FlatProcessor->GetStateFromChannelData(FullChannelData, AActor::StaticClass(), nullptr, 1048580, bIsRemoved), FFlatStatesChannelDataProcessor::GetStateFromChannelData(Full));
+	BENCHMARK(TIMES, FlatProcessor->SetStateToChannelData(ActorState, FullChannelData, AActor::StaticClass(),nullptr, 1048580), FFlatStatesChannelDataProcessor::SetStateToChannelData(Full));
 
 	auto SmallChannelData = Arena->CreateMessage<tpspb::TestRepChannelData>(Arena);
 	google::protobuf::util::JsonStringToMessage(SmallChannelDataJson, SmallChannelData);
-	BENCHMARK(TIMES, TpsProcessor->GetStateFromChannelData(SmallChannelData, AActor::StaticClass(), 1048580, bIsRemoved), FTpsChannelDataProcessor::GetStateFromChannelData(Small));
-	BENCHMARK(TIMES, TpsProcessor->SetStateToChannelData(ActorState, SmallChannelData, AActor::StaticClass(), 1048580), FTpsChannelDataProcessor::SetStateToChannelData(Small));
-	BENCHMARK(TIMES, FlatProcessor->GetStateFromChannelData(SmallChannelData, AActor::StaticClass(), 1048580, bIsRemoved), FFlatStatesChannelDataProcessor::GetStateFromChannelData(Small));
-	BENCHMARK(TIMES, FlatProcessor->SetStateToChannelData(ActorState, SmallChannelData, AActor::StaticClass(), 1048580), FFlatStatesChannelDataProcessor::SetStateToChannelData(Small));
+	BENCHMARK(TIMES, TpsProcessor->GetStateFromChannelData(SmallChannelData, AActor::StaticClass(), nullptr, 1048580, bIsRemoved), FTpsChannelDataProcessor::GetStateFromChannelData(Small));
+	BENCHMARK(TIMES, TpsProcessor->SetStateToChannelData(ActorState, SmallChannelData, AActor::StaticClass(),nullptr, 1048580), FTpsChannelDataProcessor::SetStateToChannelData(Small));
+	BENCHMARK(TIMES, FlatProcessor->GetStateFromChannelData(SmallChannelData, AActor::StaticClass(), nullptr, 1048580, bIsRemoved), FFlatStatesChannelDataProcessor::GetStateFromChannelData(Small));
+	BENCHMARK(TIMES, FlatProcessor->SetStateToChannelData(ActorState, SmallChannelData, AActor::StaticClass(),nullptr, 1048580), FFlatStatesChannelDataProcessor::SetStateToChannelData(Small));
 
 	delete Arena;
 	return true;
