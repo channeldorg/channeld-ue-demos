@@ -92,6 +92,12 @@
 			"stateOrder": 15,
 			"bSkip": false,
 			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Game/Blueprints/BP_TestRepComp.BP_TestRepComp_C",
+			"stateOrder": 16,
+			"bSkip": false,
+			"bSingleton": false
 		}
 	]
 },
