@@ -172,7 +172,7 @@ bool FTpsChannelDataProcessor::Merge(const google::protobuf::Message* SrcMsg, go
 	return true;
 }
 
-const google::protobuf::Message* FTpsChannelDataProcessor::GetStateFromChannelData(google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID, bool& bIsRemoved)
+const google::protobuf::Message* FTpsChannelDataProcessor::GetStateFromChannelData(google::protobuf::Message* ChannelData, UClass* TargetClass, UObject* TargetObject, uint32 NetGUID, bool& bIsRemoved)
 {
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
 	if (TargetClass == UObject::StaticClass())
@@ -301,7 +301,7 @@ const google::protobuf::Message* FTpsChannelDataProcessor::GetStateFromChannelDa
 	return nullptr;
 }
 
-void FTpsChannelDataProcessor::SetStateToChannelData(const google::protobuf::Message* State, google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID)
+void FTpsChannelDataProcessor::SetStateToChannelData(const google::protobuf::Message* State, google::protobuf::Message* ChannelData, UClass* TargetClass, UObject* TargetObject, uint32 NetGUID)
 {
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
 	if (TargetClass == UObject::StaticClass())
