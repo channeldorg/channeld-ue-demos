@@ -37,6 +37,10 @@
 			"SupportedTargetPlatforms": [
 				"Android"
 			]
+		},
+		{
+			"Name": "EnhancedInput",
+			"Enabled": true
 		}
 	]
 }
