@@ -32,6 +32,7 @@ services:
         limits:
           cpus: "4.0"
           memory: 1024M
+    profiles: ["server"]
   tps-server:
     image: channeld/tps-server
     build:
@@ -40,14 +41,16 @@ services:
     depends_on:
       - tps-channeld
     volumes:
-      - tps-server-vol:/LinuxServer/ChanneldIntegration/Saved
+      - ./tps-server:/LinuxServer/ChanneldIntegration/Saved
+      # - tps-server-vol:/LinuxServer/ChanneldIntegration/Saved
     expose:
       - "8081"
     environment:
       - CHANNELD_ADDR=tps-channeld
-    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestReplication?MaxPlayers=128 -server -log -metrics -trace -tracefile=/LinuxServer/ChanneldIntegration/Saved/test.utrace channeldServerAddr=tps-channeld skipCustomReplication=False skipCustomRPC=False DisableHandshaking=True"
+    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestReplication?MaxPlayers=128 -server -log -metrics MetricsName=MASTER channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ViewClass=ChanneldUE.SingleChannelDataView ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
     deploy:
-      replicas: 0
+      replicas: 1
+    profiles: ["server", "single"]
   tps-master:
     image: channeld/tps-server
     build:
@@ -56,46 +59,55 @@ services:
     depends_on:
       - tps-channeld
     volumes:
-      - tps-server-vol:/LinuxServer/ChanneldIntegration/Saved
+      - ./tps-master:/LinuxServer/ChanneldIntegration/Saved/Logs
+      # - tps-server-vol:/LinuxServer/ChanneldIntegration/Saved
     expose:
       - "8081"
     environment:
       - CHANNELD_ADDR=tps-channeld
     entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestSpatial_Benchmark -server -log -metrics MetricsName=MASTER channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ViewClass=ChanneldUE.SpatialMasterServerView ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
+    profiles: ["server", "spatial"]
   tps-spatial:
     image: channeld/tps-server
     depends_on:
       - tps-master
     volumes:
-      - tps-server-vol:/LinuxServer/ChanneldIntegration/Saved
+      - ./tps-spatial:/LinuxServer/ChanneldIntegration/Saved/Logs
+      # - tps-server-vol:/LinuxServer/ChanneldIntegration/Saved
     expose:
       - "8081"
     environment:
       - CHANNELD_ADDR=tps-channeld
-    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestSpatial_Benchmark?MaxPlayers=128 -server -log -metrics MetricsName=SPATIAL channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
+    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestSpatial_Benchmark?MaxPlayers=128 -server -log -metrics MetricsName=SPATIAL channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ViewClass=ChanneldUE.SpatialChannelDataView ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
     deploy:
       resources:
         limits:
           cpus: "1.0"
           memory: 1024M
       replicas: 9
+    profiles: ["server", "spatial"]
   tps-client:
     image: channeld/tps-client
     build:
       context: ..
       dockerfile: Packages/Dockerfile-LinuxNoEditor
     volumes:
-      - tps-client-vol:/LinuxNoEditor/ChanneldIntegration/Saved
+      - ./tps-client:/LinuxNoEditor/ChanneldIntegration/Saved
+      # - tps-client-vol:LinuxNoEditor/ChanneldIntegration/Saved
     expose:
       - "8081"
     environment:
       - CHANNELD_ADDR=tps-channeld
-    entrypoint: "./ChanneldIntegration.sh -log -metrics channeldClientAddr=tps-channeld EnableSpatialVisualizer=False CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ENGINEINI=/LinuxServer/Engine.ini -nullrhi -FPS=5 -moving"
+    # entrypoint: "./ChanneldIntegration.sh 127.0.0.1 -log -metrics MetricsName=CLIENT channeldClientAddr=${CHANNELD_ADDR} EnableSpatialVisualizer=False CHANNELDUEINI=/LinuxNoEditor/ChanneldUE.ini ENGINEINI=/LinuxNoEditor/Engine.ini -nullrhi -FPS=30 -moving"
+    # -UseFixedTimeStep
     deploy:
       resources:
+        reservations:
+          cpus: "0.16"
+          memory: 256M
         limits:
-          cpus: "1.0"
-          memory: 1024M
+          cpus: "0.32"
+          memory: 512M
       replicas: 0
     restart: on-failure
   grafana:
@@ -106,6 +118,7 @@ services:
       - "3000:3000"
     expose:
       - "3000"
+    profiles: ["server"]
   prometheus:
     image: prom/prometheus
     entrypoint: /bin/sh -c
@@ -124,6 +137,7 @@ services:
       EOF'
     ports:
       - "9090:9090"
+    profiles: ["server"]
 volumes:
   tps-server-vol:
   tps-client-vol:
