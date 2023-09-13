@@ -30,7 +30,7 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "4.0"
+          cpus: "8.0"
           memory: 1024M
     profiles: ["server"]
   tps-server:
@@ -41,13 +41,13 @@ services:
     depends_on:
       - tps-channeld
     volumes:
-      - ./tps-server:/LinuxServer/ChanneldIntegration/Saved
+      - ./tps-server:/var/log/UE
       # - tps-server-vol:/LinuxServer/ChanneldIntegration/Saved
     expose:
       - "8081"
     environment:
       - CHANNELD_ADDR=tps-channeld
-    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestReplication?MaxPlayers=128 -server -log -metrics MetricsName=MASTER channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ViewClass=ChanneldUE.SingleChannelDataView ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
+    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestReplication?MaxPlayers=200 -server -abslog=/var/log/UE/tps-server.log -metrics MetricsName=MASTER channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ViewClass=ChanneldUE.SingleChannelDataView ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
     deploy:
       replicas: 1
     profiles: ["server", "single"]
@@ -78,7 +78,7 @@ services:
       - "8081"
     environment:
       - CHANNELD_ADDR=tps-channeld
-    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestSpatial_Benchmark?MaxPlayers=128 -server -log -metrics MetricsName=SPATIAL channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ViewClass=ChanneldUE.SpatialChannelDataView ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
+    entrypoint: "./ChanneldIntegrationServer.sh /Game/Maps/TestSpatial_Benchmark?MaxPlayers=200 -server -log -metrics MetricsName=SPATIAL channeldServerAddr=tps-channeld CHANNELDUEINI=/LinuxServer/ChanneldUE.ini ViewClass=ChanneldUE.SpatialChannelDataView ENGINEINI=/LinuxServer/Engine.ini -FPS=30"
     deploy:
       resources:
         limits:
@@ -98,15 +98,16 @@ services:
       - "8081"
     environment:
       - CHANNELD_ADDR=tps-channeld
-    # entrypoint: "./ChanneldIntegration.sh 127.0.0.1 -log -metrics MetricsName=CLIENT channeldClientAddr=${CHANNELD_ADDR} EnableSpatialVisualizer=False CHANNELDUEINI=/LinuxNoEditor/ChanneldUE.ini ENGINEINI=/LinuxNoEditor/Engine.ini -nullrhi -FPS=30 -moving"
+    # entrypoint: "./ChanneldIntegration.sh 127.0.0.1 -log -metrics MetricsName=CLIENT channeldClientAddr=${CHANNELD_ADDR} EnableSpatialVisualizer=False DisableSimulatedProxyTick=true CHANNELDUEINI=/LinuxNoEditor/ChanneldUE.ini ENGINEINI=/LinuxNoEditor/Engine.ini -nullrhi -FPS=30 -moving"
+    # entrypoint: "./ChanneldIntegration.sh /Game/Maps/TestSpatial_Benchmark -log -metrics MetricsName=CLIENT channeldClientAddr=${CHANNELD_ADDR} EnableSpatialVisualizer=False DisableSimulatedProxyTick=true CHANNELDUEINI=/LinuxNoEditor/ChanneldUE.ini ViewClass=ChanneldUE.SpatialChannelDataView ENGINEINI=/LinuxNoEditor/Engine.ini -nullrhi -FPS=30 -moving"
     # -UseFixedTimeStep
     deploy:
       resources:
         reservations:
-          cpus: "0.16"
+          cpus: "0.1"
           memory: 256M
         limits:
-          cpus: "0.32"
+          cpus: "0.2"
           memory: 512M
       replicas: 0
     restart: on-failure

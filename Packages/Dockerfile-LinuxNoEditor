@@ -17,4 +17,4 @@ EXPOSE ${PROMETHEUS_PORT}
 
 # MUST use the shell form in order to pass the ENV!
 # -UseFixedTimeStep -FPS=5
-CMD ./ChanneldIntegration.sh ${SERVER_IP} -log -metrics MetricsName=CLIENT channeldClientAddr=${CHANNELD_ADDR} EnableSpatialVisualizer=False CHANNELDUEINI=/LinuxNoEditor/ChanneldUE.ini ENGINEINI=/LinuxNoEditor/Engine.ini -nullrhi -moving
+CMD ./ChanneldIntegration.sh ${SERVER_IP} -log -metrics MetricsName=CLIENT channeldClientAddr=${CHANNELD_ADDR} EnableSpatialVisualizer=False DisableSimulatedProxyTick=true CHANNELDUEINI=/LinuxNoEditor/ChanneldUE.ini ENGINEINI=/LinuxNoEditor/Engine.ini -nullrhi -moving
