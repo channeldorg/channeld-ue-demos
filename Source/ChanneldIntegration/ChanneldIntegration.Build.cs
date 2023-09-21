@@ -17,6 +17,7 @@ public class ChanneldIntegration : ModuleRules
             "ProtobufUE",
             "PrometheusUE",
 			"ChanneldUE",
+			"EnhancedInput",
         });
 		bEnableUndefinedIdentifierWarnings = false;
 		bEnableExceptions = true;

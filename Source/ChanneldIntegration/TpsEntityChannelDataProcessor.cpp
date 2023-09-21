@@ -35,7 +35,7 @@ bool FTpsEntityChannelDataProcessor::UpdateChannelData(UObject* TargetObj, googl
 }
 
 const google::protobuf::Message* FTpsEntityChannelDataProcessor::GetStateFromChannelData(
-	google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID, bool& bIsRemoved)
+	google::protobuf::Message* ChannelData, UClass* TargetClass,UObject* TargetObject, uint32 NetGUID, bool& bIsRemoved)
 {
 	bIsRemoved = false;
 	auto EntityChannelData = static_cast<tpspb::EntityChannelData*>(ChannelData);
@@ -92,7 +92,7 @@ const google::protobuf::Message* FTpsEntityChannelDataProcessor::GetStateFromCha
 }
 
 void FTpsEntityChannelDataProcessor::SetStateToChannelData(const google::protobuf::Message* State,
-	google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID)
+	google::protobuf::Message* ChannelData, UClass* TargetClass, UObject* TargetObject, uint32 NetGUID)
 {
 	if (State == nullptr)
 	{

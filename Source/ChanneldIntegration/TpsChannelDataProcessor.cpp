@@ -172,7 +172,7 @@ bool FTpsChannelDataProcessor::Merge(const google::protobuf::Message* SrcMsg, go
 	return true;
 }
 
-const google::protobuf::Message* FTpsChannelDataProcessor::GetStateFromChannelData(google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID, bool& bIsRemoved)
+const google::protobuf::Message* FTpsChannelDataProcessor::GetStateFromChannelData(google::protobuf::Message* ChannelData, UClass* TargetClass, UObject* TargetObject, uint32 NetGUID, bool& bIsRemoved)
 {
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
 	if (TargetClass == UObject::StaticClass())
@@ -234,9 +234,9 @@ const google::protobuf::Message* FTpsChannelDataProcessor::GetStateFromChannelDa
 			return &States->at(NetGUID);
 		}
 	}
-	else if (TargetClass == UActorComponent::StaticClass())
+	else if (TargetClass == UStaticMeshComponent::StaticClass())
 	{
-		auto States = TestRepChannelData->mutable_actorcomponentstates();
+		auto States = TestRepChannelData->mutable_staticmeshcomponentstates();
 		if (States->contains(NetGUID))
 		{
 			auto State = &States->at(NetGUID);
@@ -247,6 +247,16 @@ const google::protobuf::Message* FTpsChannelDataProcessor::GetStateFromChannelDa
 	else if (TargetClass == USceneComponent::StaticClass())
 	{
 		auto States = TestRepChannelData->mutable_scenecomponentstates();
+		if (States->contains(NetGUID))
+		{
+			auto State = &States->at(NetGUID);
+			bIsRemoved = State->removed();
+			return State;
+		}
+	}
+	else if (TargetClass == UActorComponent::StaticClass())
+	{
+		auto States = TestRepChannelData->mutable_actorcomponentstates();
 		if (States->contains(NetGUID))
 		{
 			auto State = &States->at(NetGUID);
@@ -291,7 +301,7 @@ const google::protobuf::Message* FTpsChannelDataProcessor::GetStateFromChannelDa
 	return nullptr;
 }
 
-void FTpsChannelDataProcessor::SetStateToChannelData(const google::protobuf::Message* State, google::protobuf::Message* ChannelData, UClass* TargetClass, uint32 NetGUID)
+void FTpsChannelDataProcessor::SetStateToChannelData(const google::protobuf::Message* State, google::protobuf::Message* ChannelData, UClass* TargetClass, UObject* TargetObject, uint32 NetGUID)
 {
 	auto TestRepChannelData = static_cast<tpspb::TestRepChannelData*>(ChannelData);
 	if (TargetClass == UObject::StaticClass())
@@ -348,11 +358,14 @@ void FTpsChannelDataProcessor::SetStateToChannelData(const google::protobuf::Mes
 			(*States)[NetGUID] = *PlayerControllerState;
 		}
 	}
-	else if (TargetClass == UActorComponent::StaticClass())
+	else if (TargetClass == UStaticMeshComponent::StaticClass())
 	{
-		auto ActorCompState = State ? static_cast<const unrealpb::ActorComponentState*>(State) : RemovedActorComponentState.Get();
-		auto States = TestRepChannelData->mutable_actorcomponentstates();
-		(*States)[NetGUID] = *ActorCompState;
+		auto StaticMeshState = static_cast<const unrealpb::StaticMeshComponentState*>(State);
+		if (StaticMeshState)
+		{
+			auto States = TestRepChannelData->mutable_staticmeshcomponentstates();
+			(*States)[NetGUID] = *StaticMeshState;
+		}
 	}
 	else if (TargetClass == USceneComponent::StaticClass())
 	{
@@ -362,6 +375,12 @@ void FTpsChannelDataProcessor::SetStateToChannelData(const google::protobuf::Mes
 			auto States = TestRepChannelData->mutable_scenecomponentstates();
 			(*States)[NetGUID] = *SceneCompState;
 		}
+	}
+	else if (TargetClass == UActorComponent::StaticClass())
+	{
+		auto ActorCompState = State ? static_cast<const unrealpb::ActorComponentState*>(State) : RemovedActorComponentState.Get();
+		auto States = TestRepChannelData->mutable_actorcomponentstates();
+		(*States)[NetGUID] = *ActorCompState;
 	}
 	else if (TargetClass == AGameStateBase::StaticClass())
 	{
