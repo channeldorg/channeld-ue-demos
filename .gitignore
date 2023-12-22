@@ -78,3 +78,5 @@ DerivedDataCache/*
 ChanneldGenerated
 Plugins/ChanneldUE
 /Packages
+.vscode/settings.json
+.vsconfig
