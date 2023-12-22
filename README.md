@@ -66,10 +66,10 @@ git clone --recurse-submodules https://github.com/metaworking/channeld-ue-demos
   - 移动到对应的文字上触发事件
 - TestSpatial_MxN：测试MxN空间频道。在`TestReplication`场景的基础上，增加了以下操作：
   - 按`I`键切换默认第三人称兴趣范围和全地图兴趣范围
-  - 按`L`锁定/解锁玩家角色的空间频道迁移
+  - 按`L`键锁定/解锁玩家角色的空间频道迁移
   - 按`空格`键角色跳跃后，会修改主服务器GameState的Jumps属性，并同步到各个空间服务器
 - ClientOnlyChatDemo：无服务器模式的聊天室示例
-- ServerAuthChatDemo：服务器授权模式的聊天室示例\
+- ServerAuthChatDemo：服务器授权模式的聊天室示例
 
 ### 各个地图运行需要的项目和编辑器设置：
 | 地图 | Channel Data View Class | Server Groups | Launch Channeld Parameters |
