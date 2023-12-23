@@ -224,6 +224,12 @@
 			"stateOrder": 11,
 			"bSkip": false,
 			"bSingleton": true
+		},
+		{
+			"replicationClassPath": "/Script/Engine.StaticMeshComponent",
+			"stateOrder": 12,
+			"bSkip": false,
+			"bSingleton": true
 		}
 	]
 }
