@@ -104,6 +104,18 @@
 			"stateOrder": 17,
 			"bSkip": false,
 			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Script/GameplayTasks.GameplayTasksComponent",
+			"stateOrder": 18,
+			"bSkip": false,
+			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Script/GameplayAbilities.AbilitySystemComponent",
+			"stateOrder": 19,
+			"bSkip": false,
+			"bSingleton": false
 		}
 	]
 },

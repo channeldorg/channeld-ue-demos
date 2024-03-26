@@ -45,6 +45,10 @@
 		{
 			"Name": "OnlineSubsystemNull",
 			"Enabled": false
+		},
+		{
+			"Name": "GameplayAbilities",
+			"Enabled": true
 		}
 	]
 }
