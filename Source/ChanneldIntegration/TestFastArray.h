@@ -15,6 +15,10 @@ struct FExampleItemEntry : public FFastArraySerializerItem
 	int32 ExampleIntProperty = 0;
 	UPROPERTY()
 	float ExampleFloatProperty = 1.0f;
+	UPROPERTY()
+	UObject* ExampleObjectProperty = nullptr;
+	// UPROPERTY()
+	// TSoftObjectPtr<USoundBase> ExampleObjRefProperty;
 	/** Optional functions you can implement for client side notification of changes to items
 	void PreReplicatedRemove();
 	void PostReplicatedAdd();
@@ -37,11 +41,13 @@ struct FExampleArray: public FFastArraySerializer
 		return FastArrayDeltaSerialize<FExampleItemEntry, FExampleArray>(Items, DeltaParms, *this);
 	}
 
-	FExampleItemEntry& AddItem(int32 IntProperty, float FloatProperty)
+	FExampleItemEntry& AddItem(int32 IntProperty, float FloatProperty, UObject* ObjectProperty = nullptr)//, const TSoftObjectPtr<USoundBase>& ObjRefProperty = nullptr)
 	{
 		FExampleItemEntry NewItem;
 		NewItem.ExampleIntProperty = IntProperty;
 		NewItem.ExampleFloatProperty = FloatProperty;
+		NewItem.ExampleObjectProperty = ObjectProperty;
+		// NewItem.ExampleObjRefProperty = ObjRefProperty;
 		FExampleItemEntry& Result = Items.Add_GetRef(NewItem);
 		MarkArrayDirty();
 		return Result;
@@ -53,10 +59,12 @@ struct FExampleArray: public FFastArraySerializer
 		MarkArrayDirty();
 	}
 
-	void UpdateItemAt(int32 Index, int32 IntProperty, float FloatProperty)
+	void UpdateItemAt(int32 Index, int32 IntProperty, float FloatProperty, UObject* ObjectProperty = nullptr)//, TSoftObjectPtr<USoundBase> ObjRefProperty = nullptr)
 	{
 		Items[Index].ExampleIntProperty = IntProperty;
 		Items[Index].ExampleFloatProperty = FloatProperty;
+		Items[Index].ExampleObjectProperty = ObjectProperty;
+		// Items[Index].ExampleObjRefProperty = ObjRefProperty;
 		MarkItemDirty(Items[Index]);
 	}
 
@@ -66,10 +74,12 @@ struct FExampleArray: public FFastArraySerializer
 		MarkArrayDirty();
 	}
 
-	void GetItem(int32 Index, int32& IntProperty, float& FloatProperty) const
+	void GetItem(int32 Index, int32& IntProperty, float& FloatProperty, UObject*& ObjectProperty/*, TSoftObjectPtr<USoundBase>& ObjRefProperty*/) const
 	{
 		IntProperty = Items[Index].ExampleIntProperty;
 		FloatProperty = Items[Index].ExampleFloatProperty;
+		ObjectProperty = Items[Index].ExampleObjectProperty;
+		// ObjRefProperty = Items[Index].ExampleObjRefProperty;
 	}
 
 	int32 Num() const
@@ -112,16 +122,16 @@ public:
 	int32 GetNumItems() const;
 
 	UFUNCTION(BlueprintCallable, BlueprintPure)
-	void GetItem(int32 Index, int32& IntProperty, float& FloatProperty);
+	void GetItem(int32 Index, int32& IntProperty, float& FloatProperty, UObject*& ObjectProperty/*, TSoftObjectPtr<USoundBase>& ObjRefProperty*/) const;
 
-	UFUNCTION(Server, Reliable, BlueprintCallable)
-	void ServerAddItem(int32 IntProperty, float FloatProperty);
+	UFUNCTION(Server, Reliable, BlueprintCallable, meta=(AutoCreateRefTerm="ObjRefProperty"))
+	void ServerAddItem(int32 IntProperty, float FloatProperty, UObject* ObjectProperty = nullptr);//, const TSoftObjectPtr<USoundBase>& ObjRefProperty = nullptr);
 
 	UFUNCTION(Server, Reliable, BlueprintCallable)
 	void ServerRemoveItemAt(int32 Index);
 
-	UFUNCTION(Server, Reliable, BlueprintCallable)
-	void ServerUpdateItemAt(int32 Index, int32 IntProperty, float FloatProperty);
+	UFUNCTION(Server, Reliable, BlueprintCallable, meta=(AutoCreateRefTerm="ObjRefProperty"))
+	void ServerUpdateItemAt(int32 Index, int32 IntProperty, float FloatProperty, UObject* ObjectProperty = nullptr);//, const TSoftObjectPtr<USoundBase>& ObjRefProperty = nullptr);
 
 	UFUNCTION(Server, Reliable, BlueprintCallable)
 	void ServerEmptyItems();

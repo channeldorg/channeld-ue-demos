@@ -16,14 +16,14 @@ int32 ATestFastArrayActor::GetNumItems() const
 	return ExampleArray.Num();
 }
 
-void ATestFastArrayActor::GetItem(int32 Index, int32& IntProperty, float& FloatProperty)
+void ATestFastArrayActor::GetItem(int32 Index, int32& IntProperty, float& FloatProperty, UObject*& ObjectProperty/*, TSoftObjectPtr<USoundBase>& ObjRefProperty*/) const
 {
-	ExampleArray.GetItem(Index, IntProperty, FloatProperty);
+	ExampleArray.GetItem(Index, IntProperty, FloatProperty, ObjectProperty);
 }
 
-void ATestFastArrayActor::ServerAddItem_Implementation(int32 IntProperty, float FloatProperty)
+void ATestFastArrayActor::ServerAddItem_Implementation(int32 IntProperty, float FloatProperty, UObject* ObjectProperty)//, const TSoftObjectPtr<USoundBase>& ObjRefProperty)
 {
-	ExampleArray.AddItem(IntProperty, FloatProperty);
+	ExampleArray.AddItem(IntProperty, FloatProperty, ObjectProperty);
 }
 
 void ATestFastArrayActor::ServerRemoveItemAt_Implementation(int32 Index)
@@ -31,9 +31,9 @@ void ATestFastArrayActor::ServerRemoveItemAt_Implementation(int32 Index)
 	ExampleArray.RemoveItemAt(Index);
 }
 
-void ATestFastArrayActor::ServerUpdateItemAt_Implementation(int32 Index, int32 IntProperty, float FloatProperty)
+void ATestFastArrayActor::ServerUpdateItemAt_Implementation(int32 Index, int32 IntProperty, float FloatProperty, UObject* ObjectProperty)//, const TSoftObjectPtr<USoundBase>& ObjRefProperty)
 {
-	ExampleArray.UpdateItemAt(Index, IntProperty, FloatProperty);
+	ExampleArray.UpdateItemAt(Index, IntProperty, FloatProperty, ObjectProperty);
 }
 
 void ATestFastArrayActor::ServerEmptyItems_Implementation()
