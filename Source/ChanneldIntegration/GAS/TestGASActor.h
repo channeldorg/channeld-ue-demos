@@ -17,6 +17,12 @@ struct FAbilityInputToInputActionBinding
 
 	UPROPERTY(EditDefaultsOnly, Category = "GAS")
 	EAbilityInput AbilityInput;
+
+	FAbilityInputToInputActionBinding()
+		: InputAction(nullptr)
+		, AbilityInput(EAbilityInput::None)
+	{
+	}
 };
 
 USTRUCT()

@@ -18,12 +18,17 @@ struct FAbilitySetItem
 {
 	GENERATED_BODY()
 
-public:
 	UPROPERTY(EditDefaultsOnly, Category = "GAS")
 	TSubclassOf<UGameplayAbility> Ability;
 
 	UPROPERTY(EditDefaultsOnly, Category = "GAS")
 	EAbilityInput InputKey;
+
+	FAbilitySetItem()
+		: Ability(nullptr)
+		, InputKey(EAbilityInput::None)
+	{
+	}
 };
 
 UCLASS()
