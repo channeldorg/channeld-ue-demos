@@ -248,6 +248,12 @@
 			"stateOrder": 12,
 			"bSkip": false,
 			"bSingleton": true
+		},
+		{
+			"replicationClassPath": "/Game/Blueprints/Physics/BP_PhysObjEmitter.BP_PhysObjEmitter_C",
+			"stateOrder": 13,
+			"bSkip": false,
+			"bSingleton": true
 		}
 	]
 }
