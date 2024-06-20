@@ -37,15 +37,6 @@ git clone --recurse-submodules https://github.com/metaworking/channeld-ue-demos
 - ClientOnlyChatDemo: chat room demo in client-only mode.
 - ServerAuthChatDemo: chat room demo in server-authoritative mode.
 
-### The project and editor settings required to run the maps:
-| Map | Channel Data View Class | Server Groups | Launch Channeld Parameters |
-| ------ | ------ | ------ | ------ |
-| BenchmarkReplication<br/>TestPhysics<br/>TestLandscape<br/>TestAssetReplication<br/> | SingleChannelDataView | Group 0: Server View Class = SingleChannelDataView, Num = 1 | (no change) |
-| TestMultiServer | BP_MultiSubworldsView | Group 0: Server View Class = BP_MultiSubworldsView, Num = 3 | (no change) |
-| TestSpatial_2x2 | BP_SpatialChannelView | Group 0: Server View Class = SpatialMasterServerView, Num = 1; Group 1: Server View Class = BP_SpatialChannelView, Num = 2 | -scc=config/spatial_static_2x2.json |
-| TestSpatial_4x1 | BP_SpatialChannelView | Group 0: Server View Class = SpatialMasterServerView, Num = 1; Group 1: Server View Class = BP_SpatialChannelView, Num = 2 | -scc=config/spatial_static_4x1.json |
-| TestSpatial_Benchmark | BP_SpatialChannelView | Group 0: Server View Class = SpatialMasterServerView, Num = 1; Group 1: Server View Class = BP_SpatialChannelView, Num = 9 | -scc=config/spatial_static_benchmark.json |
-
 ## 包含的地图及操作：
 - BenchmarkReplication: 单服测试场景。用于基本的单服同步测试和性能基准测试。
   - 按`T`键创建一个`BP_TestRepActor`
@@ -70,12 +61,3 @@ git clone --recurse-submodules https://github.com/metaworking/channeld-ue-demos
   - 按`空格`键角色跳跃后，会修改主服务器GameState的Jumps属性，并同步到各个空间服务器
 - ClientOnlyChatDemo：无服务器模式的聊天室示例
 - ServerAuthChatDemo：服务器授权模式的聊天室示例
-
-### 各个地图运行需要的项目和编辑器设置：
-| 地图 | Channel Data View Class | Server Groups | Launch Channeld Parameters |
-| ------ | ------ | ------ | ------ |
-| BenchmarkReplication<br/>TestPhysics<br/>TestLandscape<br/>TestAssetReplication<br/> | SingleChannelDataView | Group 0: Server View Class = SingleChannelDataView, Num = 1 | (无变化) |
-| TestMultiServer_SinglePlayer | BP_MultiSubworldsView | Group 0: Server View Class = BP_MultiSubworldsView, Num = 3, **Server Map = TestMultiServer** | -cwm=false |
-| TestSpatial_2x2<br/>TestOpenWorld (**Requires UE 5.2 or above**) | BP_SpatialChannelView | Group 0: Server View Class = SpatialMasterServerView, Num = 1; Group 1: Server View Class = BP_SpatialChannelView, Num = 2 | -scc=config/spatial_static_2x2.json |
-| TestSpatial_4x1 | BP_SpatialChannelView | Group 0: Server View Class = SpatialMasterServerView, Num = 1; Group 1: Server View Class = BP_SpatialChannelView, Num = 2 | -scc=config/spatial_static_4x1.json |
-| TestSpatial_Benchmark | BP_SpatialChannelView | Group 0: Server View Class = SpatialMasterServerView, Num = 1; Group 1: Server View Class = BP_SpatialChannelView, Num = 9 | -scc=config/spatial_static_benchmark.json |
