@@ -18,11 +18,11 @@ public class ChanneldIntegration : ModuleRules
             "PrometheusUE",
 			"ChanneldUE",
 			"EnhancedInput",
+			"GameplayAbilities",
+			"GameplayTasks",
         });
 		bEnableUndefinedIdentifierWarnings = false;
 		bEnableExceptions = true;
-
-		PrivateDependencyModuleNames.AddRange(new string[] {  });
 
         // Uncomment if you are using Slate UI
         // PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });

@@ -58,44 +58,68 @@
 			"bSingleton": true
 		},
 		{
-			"replicationClassPath": "/Game/Blueprints/BP_RepGameState.BP_RepGameState_C",
+			"replicationClassPath": "/Script/Engine.WorldSettings",
 			"stateOrder": 10,
 			"bSkip": false,
 			"bSingleton": true
 		},
 		{
-			"replicationClassPath": "/Game/Blueprints/BP_TestRepPlayerController.BP_TestRepPlayerController_C",
+			"replicationClassPath": "/Game/Blueprints/BP_RepGameState.BP_RepGameState_C",
 			"stateOrder": 11,
 			"bSkip": false,
-			"bSingleton": false
+			"bSingleton": true
 		},
 		{
-			"replicationClassPath": "/Game/Blueprints/BP_TestRPCPlayerController.BP_TestRPCPlayerController_C",
+			"replicationClassPath": "/Game/Blueprints/BP_TestRepPlayerController.BP_TestRepPlayerController_C",
 			"stateOrder": 12,
 			"bSkip": false,
 			"bSingleton": false
 		},
 		{
-			"replicationClassPath": "/Script/Engine.StaticMeshComponent",
+			"replicationClassPath": "/Game/Blueprints/BP_TestRPCPlayerController.BP_TestRPCPlayerController_C",
 			"stateOrder": 13,
 			"bSkip": false,
 			"bSingleton": false
 		},
 		{
-			"replicationClassPath": "/Script/Engine.SkeletalMeshActor",
+			"replicationClassPath": "/Script/Engine.StaticMeshComponent",
 			"stateOrder": 14,
 			"bSkip": false,
 			"bSingleton": false
 		},
 		{
-			"replicationClassPath": "/Script/ChanneldIntegration.ReplicatedAmbientSound",
+			"replicationClassPath": "/Script/Engine.SkeletalMeshActor",
 			"stateOrder": 15,
 			"bSkip": false,
 			"bSingleton": false
 		},
 		{
-			"replicationClassPath": "/Game/Blueprints/BP_TestRepComp.BP_TestRepComp_C",
+			"replicationClassPath": "/Script/ChanneldIntegration.ReplicatedAmbientSound",
 			"stateOrder": 16,
+			"bSkip": false,
+			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Game/Blueprints/BP_TestRepComp.BP_TestRepComp_C",
+			"stateOrder": 17,
+			"bSkip": false,
+			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Script/ChanneldIntegration.TestFastArrayActor",
+			"stateOrder": 18,
+			"bSkip": false,
+			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Script/GameplayTasks.GameplayTasksComponent",
+			"stateOrder": 19,
+			"bSkip": false,
+			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Script/GameplayAbilities.AbilitySystemComponent",
+			"stateOrder": 20,
 			"bSkip": false,
 			"bSingleton": false
 		}
@@ -228,6 +252,12 @@
 		{
 			"replicationClassPath": "/Script/Engine.StaticMeshComponent",
 			"stateOrder": 12,
+			"bSkip": false,
+			"bSingleton": true
+		},
+		{
+			"replicationClassPath": "/Game/Blueprints/Physics/BP_PhysObjEmitter.BP_PhysObjEmitter_C",
+			"stateOrder": 13,
 			"bSkip": false,
 			"bSingleton": true
 		}

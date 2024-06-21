@@ -80,3 +80,4 @@ Plugins/ChanneldUE
 /Packages
 .vscode/settings.json
 .vsconfig
+Config/ChanneldStaticObjectExport.json
