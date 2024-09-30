@@ -82,44 +82,50 @@
 			"bSingleton": false
 		},
 		{
-			"replicationClassPath": "/Script/Engine.StaticMeshComponent",
+			"replicationClassPath": "/Game/Blueprints/BP_TestRPC.BP_TestRPC_C",
 			"stateOrder": 14,
 			"bSkip": false,
 			"bSingleton": false
 		},
 		{
-			"replicationClassPath": "/Script/Engine.SkeletalMeshActor",
+			"replicationClassPath": "/Script/Engine.StaticMeshComponent",
 			"stateOrder": 15,
 			"bSkip": false,
 			"bSingleton": false
 		},
 		{
-			"replicationClassPath": "/Script/ChanneldIntegration.ReplicatedAmbientSound",
+			"replicationClassPath": "/Script/Engine.SkeletalMeshActor",
 			"stateOrder": 16,
 			"bSkip": false,
 			"bSingleton": false
 		},
 		{
-			"replicationClassPath": "/Game/Blueprints/BP_TestRepComp.BP_TestRepComp_C",
+			"replicationClassPath": "/Script/ChanneldIntegration.ReplicatedAmbientSound",
 			"stateOrder": 17,
 			"bSkip": false,
 			"bSingleton": false
 		},
 		{
-			"replicationClassPath": "/Script/ChanneldIntegration.TestFastArrayActor",
+			"replicationClassPath": "/Game/Blueprints/BP_TestRepComp.BP_TestRepComp_C",
 			"stateOrder": 18,
 			"bSkip": false,
 			"bSingleton": false
 		},
 		{
-			"replicationClassPath": "/Script/GameplayTasks.GameplayTasksComponent",
+			"replicationClassPath": "/Script/ChanneldIntegration.TestFastArrayActor",
 			"stateOrder": 19,
 			"bSkip": false,
 			"bSingleton": false
 		},
 		{
-			"replicationClassPath": "/Script/GameplayAbilities.AbilitySystemComponent",
+			"replicationClassPath": "/Script/GameplayTasks.GameplayTasksComponent",
 			"stateOrder": 20,
+			"bSkip": false,
+			"bSingleton": false
+		},
+		{
+			"replicationClassPath": "/Script/GameplayAbilities.AbilitySystemComponent",
+			"stateOrder": 21,
 			"bSkip": false,
 			"bSingleton": false
 		}
