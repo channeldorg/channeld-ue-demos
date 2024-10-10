@@ -1,14 +1,14 @@
 # ChanneldUE Demos
 
-This repository contains the UE project that demonstrates the features and how-tos of [ChanneldUE](https://github.com/metaworking/channeld-ue-plugin).
+This repository contains the UE project that demonstrates the features and how-tos of [ChanneldUE](https://github.com/channeldorg/channeld-ue-plugin).
 
-本UE项目用于展示[ChanneldUE插件](https://github.com/metaworking/channeld-ue-plugin)的特性和使用方法。
+本UE项目用于展示[ChanneldUE插件](https://github.com/channeldorg/channeld-ue-plugin)的特性和使用方法。
 
 To clone the repo with all submodules, use the following command:
 
 通过以下命令克隆代码仓库，可以自动克隆所有子模块：
 ```bash
-git clone --recurse-submodules https://github.com/metaworking/channeld-ue-demos
+git clone --recurse-submodules https://github.com/channeldorg/channeld-ue-demos
 ```
 
 ## Contained maps and how to use them:

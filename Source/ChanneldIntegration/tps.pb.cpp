@@ -570,7 +570,7 @@ const char descriptor_table_protodef_tps_2eproto[] PROTOBUF_SECTION_VARIABLE(pro
   "\n\005value\030\002 \001(\0132\023.tpspb.TestNPCState:\0028\001\"C"
   "\n\'TestRepGameState_MulticastNumber_Param"
   "s\022\020\n\003num\030\001 \001(\005H\000\210\001\001B\006\n\004_numB@Z>github.co"
-  "m/metaworking/channeld/examples/channeld"
+  "m/channeldorg/channeld/examples/channeld"
   "-ue-tps/tpspbb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_tps_2eproto_deps[1] = {

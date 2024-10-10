@@ -484,7 +484,7 @@ const char descriptor_table_protodef_test_2eproto[] PROTOBUF_SECTION_VARIABLE(pr
   "(\r\032V\n\010Kv1Entry\022\013\n\003key\030\001 \001(\003\0229\n\005value\030\002 \001"
   "(\0132*.testpb.TestFieldMaskMessage.NestedM"
   "essage:\0028\001\032*\n\010Kv2Entry\022\013\n\003key\030\001 \001(\003\022\r\n\005v"
-  "alue\030\002 \001(\t:\0028\001B,Z*github.com/metaworking"
+  "alue\030\002 \001(\t:\0028\001B,Z*github.com/channeldorg"
   "/channeld/pkg/testpbb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_test_2eproto_deps[1] = {
