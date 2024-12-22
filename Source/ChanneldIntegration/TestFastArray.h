@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "Net/UnrealNetwork.h"
+#include "Net/Serialization/FastArraySerializer.h"
 #include "TestFastArray.generated.h"
 
 /** Step 1: Make your struct inherit from FFastArraySerializerItem */
